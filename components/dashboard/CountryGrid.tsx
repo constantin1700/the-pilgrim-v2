@@ -65,7 +65,7 @@ export function CountryGrid() {
           <Link href={`/explorador/${country.id}`}>
             <div className="relative h-40 bg-gradient-to-br from-blue-500 to-teal-500">
               <div className="absolute top-4 left-4 text-4xl">
-                {getCountryEmoji(country.countryCode)}
+                {getCountryEmoji(country.code || country.countryCode)}
               </div>
               <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm px-2 py-1 rounded-md">
                 <span className="text-white font-semibold">#{index + 1}</span>
@@ -81,9 +81,9 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">💰 Salario</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">💰 PIB/capita</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {formatCurrency(country.averageSalary)}
+                    {formatCurrency(country.gdp_per_capita || country.averageSalary || 0)}
                   </p>
                 </div>
               </div>
@@ -91,9 +91,9 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <Thermometer className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">🌡️ Clima</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">🏛️ Capital</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {country.temperature}°C
+                    {country.capital || 'N/A'}
                   </p>
                 </div>
               </div>
@@ -101,17 +101,19 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">📝 Papeleos</p>
-                  <p className="text-sm">{getQualityStars(country.bureaucracyEase)}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">🌍 Continente</p>
+                  <p className="font-semibold text-gray-900 dark:text-white">
+                    {country.continent || 'N/A'}
+                  </p>
                 </div>
               </div>
               
               <div className="flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">🎆 Calidad vida</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">💱 Moneda</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {country.qualityOfLife}
+                    {country.currency || 'N/A'}
                   </p>
                 </div>
               </div>
@@ -119,9 +121,9 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">👥 Social</p>
-                  <p className="text-lg">
-                    {getSocialEmoji(country.socialIndex)} {country.socialIndex}
+                  <p className="text-xs text-gray-500 dark:text-gray-400">👥 Población</p>
+                  <p className="font-semibold text-gray-900 dark:text-white">
+                    {country.population ? `${(country.population / 1000000).toFixed(1)}M` : 'N/A'}
                   </p>
                 </div>
               </div>
@@ -129,9 +131,9 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">📊 Ratio S/G</p>
-                  <p className="font-semibold text-gray-900 dark:text-white">
-                    {country.salaryExpenseRatio.toFixed(2)}
+                  <p className="text-xs text-gray-500 dark:text-gray-400">🗣️ Idioma</p>
+                  <p className="font-semibold text-gray-900 dark:text-white text-sm">
+                    {country.main_language || 'N/A'}
                   </p>
                 </div>
               </div>
