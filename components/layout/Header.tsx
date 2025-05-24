@@ -11,7 +11,7 @@ const navigation = [
   { name: 'Dashboard', href: '/dashboard' },
   { name: 'Explorador', href: '/explorador' },
   { name: 'Blog', href: '/blog' },
-  { name: 'Foro', href: '/foro', badge: 'Próximamente' },
+  { name: 'Foro', href: '/foro', badge: 'Pronto' },
   { name: 'Servicios', href: '/servicios' },
   { name: 'Conoce más', href: '/conoce-mas' },
   { name: 'Contacto', href: '/contacto' },
@@ -24,7 +24,7 @@ export function Header() {
   return (
     <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-800 sticky top-0 z-50">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
-        <div className="flex w-full items-center justify-between py-4">
+        <div className="flex w-full items-center justify-between py-5">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <span className="text-2xl font-bold text-blue-800 dark:text-blue-400">
@@ -34,25 +34,26 @@ export function Header() {
           </div>
           
           {/* Desktop navigation */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-6">
+          <div className="hidden lg:flex lg:items-center lg:space-x-8">
             {navigation.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  'text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 relative',
-                  pathname === link.href
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-700 dark:text-gray-300'
-                )}
-              >
-                {link.name}
-                {link.badge && (
-                  <span className="absolute -top-2 -right-4 text-xs bg-amber-500 dark:bg-amber-400 text-white dark:text-gray-900 px-2 py-0.5 rounded-full">
-                    {link.badge}
-                  </span>
-                )}
-              </Link>
+              <div key={link.name} className="relative">
+                <Link
+                  href={link.href}
+                  className={cn(
+                    'text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 inline-block py-2',
+                    pathname === link.href
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-gray-700 dark:text-gray-300'
+                  )}
+                >
+                  {link.name}
+                  {link.badge && (
+                    <span className="ml-1 text-[9px] bg-amber-500/90 dark:bg-amber-400/90 text-white dark:text-gray-900 px-1 py-0.5 rounded leading-none align-super">
+                      {link.badge}
+                    </span>
+                  )}
+                </Link>
+              </div>
             ))}
           </div>
 
@@ -103,7 +104,7 @@ export function Header() {
                   <span className="flex items-center justify-between">
                     {link.name}
                     {link.badge && (
-                      <span className="text-xs bg-amber-500 dark:bg-amber-400 text-white dark:text-gray-900 px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] bg-amber-500/90 dark:bg-amber-400/90 text-white dark:text-gray-900 px-1.5 py-0.5 rounded">
                         {link.badge}
                       </span>
                     )}
