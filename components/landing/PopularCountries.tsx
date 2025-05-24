@@ -30,7 +30,7 @@ export function PopularCountries() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Países Destacados
+            🌟 Países Destacados
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Los destinos más populares según nuestra comunidad
@@ -75,7 +75,7 @@ export function PopularCountries() {
 
         <div className="text-center mt-8">
           <Link href="/explorador" className="btn-primary">
-            Ver todos los países
+            🗺️ Ver todos los países
           </Link>
         </div>
       </div>

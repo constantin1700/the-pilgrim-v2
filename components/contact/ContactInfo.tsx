@@ -5,14 +5,14 @@ export function ContactInfo() {
     <div>
       <div className="card p-8 mb-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          Información de contacto
+          📞 Información de contacto
         </h2>
         
         <div className="space-y-4">
           <div className="flex items-start gap-4">
             <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400 mt-1" />
             <div>
-              <p className="font-medium text-gray-900 dark:text-white">Email</p>
+              <p className="font-medium text-gray-900 dark:text-white">📧 Email</p>
               <p className="text-gray-600 dark:text-gray-400">contacto@thepilgrim.com</p>
             </div>
           </div>
@@ -20,7 +20,7 @@ export function ContactInfo() {
           <div className="flex items-start gap-4">
             <Phone className="h-6 w-6 text-blue-600 dark:text-blue-400 mt-1" />
             <div>
-              <p className="font-medium text-gray-900 dark:text-white">Teléfono</p>
+              <p className="font-medium text-gray-900 dark:text-white">📱 Teléfono</p>
               <p className="text-gray-600 dark:text-gray-400">+34 600 000 000</p>
             </div>
           </div>
@@ -29,7 +29,7 @@ export function ContactInfo() {
 
       <div className="card p-8">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
-          Horario de Atención al Cliente
+          🕑 Horario de Atención al Cliente
         </h3>
         
         <div className="flex items-start gap-4 mb-6">

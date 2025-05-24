@@ -81,7 +81,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Salario</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">💰 Salario</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
                     {formatCurrency(country.averageSalary)}
                   </p>
@@ -91,7 +91,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <Thermometer className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Clima</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">🌡️ Clima</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
                     {country.temperature}°C
                   </p>
@@ -101,7 +101,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Papeleos</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">📝 Papeleos</p>
                   <p className="text-sm">{getQualityStars(country.bureaucracyEase)}</p>
                 </div>
               </div>
@@ -109,7 +109,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Calidad vida</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">🎆 Calidad vida</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
                     {country.qualityOfLife}
                   </p>
@@ -119,7 +119,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Social</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">👥 Social</p>
                   <p className="text-lg">
                     {getSocialEmoji(country.socialIndex)} {country.socialIndex}
                   </p>
@@ -129,7 +129,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Ratio S/G</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">📊 Ratio S/G</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
                     {country.salaryExpenseRatio.toFixed(2)}
                   </p>

@@ -8,13 +8,13 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard' },
-  { name: 'Explorador', href: '/explorador' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Foro', href: '/foro', badge: 'Pronto' },
-  { name: 'Servicios', href: '/servicios' },
-  { name: 'Conoce más', href: '/conoce-mas' },
-  { name: 'Contacto', href: '/contacto' },
+  { name: '📊 Dashboard', href: '/dashboard' },
+  { name: '🌍 Explorador', href: '/explorador' },
+  { name: '📝 Blog', href: '/blog' },
+  { name: '💬 Foro', href: '/foro', badge: 'Pronto' },
+  { name: '🌟 Servicios', href: '/servicios' },
+  { name: '✨ Conoce más', href: '/conoce-mas' },
+  { name: '📧 Contacto', href: '/contacto' },
 ]
 
 export function Header() {
@@ -28,7 +28,7 @@ export function Header() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <span className="text-2xl font-bold text-blue-800 dark:text-blue-400">
-                The Pilgrim
+                🌍 The Pilgrim
               </span>
             </Link>
           </div>

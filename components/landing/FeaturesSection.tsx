@@ -6,17 +6,17 @@ import { Database, Globe, Star } from 'lucide-react'
 const features = [
   {
     icon: Database,
-    title: 'Información Viva y Actualizada',
+    title: '📈 Información Viva y Actualizada',
     description: 'Contenido fresco y diverso sobre oportunidades laborales en 19 países, actualizado constantemente.',
   },
   {
     icon: Globe,
-    title: 'Comunidad Global Activa',
+    title: '🌐 Comunidad Global Activa',
     description: 'Conecta con personas que comparten tus mismos intereses y objetivos internacionales.',
   },
   {
     icon: Star,
-    title: 'Servicios Premium Opcionales',
+    title: '⭐ Servicios Premium Opcionales',
     description: 'Apoyo personalizado para hacer tu transición al extranjero más fácil y exitosa.',
   },
 ]
@@ -27,7 +27,7 @@ export function FeaturesSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            ¿Por qué elegir The Pilgrim?
+            🤔 ¿Por qué elegir The Pilgrim?
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Tu plataforma de confianza para explorar oportunidades laborales internacionales

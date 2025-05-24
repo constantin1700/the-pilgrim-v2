@@ -10,10 +10,10 @@ export default function ExploradorPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-              Explorador Global
+              🌍 Explorador Global
             </h1>
             <p className="mt-2 text-gray-600 dark:text-gray-400">
-              Descubre guías completas de los 19 países disponibles en nuestra plataforma
+              🗺️ Descubre guías completas de los 19 países disponibles en nuestra plataforma
             </p>
           </div>
           

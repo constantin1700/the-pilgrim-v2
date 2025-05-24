@@ -16,7 +16,7 @@ export function HeroSection() {
           className="text-center"
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-            Explora oportunidades globales,
+            🌍 Explora oportunidades globales,
             <br />
             mantente al día
           </h1>
@@ -26,10 +26,10 @@ export function HeroSection() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link href="/dashboard" className="btn-primary bg-white text-blue-800 hover:bg-gray-100">
-              Explorar Dashboard
+              📊 Explorar Dashboard
             </Link>
             <Link href="/conoce-mas" className="btn-outline border-white text-white hover:bg-white hover:text-blue-800">
-              Conocer Comunidad
+              👥 Conocer Comunidad
             </Link>
           </div>
 
@@ -45,7 +45,7 @@ export function HeroSection() {
                 <Globe className="h-8 w-8 text-blue-300" />
               </div>
               <div className="text-3xl font-bold">19</div>
-              <div className="text-blue-200">Países cubiertos</div>
+              <div className="text-blue-200">🌎 Países cubiertos</div>
             </motion.div>
             
             <motion.div
@@ -58,7 +58,7 @@ export function HeroSection() {
                 <BarChart3 className="h-8 w-8 text-blue-300" />
               </div>
               <div className="text-3xl font-bold">50+</div>
-              <div className="text-blue-200">Artículos actualizados</div>
+              <div className="text-blue-200">📰 Artículos actualizados</div>
             </motion.div>
             
             <motion.div
@@ -71,7 +71,7 @@ export function HeroSection() {
                 <Users className="h-8 w-8 text-blue-300" />
               </div>
               <div className="text-3xl font-bold">1.2K+</div>
-              <div className="text-blue-200">Usuarios activos</div>
+              <div className="text-blue-200">🚀 Usuarios activos</div>
             </motion.div>
           </div>
         </motion.div>

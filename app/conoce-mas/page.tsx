@@ -10,7 +10,7 @@ export default function ConoceMasPage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Sobre The Pilgrim
+              🎆 Sobre The Pilgrim
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400">
               La plataforma definitiva para tu aventura internacional
@@ -22,7 +22,7 @@ export default function ConoceMasPage() {
               <div className="card p-8 mb-8">
                 <div className="flex items-center gap-4 mb-4">
                   <Globe className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white m-0">Nuestra Historia</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white m-0">📚 Nuestra Historia</h2>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400">
                   The Pilgrim nació de la experiencia personal de vivir y trabajar en el extranjero. 
@@ -42,7 +42,7 @@ export default function ConoceMasPage() {
               <div className="card p-8 mb-8">
                 <div className="flex items-center gap-4 mb-4">
                   <Target className="h-8 w-8 text-green-600 dark:text-green-400" />
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white m-0">Misión y Visión</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white m-0">🎯 Misión y Visión</h2>
                 </div>
                 <div className="space-y-4">
                   <div>
@@ -69,32 +69,32 @@ export default function ConoceMasPage() {
               <div className="card p-8 mb-8">
                 <div className="flex items-center gap-4 mb-4">
                   <Heart className="h-8 w-8 text-red-600 dark:text-red-400" />
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white m-0">Valores de la Comunidad</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white m-0">💡 Valores de la Comunidad</h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Colaboración</h3>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">🤝 Colaboración</h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       Creemos en el poder de compartir experiencias y conocimientos para 
                       el beneficio de todos.
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Transparencia</h3>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">🔍 Transparencia</h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       Información clara, honesta y actualizada sobre la realidad de vivir 
                       en cada país.
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Apoyo Mutuo</h3>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">🤗 Apoyo Mutuo</h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       Una comunidad donde cada miembro puede encontrar ayuda y ofrecer 
                       su experiencia a otros.
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Innovación</h3>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">💡 Innovación</h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       Constantemente mejorando nuestra plataforma para ofrecer las mejores 
                       herramientas y recursos.
@@ -108,7 +108,7 @@ export default function ConoceMasPage() {
               <div className="card p-8">
                 <div className="flex items-center gap-4 mb-4">
                   <Rocket className="h-8 w-8 text-purple-600 dark:text-purple-400" />
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white m-0">Futuras Características</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white m-0">🚀 Futuras Características</h2>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Estamos trabajando constantemente para mejorar The Pilgrim. Algunas de las 
@@ -142,10 +142,10 @@ export default function ConoceMasPage() {
 
           <div className="mt-12 text-center">
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              ¿Listo para comenzar tu aventura internacional?
+              🌍 ¿Listo para comenzar tu aventura internacional?
             </p>
             <a href="/dashboard" className="btn-primary">
-              Explorar oportunidades
+              🗺️ Explorar oportunidades
             </a>
           </div>
         </div>

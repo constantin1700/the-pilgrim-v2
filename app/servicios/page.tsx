@@ -11,10 +11,10 @@ export default function ServiciosPage() {
         <div className="bg-gradient-to-br from-blue-600 to-teal-600 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Únete al Soporte que necesitas
+              🎆 Únete al Soporte que necesitas
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Asegura tu lugar antes de que se agote. Apoyo profesional para tu aventura internacional.
+              🌐 Asegura tu lugar antes de que se agote. Apoyo profesional para tu aventura internacional.
             </p>
           </div>
         </div>

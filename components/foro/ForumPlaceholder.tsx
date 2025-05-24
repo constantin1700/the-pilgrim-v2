@@ -30,11 +30,11 @@ export function ForumPlaceholder() {
             className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200 px-6 py-3 rounded-full mb-6 relative z-10"
           >
             <Clock className="h-5 w-5" />
-            <span className="font-semibold">Disponible en aproximadamente 3 semanas</span>
+            <span className="font-semibold">🚀 Disponible en aproximadamente 3 semanas</span>
           </motion.div>
           
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Foro de la Comunidad - Próximamente
+            💬 Foro de la Comunidad - Próximamente
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Conecta con viajeros de todo el mundo, comparte experiencias y encuentra respuestas a tus preguntas
@@ -53,7 +53,7 @@ export function ForumPlaceholder() {
               <MessageSquare className="h-8 w-8 text-blue-600 dark:text-blue-400" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-              Discusiones por País
+              🌍 Discusiones por País
             </h3>
             <p className="text-gray-600 dark:text-gray-400">
               Foros dedicados para cada uno de los 19 países con hilos organizados por temas
@@ -70,7 +70,7 @@ export function ForumPlaceholder() {
               <Users className="h-8 w-8 text-green-600 dark:text-green-400" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-              Comunidad Activa
+              🤝 Comunidad Activa
             </h3>
             <p className="text-gray-600 dark:text-gray-400">
               Conecta con españoles que ya viven en el extranjero y comparte experiencias
@@ -87,7 +87,7 @@ export function ForumPlaceholder() {
               <Bell className="h-8 w-8 text-purple-600 dark:text-purple-400" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-              Notificaciones
+              🔔 Notificaciones
             </h3>
             <p className="text-gray-600 dark:text-gray-400">
               Recibe alertas cuando alguien responda a tus preguntas o mencione temas de interés
@@ -98,7 +98,7 @@ export function ForumPlaceholder() {
         {/* Countries preview grid */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
-            Foros disponibles próximamente
+            🌐 Foros disponibles próximamente
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {mockCountries.map((country, index) => (
@@ -125,7 +125,7 @@ export function ForumPlaceholder() {
         <div className="max-w-md mx-auto">
           <div className="card p-8 text-center">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              ¿Quieres ser el primero en usar el foro?
+              🎆 ¿Quieres ser el primero en usar el foro?
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
               Déjanos tu email y te avisaremos en cuanto esté disponible
@@ -141,7 +141,7 @@ export function ForumPlaceholder() {
                 className="input-primary"
               />
               <button type="submit" className="btn-primary w-full">
-                Notificarme cuando esté disponible
+                🔔 Notificarme cuando esté disponible
               </button>
             </form>
 
@@ -151,7 +151,7 @@ export function ForumPlaceholder() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-4 p-3 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-lg"
               >
-                ¡Perfecto! Te avisaremos cuando el foro esté listo.
+                ✅ ¡Perfecto! Te avisaremos cuando el foro esté listo.
               </motion.div>
             )}
           </div>

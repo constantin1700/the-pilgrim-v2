@@ -21,31 +21,31 @@ const plans: ServicePlan[] = [
   {
     id: 'basic',
     type: 'basic',
-    title: 'Soporte Básico',
+    title: '⚡ Soporte Básico',
     price: 49,
     availability: 'Siempre disponible',
     features: [
-      'Revisión del currículum con sugerencias',
-      'Revisión de carta de presentación con sugerencias',
-      'Guía rápida para optimizar el perfil profesional'
+      '✅ Revisión del currículum con sugerencias',
+      '✅ Revisión de carta de presentación con sugerencias',
+      '✅ Guía rápida para optimizar el perfil profesional'
     ],
     idealFor: 'Quienes buscan una revisión puntual y consejos prácticos'
   },
   {
     id: 'personalized',
     type: 'personalized',
-    title: 'Soporte Personalizado',
+    title: '⭐ Soporte Personalizado',
     price: 99,
     availability: 'Solo 20 personas al mes',
     monthlyLimit: 20,
     availableSlots: 14,
     features: [
-      'Revisión del currículum con sugerencias',
-      'Revisión de carta de presentación con sugerencias',
-      'Guía rápida para optimizar el perfil profesional',
-      'Currículum hecho a medida, adaptado al destino y sector objetivo',
-      'Carta de presentación personalizada',
-      'Soporte directo durante un mes'
+      '✅ Revisión del currículum con sugerencias',
+      '✅ Revisión de carta de presentación con sugerencias',
+      '✅ Guía rápida para optimizar el perfil profesional',
+      '🌟 Currículum hecho a medida, adaptado al destino y sector objetivo',
+      '🌟 Carta de presentación personalizada',
+      '🌟 Soporte directo durante un mes'
     ],
     idealFor: 'Profesionales que buscan apoyo integral en su búsqueda',
     highlighted: true
@@ -53,20 +53,20 @@ const plans: ServicePlan[] = [
   {
     id: 'premium',
     type: 'premium',
-    title: 'Soporte Premium',
+    title: '👑 Soporte Premium',
     price: 149,
     availability: 'Solo 10 personas al mes',
     monthlyLimit: 10,
     availableSlots: 3,
     features: [
-      'Revisión del currículum con sugerencias de mejora',
-      'Revisión de carta de presentación personalizada',
-      'Guía rápida para optimizar el perfil profesional',
-      'Currículum hecho a medida',
-      'Carta de presentación hecho a medida',
-      'Soporte directo durante dos meses',
-      'Reunión personalizada cara a cara vía videollamada',
-      'Asesoría directa sobre requisitos y planificación'
+      '✅ Revisión del currículum con sugerencias de mejora',
+      '✅ Revisión de carta de presentación personalizada',
+      '✅ Guía rápida para optimizar el perfil profesional',
+      '🌟 Currículum hecho a medida',
+      '🌟 Carta de presentación hecho a medida',
+      '🌟 Soporte directo durante dos meses',
+      '💎 Reunión personalizada cara a cara vía videollamada',
+      '💎 Asesoría directa sobre requisitos y planificación'
     ],
     idealFor: 'Quienes buscan el máximo apoyo y atención personalizada'
   }
@@ -146,7 +146,7 @@ export function ServicePlans() {
                   <div className="absolute -top-5 left-0 right-0 text-center">
                     <span className="bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-medium inline-flex items-center gap-2">
                       <Star className="h-4 w-4" />
-                      Más Popular
+                      🎉 Más Popular
                     </span>
                   </div>
                 )}
@@ -250,7 +250,7 @@ export function ServicePlans() {
               className="bg-white dark:bg-slate-800 rounded-lg p-8 max-w-md w-full"
             >
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                Únete a la lista de espera
+                📧 Únete a la lista de espera
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
                 Te notificaremos por email en cuanto haya disponibilidad para el plan seleccionado.
@@ -266,7 +266,7 @@ export function ServicePlans() {
                 />
                 <div className="flex gap-4">
                   <button type="submit" className="btn-primary flex-1">
-                    Unirme a la lista
+                    📬 Unirme a la lista
                   </button>
                   <button
                     type="button"

@@ -82,7 +82,7 @@ export function BlogGrid() {
                     </span>
                   </div>
                   <div className="absolute top-4 left-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    Destacado
+                    ⭐ Destacado
                   </div>
                 </div>
                 <div className="md:w-1/2 p-8">
@@ -121,7 +121,7 @@ export function BlogGrid() {
                       <span className="text-sm font-medium">{featuredPost.likes}</span>
                     </button>
                     <span className="text-blue-600 dark:text-blue-400 font-medium">
-                      Leer más →
+                      📖 Leer más →
                     </span>
                   </div>
                 </div>

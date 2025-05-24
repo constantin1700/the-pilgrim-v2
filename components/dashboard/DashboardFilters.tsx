@@ -30,12 +30,12 @@ export function DashboardFilters() {
   const [showAdvanced, setShowAdvanced] = useState(false)
 
   const filterOptions = [
-    { key: 'climate', label: 'Clima', unit: '°C', range: [-10, 40] },
-    { key: 'qualityOfLife', label: 'Calidad de vida', unit: '', range: [0, 100] },
-    { key: 'salary', label: 'Salario', unit: '€', range: [0, 10000] },
-    { key: 'salaryRatio', label: 'Ratio salario/gastos', unit: '', range: [0, 2] },
-    { key: 'socialIndex', label: 'Índice social', unit: '', range: [0, 100] },
-    { key: 'bureaucracy', label: 'Papeleos', unit: '', range: [0, 100] },
+    { key: 'climate', label: '🌡️ Clima', unit: '°C', range: [-10, 40] },
+    { key: 'qualityOfLife', label: '🎆 Calidad de vida', unit: '', range: [0, 100] },
+    { key: 'salary', label: '💰 Salario', unit: '€', range: [0, 10000] },
+    { key: 'salaryRatio', label: '📊 Ratio salario/gastos', unit: '', range: [0, 2] },
+    { key: 'socialIndex', label: '👥 Índice social', unit: '', range: [0, 100] },
+    { key: 'bureaucracy', label: '📝 Papeleos', unit: '', range: [0, 100] },
   ]
 
   return (
@@ -46,7 +46,7 @@ export function DashboardFilters() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
-            placeholder="Buscar países..."
+            placeholder="🔍 Buscar países..."
             value={filters.search}
             onChange={(e) => setFilters({ ...filters, search: e.target.value })}
             className="pl-10 input-primary w-full"
@@ -64,7 +64,7 @@ export function DashboardFilters() {
             )}
           >
             <SlidersHorizontal className="h-4 w-4" />
-            Filtros
+            🎯 Filtros
           </button>
           
           <div className="flex rounded-lg border border-gray-300 dark:border-gray-700">
@@ -138,10 +138,10 @@ export function DashboardFilters() {
               })}
               className="px-4 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
             >
-              Restablecer filtros
+              🔄 Restablecer filtros
             </button>
             <button className="btn-primary">
-              Aplicar filtros
+              ✅ Aplicar filtros
             </button>
           </div>
         </div>

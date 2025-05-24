@@ -3,16 +3,16 @@ import { Instagram, MessageCircle, Phone } from 'lucide-react'
 
 const footerLinks = {
   main: [
-    { name: 'Dashboard', href: '/dashboard' },
-    { name: 'Explorador', href: '/explorador' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Servicios', href: '/servicios' },
+    { name: '📊 Dashboard', href: '/dashboard' },
+    { name: '🌍 Explorador', href: '/explorador' },
+    { name: '📝 Blog', href: '/blog' },
+    { name: '🌟 Servicios', href: '/servicios' },
   ],
   company: [
-    { name: 'Conoce más', href: '/conoce-mas' },
-    { name: 'Contacto', href: '/contacto' },
-    { name: 'Política de privacidad', href: '/privacidad' },
-    { name: 'Términos y condiciones', href: '/terminos' },
+    { name: '💔 Conoce más', href: '/conoce-mas' },
+    { name: '📧 Contacto', href: '/contacto' },
+    { name: '🔒 Política de privacidad', href: '/privacidad' },
+    { name: '📜 Términos y condiciones', href: '/terminos' },
   ],
 }
 
@@ -25,7 +25,7 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center mb-4">
               <span className="text-2xl font-bold text-blue-800 dark:text-blue-400">
-                The Pilgrim
+                🌍 The Pilgrim
               </span>
             </Link>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -47,7 +47,7 @@ export function Footer() {
           {/* Links sections */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
-              Explorar
+              🧭 Explorar
             </h3>
             <ul className="space-y-2">
               {footerLinks.main.map((link) => (
@@ -65,7 +65,7 @@ export function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
-              Información
+              ℹ️ Información
             </h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
@@ -87,7 +87,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                Suscríbete a nuestro newsletter
+                📨 Suscríbete a nuestro newsletter
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Recibe las últimas noticias y oportunidades directamente en tu correo.
@@ -100,7 +100,7 @@ export function Footer() {
                 className="input-primary flex-1 md:w-64"
               />
               <button type="submit" className="btn-primary whitespace-nowrap">
-                Suscribirse
+                📥 Suscribirse
               </button>
             </form>
           </div>
