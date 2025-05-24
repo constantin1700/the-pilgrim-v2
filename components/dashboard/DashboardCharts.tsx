@@ -113,15 +113,15 @@ export function DashboardCharts() {
         </div>
       </div>
 
-      {/* Bar Chart: Social Index Heat Map */}
+      {/* Bar Chart: Likes Ranking */}
       <div className="card p-6">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          Top 10 Países por Índice Social
+          Top 10 Países Más Populares
         </h3>
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
-              data={socialData}
+              data={likesData}
               margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -141,7 +141,10 @@ export function DashboardCharts() {
                       <div className="bg-white dark:bg-slate-800 p-3 rounded-lg shadow-lg border border-gray-200 dark:border-slate-700">
                         <p className="font-semibold text-gray-900 dark:text-white">{data.name}</p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                          Índice Social: {data.value}
+                          Total likes: {data.likes}
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          Dashboard: {data.dashboard} | Explorer: {data.explorer}
                         </p>
                       </div>
                     )
@@ -149,9 +152,9 @@ export function DashboardCharts() {
                   return null
                 }}
               />
-              <Bar dataKey="value" radius={[8, 8, 0, 0]}>
-                {socialData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={getColor(entry.value)} />
+              <Bar dataKey="likes" radius={[8, 8, 0, 0]} fill="#3b82f6">
+                {likesData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={index < 3 ? '#10b981' : index < 6 ? '#3b82f6' : '#6b7280'} />
                 ))}
               </Bar>
             </BarChart>
@@ -168,7 +171,7 @@ export function DashboardCharts() {
           Selecciona hasta 4 países para comparar sus métricas
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {countriesData.map(country => (
+          {countries.map(country => (
             <label
               key={country.id}
               className="flex items-center space-x-2 cursor-pointer"
@@ -196,7 +199,7 @@ export function DashboardCharts() {
         {selectedCountries.length > 0 && (
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {selectedCountries.map(countryId => {
-              const country = countriesData.find(c => c.id === countryId)!
+              const country = countries.find(c => c.id === countryId)!
               return (
                 <div key={countryId} className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4">
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
@@ -204,20 +207,20 @@ export function DashboardCharts() {
                   </h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Salario:</span>
-                      <span className="font-medium text-gray-900 dark:text-white">€{country.averageSalary}</span>
+                      <span className="text-gray-600 dark:text-gray-400">PIB/capita:</span>
+                      <span className="font-medium text-gray-900 dark:text-white">€{country.gdp_per_capita?.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Calidad:</span>
-                      <span className="font-medium text-gray-900 dark:text-white">{country.qualityOfLife}</span>
+                      <span className="text-gray-600 dark:text-gray-400">Población:</span>
+                      <span className="font-medium text-gray-900 dark:text-white">{(country.population / 1000000).toFixed(1)}M</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Social:</span>
-                      <span className="font-medium text-gray-900 dark:text-white">{country.socialIndex}</span>
+                      <span className="text-gray-600 dark:text-gray-400">Likes:</span>
+                      <span className="font-medium text-gray-900 dark:text-white">{country.likes_total || 0}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Clima:</span>
-                      <span className="font-medium text-gray-900 dark:text-white">{country.temperature}°C</span>
+                      <span className="text-gray-600 dark:text-gray-400">Capital:</span>
+                      <span className="font-medium text-gray-900 dark:text-white">{country.capital}</span>
                     </div>
                   </div>
                 </div>
