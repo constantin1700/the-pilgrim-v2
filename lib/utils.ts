@@ -39,6 +39,8 @@ export function generateSlug(text: string): string {
 }
 
 export function getCountryEmoji(countryCode: string): string {
+  if (!countryCode) return '🌍' // Default world emoji for undefined
+  
   const codePoints = countryCode
     .toUpperCase()
     .split('')

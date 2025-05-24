@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { MessageSquare, Users, Clock, Bell } from 'lucide-react'
-import { countriesData } from '@/lib/data/countries'
+import { mockCountries } from '@/lib/mock-data'
 import { getCountryEmoji } from '@/lib/utils'
 import { motion } from 'framer-motion'
 
@@ -101,7 +101,7 @@ export function ForumPlaceholder() {
             Foros disponibles próximamente
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {countriesData.map((country, index) => (
+            {mockCountries.map((country, index) => (
               <motion.div
                 key={country.id}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -109,7 +109,7 @@ export function ForumPlaceholder() {
                 transition={{ delay: index * 0.02 }}
                 className="card p-4 text-center opacity-75 cursor-not-allowed"
               >
-                <div className="text-4xl mb-2">{getCountryEmoji(country.countryCode)}</div>
+                <div className="text-4xl mb-2">{getCountryEmoji(country.code)}</div>
                 <h3 className="font-medium text-gray-900 dark:text-white text-sm">
                   {country.name}
                 </h3>
