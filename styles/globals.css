@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* OBLIGATORIO: Variables CSS para ambos modos */
+:root {
+  /* LIGHT MODE - Colores principales */
+  --color-primary: #1e3a8a;          /* Azul Aventura */
+  --color-primary-hover: #1e40af;    /* Azul Aventura hover */
+  --color-primary-light: #dbeafe;    /* Azul muy claro */
+  
+  --color-secondary: #0f766e;        /* Verde Explorador */
+  --color-secondary-hover: #0d9488;  /* Verde Explorador hover */
+  --color-secondary-light: #ccfbf1;  /* Verde muy claro */
+  
+  --color-accent: #f59e0b;           /* Dorado Energía */
+  --color-accent-hover: #d97706;     /* Dorado hover */
+  --color-accent-light: #fef3c7;    /* Dorado muy claro */
+  
+  --color-success: #10b981;          /* Verde Éxito */
+  --color-error: #ef4444;            /* Rojo Error */
+  --color-warning: #f59e0b;          /* Amarillo Warning */
+  
+  /* LIGHT MODE - Fondos y superficies */
+  --color-background: #ffffff;       /* Fondo principal */
+  --color-background-alt: #f8fafc;   /* Fondo alternativo */
+  --color-surface: #ffffff;          /* Tarjetas y componentes */
+  --color-surface-hover: #f1f5f9;    /* Hover en superficies */
+  
+  /* LIGHT MODE - Textos */
+  --color-text-primary: #374151;     /* Texto principal */
+  --color-text-secondary: #6b7280;   /* Texto secundario */
+  --color-text-muted: #9ca3af;       /* Texto sutil */
+  --color-text-inverse: #ffffff;     /* Texto sobre fondos oscuros */
+  
+  /* LIGHT MODE - Bordes y separadores */
+  --color-border: #e5e7eb;           /* Bordes principales */
+  --color-border-light: #f3f4f6;     /* Bordes sutiles */
+  --color-divider: #e5e7eb;          /* Líneas separadoras */
+}
+
+[data-theme="dark"] {
+  /* DARK MODE - Colores principales (ajustados para contraste WCAG AA) */
+  --color-primary: #3b82f6;          /* Azul más brillante para dark */
+  --color-primary-hover: #2563eb;    /* Azul hover dark */
+  --color-primary-light: #1e3a8a;    /* Azul oscuro para fondos */
+  
+  --color-secondary: #14b8a6;        /* Verde más brillante */
+  --color-secondary-hover: #0d9488;  /* Verde hover dark */
+  --color-secondary-light: #0f766e;  /* Verde oscuro para fondos */
+  
+  --color-accent: #fbbf24;           /* Dorado más brillante */
+  --color-accent-hover: #f59e0b;     /* Dorado hover dark */
+  --color-accent-light: #92400e;     /* Dorado oscuro para fondos */
+  
+  --color-success: #34d399;          /* Verde éxito brillante */
+  --color-error: #f87171;            /* Rojo error suave */
+  --color-warning: #fbbf24;          /* Warning brillante */
+  
+  /* DARK MODE - Fondos y superficies */
+  --color-background: #0f172a;       /* Fondo principal oscuro */
+  --color-background-alt: #1e293b;   /* Fondo alternativo */
+  --color-surface: #1e293b;          /* Tarjetas y componentes */
+  --color-surface-hover: #334155;    /* Hover en superficies */
+  
+  /* DARK MODE - Textos (optimizados para legibilidad WCAG AA) */
+  --color-text-primary: #f8fafc;     /* Texto principal claro */
+  --color-text-secondary: #cbd5e1;   /* Texto secundario */
+  --color-text-muted: #94a3b8;       /* Texto sutil */
+  --color-text-inverse: #0f172a;     /* Texto sobre fondos claros */
+  
+  /* DARK MODE - Bordes y separadores */
+  --color-border: #334155;           /* Bordes principales */
+  --color-border-light: #475569;     /* Bordes sutiles */
+  --color-divider: #334155;          /* Líneas separadoras */
+}
+
+/* OBLIGATORIO: Gradientes para ambos modos */
+:root {
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, #ef4444 100%);
+  --gradient-success: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-success) 100%);
+}
+
+/* OBLIGATORIO: Transiciones suaves para cambio de tema */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+@layer components {
+  /* Botones principales */
+  .btn-primary {
+    @apply bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl;
+    @apply dark:bg-blue-600 dark:hover:bg-blue-700;
+  }
+  
+  .btn-secondary {
+    @apply bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    @apply dark:bg-teal-500 dark:hover:bg-teal-600;
+  }
+  
+  .btn-accent {
+    @apply bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    @apply dark:bg-amber-400 dark:hover:bg-amber-500 dark:text-gray-900;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    @apply dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 dark:hover:text-gray-900;
+  }
+  
+  /* Tarjetas */
+  .card {
+    @apply bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply dark:bg-slate-800 dark:border-slate-700;
+  }
+  
+  .card-hover {
+    @apply hover:transform hover:-translate-y-2 hover:shadow-2xl;
+  }
+  
+  /* Textos */
+  .text-primary {
+    @apply text-gray-700 dark:text-slate-200;
+  }
+  
+  .text-secondary {
+    @apply text-gray-600 dark:text-slate-400;
+  }
+  
+  .text-muted {
+    @apply text-gray-500 dark:text-slate-500;
+  }
+  
+  /* Fondos */
+  .bg-primary {
+    @apply bg-white dark:bg-slate-900;
+  }
+  
+  .bg-secondary {
+    @apply bg-gray-50 dark:bg-slate-800;
+  }
+  
+  /* Inputs y formularios */
+  .input-primary {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors;
+    @apply dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 dark:focus:ring-blue-400 dark:focus:border-blue-400;
+  }
+  
+  /* Gradientes */
+  .gradient-primary {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f766e 100%);
+  }
+  
+  .gradient-primary-dark {
+    background: linear-gradient(135deg, #3b82f6 0%, #14b8a6 100%);
+  }
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
