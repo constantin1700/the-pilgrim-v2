@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
+// In-memory store for development
+const likesStore = new Map<string, Set<string>>()
+
 export async function POST(request: NextRequest) {
   try {
     const { itemId, itemType, userId } = await request.json()

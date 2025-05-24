@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase, getServiceSupabase } from '@/lib/supabase'
 import { generateSlug } from '@/lib/utils'
+import { mockBlogPosts } from '@/lib/mock-data'
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
@@ -31,6 +32,22 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(data)
   } catch (error) {
     console.error('Error fetching blog posts:', error)
+    // Return mock data in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Using mock blog posts data')
+      let filteredPosts = mockBlogPosts
+      
+      if (countryId) {
+        filteredPosts = filteredPosts.filter(post => post.country_id === countryId)
+      }
+      
+      if (published === 'true') {
+        filteredPosts = filteredPosts.filter(post => post.published)
+      }
+      
+      return NextResponse.json(filteredPosts)
+    }
+    
     return NextResponse.json(
       { error: 'Error fetching blog posts' },
       { status: 500 }

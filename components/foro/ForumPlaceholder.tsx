@@ -27,7 +27,7 @@ export function ForumPlaceholder() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200 px-6 py-3 rounded-full mb-6"
+            className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200 px-6 py-3 rounded-full mb-6 relative z-10"
           >
             <Clock className="h-5 w-5" />
             <span className="font-semibold">Disponible en aproximadamente 3 semanas</span>

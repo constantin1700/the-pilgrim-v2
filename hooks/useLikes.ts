@@ -26,6 +26,11 @@ export function useLikes() {
       }
     } catch (error) {
       console.error('Error fetching likes:', error)
+      // Load from localStorage as fallback
+      const stored = localStorage.getItem('likedItems')
+      if (stored) {
+        setLikedItems(new Set(JSON.parse(stored)))
+      }
     }
   }
 
@@ -49,6 +54,8 @@ export function useLikes() {
           } else {
             newSet.delete(itemId)
           }
+          // Save to localStorage
+          localStorage.setItem('likedItems', JSON.stringify(Array.from(newSet)))
           return newSet
         })
         

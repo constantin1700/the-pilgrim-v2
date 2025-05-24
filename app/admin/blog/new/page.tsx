@@ -27,9 +27,27 @@ export default function AdminBlogNewPage() {
   }
 
   const handleSave = async (publish = false) => {
-    // Simulate API call
-    alert(publish ? 'Artículo publicado' : 'Borrador guardado')
-    router.push('/admin/blog')
+    try {
+      const response = await fetch('/api/blog', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          published: publish,
+          author_name: 'The Pilgrim Team',
+          reading_time: Math.ceil(formData.content.split(' ').length / 200),
+          tags: formData.countryId ? [countriesData.find(c => c.id === formData.countryId)?.name] : []
+        })
+      })
+
+      if (!response.ok) throw new Error('Error saving post')
+      
+      alert(publish ? 'Artículo publicado exitosamente' : 'Borrador guardado exitosamente')
+      router.push('/admin/blog')
+    } catch (error) {
+      console.error('Error:', error)
+      alert('Error al guardar el artículo')
+    }
   }
 
   return (

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   LineChart,
   Line,
@@ -16,26 +16,29 @@ import {
   ResponsiveContainer,
   Cell
 } from 'recharts'
-import { countriesData } from '@/lib/data/countries'
+import { useCountries } from '@/hooks/useCountries'
 
 export function DashboardCharts() {
   const [selectedCountries, setSelectedCountries] = useState<string[]>([])
+  const { countries } = useCountries()
 
-  // Prepare data for scatter plot (Salary vs Cost of Living)
-  const scatterData = countriesData.map(country => ({
+  // Prepare data for scatter plot (GDP per capita vs Likes)
+  const scatterData = countries.map(country => ({
     name: country.name,
-    x: country.averageSalary,
-    y: Math.round(country.averageSalary / country.salaryExpenseRatio),
-    socialIndex: country.socialIndex
+    x: country.gdp_per_capita || 0,
+    y: country.likes_total || 0,
+    population: country.population
   }))
 
-  // Prepare data for social index heat map
-  const socialData = countriesData
-    .sort((a, b) => b.socialIndex - a.socialIndex)
+  // Prepare data for likes ranking
+  const likesData = countries
+    .sort((a, b) => (b.likes_total || 0) - (a.likes_total || 0))
     .slice(0, 10)
     .map(country => ({
       name: country.name,
-      value: country.socialIndex
+      likes: country.likes_total || 0,
+      dashboard: country.likes_dashboard || 0,
+      explorer: country.likes_explorer || 0
     }))
 
   // Colors for heat map
@@ -53,10 +56,10 @@ export function DashboardCharts() {
         Análisis Comparativo
       </h2>
 
-      {/* Scatter Plot: Salary vs Cost of Living */}
+      {/* Scatter Plot: GDP vs Popularity */}
       <div className="card p-6">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          Salario vs Coste de Vida
+          PIB per Cápita vs Popularidad
         </h3>
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
@@ -66,17 +69,16 @@ export function DashboardCharts() {
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
               <XAxis
                 dataKey="x"
-                name="Salario"
+                name="PIB"
                 unit="€"
                 stroke="#6b7280"
-                label={{ value: 'Salario Promedio (€)', position: 'insideBottom', offset: -5 }}
+                label={{ value: 'PIB per Cápita (€)', position: 'insideBottom', offset: -5 }}
               />
               <YAxis
                 dataKey="y"
-                name="Coste"
-                unit="€"
+                name="Likes"
                 stroke="#6b7280"
-                label={{ value: 'Coste de Vida (€)', angle: -90, position: 'insideLeft' }}
+                label={{ value: 'Total de Likes', angle: -90, position: 'insideLeft' }}
               />
               <Tooltip
                 cursor={{ strokeDasharray: '3 3' }}
@@ -87,10 +89,13 @@ export function DashboardCharts() {
                       <div className="bg-white dark:bg-slate-800 p-3 rounded-lg shadow-lg border border-gray-200 dark:border-slate-700">
                         <p className="font-semibold text-gray-900 dark:text-white">{data.name}</p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                          Salario: €{data.x}
+                          PIB per cápita: €{data.x.toLocaleString()}
                         </p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                          Coste: €{data.y}
+                          Total likes: {data.y}
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          Población: {(data.population / 1000000).toFixed(1)}M
                         </p>
                       </div>
                     )

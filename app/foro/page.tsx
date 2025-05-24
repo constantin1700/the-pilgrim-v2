@@ -6,7 +6,7 @@ export default function ForoPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900">
       <Header />
-      <main>
+      <main className="pt-20">
         <ForumPlaceholder />
       </main>
       <Footer />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Country } from '@/lib/types'
+import { mockCountries } from '@/lib/mock-data'
 
 export function useCountries() {
   const [countries, setCountries] = useState<Country[]>([])
@@ -37,7 +38,14 @@ export function useCountries() {
       setError(null)
     } catch (err) {
       console.error('Error fetching countries:', err)
-      setError('Error loading countries')
+      // Use mock data in development when API fails
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Using mock countries data')
+        setCountries(mockCountries as Country[])
+        setError(null)
+      } else {
+        setError('Error loading countries')
+      }
     } finally {
       setLoading(false)
     }
