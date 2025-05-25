@@ -104,7 +104,7 @@ export function CountryDetailHeader({ country }: Props) {
                   <DollarSign className="h-6 w-6 text-gray-400" />
                 </div>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {formatCurrency(country.averageSalary)}
+                  {formatCurrency(country.average_salary || country.averageSalary || 0)}
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-200">Salario promedio</p>
               </div>
@@ -114,7 +114,7 @@ export function CountryDetailHeader({ country }: Props) {
                   <Thermometer className="h-6 w-6 text-gray-400" />
                 </div>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {country.temperature}°C
+                  {country.temperature || 0}°C
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-200">Temperatura media</p>
               </div>
@@ -124,7 +124,7 @@ export function CountryDetailHeader({ country }: Props) {
                   <TrendingUp className="h-6 w-6 text-gray-400" />
                 </div>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {country.qualityOfLife}
+                  {country.quality_of_life || country.qualityOfLife || 0}
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-200">Calidad de vida</p>
               </div>
@@ -134,7 +134,7 @@ export function CountryDetailHeader({ country }: Props) {
                   <FileText className="h-6 w-6 text-gray-400" />
                 </div>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {country.bureaucracyEase}%
+                  {country.bureaucracy_ease || country.bureaucracyEase || 0}%
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-200">Facilidad burocrática</p>
               </div>
@@ -144,7 +144,7 @@ export function CountryDetailHeader({ country }: Props) {
                   <Users className="h-6 w-6 text-gray-400" />
                 </div>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {country.socialIndex}
+                  {country.social_index || country.socialIndex || 0}
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-200">Índice social</p>
               </div>
@@ -154,7 +154,7 @@ export function CountryDetailHeader({ country }: Props) {
                   <DollarSign className="h-6 w-6 text-gray-400" />
                 </div>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {country.salaryExpenseRatio.toFixed(2)}
+                  {(country.salary_expense_ratio || country.salaryExpenseRatio || 0).toFixed(2)}
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-200">Ratio salario/gastos</p>
               </div>
