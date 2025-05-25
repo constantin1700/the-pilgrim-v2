@@ -3,18 +3,29 @@ import { supabase, getServiceSupabase } from '@/lib/supabase'
 
 export async function GET() {
   try {
+    console.log('API: Fetching countries...')
+    console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL ? 'Set' : 'Not set')
+    
     const { data, error } = await supabase
       .from('countries')
       .select('*')
       .order('name')
 
-    if (error) throw error
+    if (error) {
+      console.error('Supabase error:', error)
+      throw error
+    }
 
-    return NextResponse.json(data)
-  } catch (error) {
+    console.log(`API: Found ${data?.length || 0} countries`)
+    return NextResponse.json(data || [])
+  } catch (error: any) {
     console.error('Error fetching countries:', error)
     return NextResponse.json(
-      { error: 'Error fetching countries' },
+      { 
+        error: 'Error fetching countries',
+        details: error.message,
+        url: process.env.NEXT_PUBLIC_SUPABASE_URL ? 'URL is set' : 'URL not found'
+      },
       { status: 500 }
     )
   }
