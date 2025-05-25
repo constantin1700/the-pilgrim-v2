@@ -81,9 +81,9 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-200">💰 PIB/capita</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-200">💰 Salario medio</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {formatCurrency(country.gdp_per_capita || country.averageSalary || 0)}
+                    {formatCurrency(country.average_salary || country.averageSalary || 0)}€/mes
                   </p>
                 </div>
               </div>
@@ -91,9 +91,9 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <Thermometer className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-200">🏛️ Capital</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-200">🌡️ Temperatura</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {country.capital || 'N/A'}
+                    {country.temperature ? `${country.temperature}°C` : 'N/A'}
                   </p>
                 </div>
               </div>
@@ -101,9 +101,9 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-200">🌍 Continente</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-200">⭐ Calidad de vida</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {country.continent || 'N/A'}
+                    {country.quality_of_life ? `${country.quality_of_life}/100` : 'N/A'}
                   </p>
                 </div>
               </div>
@@ -111,9 +111,9 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-200">💱 Moneda</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-200">💰 Ratio salario/gasto</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {country.currency || 'N/A'}
+                    {country.salary_expense_ratio ? `${country.salary_expense_ratio}x` : 'N/A'}
                   </p>
                 </div>
               </div>

@@ -10,12 +10,18 @@ export interface Country {
   gdp_per_capita?: number
   main_language?: string
   currency?: string
-  temperature: number
-  qualityOfLife: number
-  averageSalary: number
-  salaryExpenseRatio: number
-  socialIndex: number
-  bureaucracyEase: number
+  temperature?: number
+  quality_of_life?: number
+  average_salary?: number
+  salary_expense_ratio?: number
+  social_index?: number
+  bureaucracy_ease?: number
+  // Legacy names for backwards compatibility
+  qualityOfLife?: number
+  averageSalary?: number
+  salaryExpenseRatio?: number
+  socialIndex?: number
+  bureaucracyEase?: number
   likesTotal: number
   likesDashboard: number
   likesBlog: number
