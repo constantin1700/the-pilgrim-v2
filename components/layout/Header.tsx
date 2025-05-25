@@ -59,7 +59,7 @@ export function Header() {
 
           {/* Desktop actions */}
           <div className="hidden lg:flex lg:items-center lg:space-x-4">
-            <button className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+            <button className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100">
               <Search className="h-5 w-5" />
             </button>
             <ThemeToggle />
@@ -73,7 +73,7 @@ export function Header() {
             <ThemeToggle />
             <button
               type="button"
-              className="p-2 text-gray-600 dark:text-gray-400"
+              className="p-2 text-gray-600 dark:text-gray-300"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? (

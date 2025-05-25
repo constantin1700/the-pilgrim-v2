@@ -81,7 +81,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">💰 PIB/capita</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-300">💰 PIB/capita</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
                     {formatCurrency(country.gdp_per_capita || country.averageSalary || 0)}
                   </p>
@@ -91,7 +91,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <Thermometer className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">🏛️ Capital</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-300">🏛️ Capital</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
                     {country.capital || 'N/A'}
                   </p>
@@ -101,7 +101,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">🌍 Continente</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-300">🌍 Continente</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
                     {country.continent || 'N/A'}
                   </p>
@@ -111,7 +111,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">💱 Moneda</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-300">💱 Moneda</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
                     {country.currency || 'N/A'}
                   </p>
@@ -121,7 +121,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">👥 Población</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-300">👥 Población</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
                     {country.population ? `${(country.population / 1000000).toFixed(1)}M` : 'N/A'}
                   </p>
@@ -131,7 +131,7 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">🗣️ Idioma</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-300">🗣️ Idioma</p>
                   <p className="font-semibold text-gray-900 dark:text-white text-sm">
                     {country.main_language || 'N/A'}
                   </p>
@@ -148,7 +148,7 @@ export function CountryGrid() {
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all ${
                   isLiked(country.id)
                     ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
-                    : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
                 <Heart

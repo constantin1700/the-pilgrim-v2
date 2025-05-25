@@ -14,7 +14,7 @@ export default function DashboardPage() {
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
               📊 Dashboard Global - Datos en Vivo
             </h1>
-            <p className="mt-2 text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-gray-600 dark:text-gray-300">
               🌍 Explora y compara oportunidades en 19 países con métricas actualizadas
             </p>
           </div>
