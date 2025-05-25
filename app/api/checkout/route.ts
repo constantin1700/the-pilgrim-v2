@@ -2,9 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { supabase } from '@/lib/supabase'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+
+if (!stripeSecretKey) {
+  console.warn('Stripe secret key not set. Payments will not work.')
+}
+
+const stripe = stripeSecretKey ? new Stripe(stripeSecretKey, {
   apiVersion: '2025-04-30.basil',
-})
+}) : null
 
 export async function POST(request: NextRequest) {
   try {
@@ -56,6 +62,14 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (reservationError) throw reservationError
+
+    // Check if Stripe is configured
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Payment system not configured. Please contact support.' },
+        { status: 503 }
+      )
+    }
 
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
