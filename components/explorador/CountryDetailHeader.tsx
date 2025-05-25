@@ -62,7 +62,7 @@ export function CountryDetailHeader({ country }: Props) {
       {/* Hero image */}
       <div className="h-80 bg-gradient-to-br from-blue-600 to-teal-600 relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center opacity-10">
-          <span className="text-[20rem]">{getCountryEmoji(country.countryCode)}</span>
+          <span className="text-[20rem]">{getCountryEmoji(country.code || country.countryCode || '')}</span>
         </div>
         <div className="absolute inset-0 bg-black/20" />
       </div>
@@ -74,7 +74,7 @@ export function CountryDetailHeader({ country }: Props) {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
               <div>
                 <div className="flex items-center gap-4 mb-4">
-                  <span className="text-6xl">{getCountryEmoji(country.countryCode)}</span>
+                  <span className="text-6xl">{getCountryEmoji(country.code || country.countryCode || '')}</span>
                   <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
                     {country.name}
                   </h1>

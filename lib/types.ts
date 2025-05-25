@@ -2,7 +2,14 @@
 export interface Country {
   id: string
   name: string
-  countryCode: string
+  code: string
+  countryCode?: string // For backwards compatibility
+  continent: string
+  capital?: string
+  population?: number
+  gdp_per_capita?: number
+  main_language?: string
+  currency?: string
   temperature: number
   qualityOfLife: number
   averageSalary: number
@@ -12,6 +19,9 @@ export interface Country {
   likesTotal: number
   likesDashboard: number
   likesBlog: number
+  likes_dashboard?: number
+  likes_explorer?: number
+  likes_total?: number
   coverImage?: string
   generalInfo?: CountrySection
   opportunities?: CountrySection

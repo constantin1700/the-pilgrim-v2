@@ -15,6 +15,13 @@ export const mockCountries = [
     likes_dashboard: 245,
     likes_explorer: 189,
     likes_total: 434,
+    likesBlog: 87,
+    temperature: 18,
+    qualityOfLife: 85,
+    averageSalary: 3500,
+    salaryExpenseRatio: 2.3,
+    socialIndex: 82,
+    bureaucracyEase: 75,
     flag_url: 'https://flagcdn.com/w320/de.png',
     work_visa_info: {
       types: ['Blue Card EU', 'Visa de trabajo', 'Visa de búsqueda de empleo'],
@@ -43,6 +50,13 @@ export const mockCountries = [
     likes_dashboard: 312,
     likes_explorer: 278,
     likes_total: 590,
+    likesBlog: 125,
+    temperature: 15,
+    qualityOfLife: 88,
+    averageSalary: 3200,
+    salaryExpenseRatio: 1.8,
+    socialIndex: 86,
+    bureaucracyEase: 80,
     flag_url: 'https://flagcdn.com/w320/ca.png',
     work_visa_info: {
       types: ['Express Entry', 'Provincial Nominee', 'Work Permit'],
@@ -71,6 +85,13 @@ export const mockCountries = [
     likes_dashboard: 289,
     likes_explorer: 234,
     likes_total: 523,
+    likesBlog: 112,
+    temperature: 22,
+    qualityOfLife: 87,
+    averageSalary: 4000,
+    salaryExpenseRatio: 2.2,
+    socialIndex: 84,
+    bureaucracyEase: 82,
     flag_url: 'https://flagcdn.com/w320/au.png'
   },
   {
@@ -88,6 +109,13 @@ export const mockCountries = [
     likes_dashboard: 198,
     likes_explorer: 167,
     likes_total: 365,
+    likesBlog: 76,
+    temperature: 17,
+    qualityOfLife: 86,
+    averageSalary: 3800,
+    salaryExpenseRatio: 2.1,
+    socialIndex: 88,
+    bureaucracyEase: 83,
     flag_url: 'https://flagcdn.com/w320/nl.png'
   },
   {
@@ -105,6 +133,13 @@ export const mockCountries = [
     likes_dashboard: 276,
     likes_explorer: 215,
     likes_total: 491,
+    likesBlog: 98,
+    temperature: 16,
+    qualityOfLife: 90,
+    averageSalary: 5000,
+    salaryExpenseRatio: 2.8,
+    socialIndex: 85,
+    bureaucracyEase: 78,
     flag_url: 'https://flagcdn.com/w320/ch.png'
   },
   {
@@ -122,6 +157,13 @@ export const mockCountries = [
     likes_dashboard: 267,
     likes_explorer: 223,
     likes_total: 490,
+    likesBlog: 105,
+    temperature: 19,
+    qualityOfLife: 83,
+    averageSalary: 3300,
+    salaryExpenseRatio: 1.9,
+    socialIndex: 81,
+    bureaucracyEase: 77,
     flag_url: 'https://flagcdn.com/w320/gb.png'
   }
 ];

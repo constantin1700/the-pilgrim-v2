@@ -71,7 +71,7 @@ export default function AdminCountryEditPage({ params }: Props) {
         </button>
         <div className="flex-1">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-            <span className="text-3xl">{getCountryEmoji(country.countryCode)}</span>
+            <span className="text-3xl">{getCountryEmoji(country.code || country.countryCode || '')}</span>
             Editar {country.name}
           </h2>
         </div>

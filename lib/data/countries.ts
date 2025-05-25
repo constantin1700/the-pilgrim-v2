@@ -4,7 +4,8 @@ export const countriesData: Country[] = [
   {
     id: "alemania",
     name: "Alemania",
-    countryCode: "DE",
+    code: "DE",
+    continent: "Europa",
     temperature: 10.88,
     qualityOfLife: 84.9,
     averageSalary: 4250,
@@ -18,7 +19,8 @@ export const countriesData: Country[] = [
   {
     id: "australia", 
     name: "Australia",
-    countryCode: "AU",
+    code: "AU",
+    continent: "Oceanía",
     temperature: 22.32,
     qualityOfLife: 85.9,
     averageSalary: 3350,
@@ -32,7 +34,8 @@ export const countriesData: Country[] = [
   {
     id: "canada",
     name: "Canadá", 
-    countryCode: "CA",
+    code: "CA",
+    continent: "América del Norte",
     temperature: -2.89,
     qualityOfLife: 73.0,
     averageSalary: 3100,
@@ -46,7 +49,8 @@ export const countriesData: Country[] = [
   {
     id: "dinamarca",
     name: "Dinamarca",
-    countryCode: "DK", 
+    code: "DK",
+    continent: "Europa", 
     temperature: 9.59,
     qualityOfLife: 94.9,
     averageSalary: 4890,
@@ -60,7 +64,8 @@ export const countriesData: Country[] = [
   {
     id: "emiratos-arabes-unidos",
     name: "Emiratos Árabes Unidos",
-    countryCode: "AE",
+    code: "AE",
+    continent: "Asia",
     temperature: 28.95,
     qualityOfLife: 78.3,
     averageSalary: 3500,
@@ -74,7 +79,8 @@ export const countriesData: Country[] = [
   {
     id: "espana",
     name: "España",
-    countryCode: "ES",
+    code: "ES",
+    continent: "Europa",
     temperature: 15.15,
     qualityOfLife: 82.0,
     averageSalary: 2716,
@@ -88,7 +94,8 @@ export const countriesData: Country[] = [
   {
     id: "estados-unidos",
     name: "Estados Unidos", 
-    countryCode: "US",
+    code: "US",
+    continent: "América del Norte",
     temperature: 10.25,
     qualityOfLife: 84.3,
     averageSalary: 4650,
@@ -102,7 +109,8 @@ export const countriesData: Country[] = [
   {
     id: "francia",
     name: "Francia",
-    countryCode: "FR",
+    code: "FR",
+    continent: "Europa",
     temperature: 13.01,
     qualityOfLife: 72.9,
     averageSalary: 3555,
@@ -116,7 +124,8 @@ export const countriesData: Country[] = [
   {
     id: "irlanda",
     name: "Irlanda",
-    countryCode: "IE",
+    code: "IE",
+    continent: "Europa",
     temperature: 10.66,
     qualityOfLife: 73.0,
     averageSalary: 4890,
@@ -130,7 +139,8 @@ export const countriesData: Country[] = [
   {
     id: "japon",
     name: "Japón",
-    countryCode: "JP",
+    code: "JP",
+    continent: "Asia",
     temperature: 12.99,
     qualityOfLife: 82.4,
     averageSalary: 2750,
@@ -144,7 +154,8 @@ export const countriesData: Country[] = [
   {
     id: "malta",
     name: "Malta",
-    countryCode: "MT",
+    code: "MT",
+    continent: "Europa",
     temperature: 20.29,
     qualityOfLife: 56.0,
     averageSalary: 2000,
@@ -158,7 +169,8 @@ export const countriesData: Country[] = [
   {
     id: "mexico",
     name: "México",
-    countryCode: "MX", 
+    code: "MX",
+    continent: "América del Norte", 
     temperature: 22.22,
     qualityOfLife: 52.7,
     averageSalary: 997,
@@ -172,7 +184,8 @@ export const countriesData: Country[] = [
   {
     id: "noruega",
     name: "Noruega",
-    countryCode: "NO",
+    code: "NO",
+    continent: "Europa",
     temperature: 2.28,  
     qualityOfLife: 87.4,
     averageSalary: 4100,
@@ -186,7 +199,8 @@ export const countriesData: Country[] = [
   {
     id: "nueva-zelanda",
     name: "Nueva Zelanda",
-    countryCode: "NZ",
+    code: "NZ",
+    continent: "Oceanía",
     temperature: 11.21,
     qualityOfLife: 86.1,
     averageSalary: 2950,
@@ -200,7 +214,8 @@ export const countriesData: Country[] = [
   {
     id: "paises-bajos",
     name: "Países Bajos",
-    countryCode: "NL",
+    code: "NL",
+    continent: "Europa",
     temperature: 11.68,
     qualityOfLife: 95.6,
     averageSalary: 3850,
@@ -214,7 +229,8 @@ export const countriesData: Country[] = [
   {
     id: "reino-unido", 
     name: "Reino Unido",
-    countryCode: "GB",
+    code: "GB",
+    continent: "Europa",
     temperature: 10.14,
     qualityOfLife: 77.1,
     averageSalary: 3400,
@@ -228,7 +244,8 @@ export const countriesData: Country[] = [
   {
     id: "singapur",
     name: "Singapur",
-    countryCode: "SG",
+    code: "SG",
+    continent: "Asia",
     temperature: 28.10,
     qualityOfLife: 66.1,
     averageSalary: 4581,
@@ -242,7 +259,8 @@ export const countriesData: Country[] = [
   {
     id: "suecia",
     name: "Suecia", 
-    countryCode: "SE",
+    code: "SE",
+    continent: "Europa",
     temperature: 3.38,
     qualityOfLife: 86.4,
     averageSalary: 3800,
@@ -256,7 +274,8 @@ export const countriesData: Country[] = [
   {
     id: "suiza",
     name: "Suiza",
-    countryCode: "CH",
+    code: "CH",
+    continent: "Europa",
     temperature: 7.97,
     qualityOfLife: 92.4,
     averageSalary: 6665,

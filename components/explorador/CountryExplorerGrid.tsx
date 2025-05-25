@@ -44,10 +44,10 @@ export function CountryExplorerGrid() {
                 {/* Country header with flag */}
                 <div className="relative h-48 bg-gradient-to-br from-blue-500 via-blue-600 to-teal-500">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-7xl opacity-20">{getCountryEmoji(country.countryCode)}</span>
+                    <span className="text-7xl opacity-20">{getCountryEmoji(country.code || country.countryCode || '')}</span>
                   </div>
                   <div className="relative h-full flex flex-col justify-between p-6">
-                    <div className="text-5xl">{getCountryEmoji(country.countryCode)}</div>
+                    <div className="text-5xl">{getCountryEmoji(country.code || country.countryCode || '')}</div>
                     <h3 className="text-2xl font-bold text-white">{country.name}</h3>
                   </div>
                 </div>

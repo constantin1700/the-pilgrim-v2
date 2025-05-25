@@ -50,7 +50,7 @@ export function PopularCountries() {
                 <div className="card card-hover overflow-hidden group">
                   <div className="relative h-48 bg-gradient-to-br from-blue-500 to-teal-500">
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-6xl">{getCountryEmoji(country.countryCode)}</span>
+                      <span className="text-6xl">{getCountryEmoji(country.code || country.countryCode || '')}</span>
                     </div>
                   </div>
                   <div className="p-6">

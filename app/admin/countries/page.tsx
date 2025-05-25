@@ -58,7 +58,7 @@ export default function AdminCountriesPage() {
               <tr key={country.id} className="hover:bg-gray-50 dark:hover:bg-slate-800">
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
-                    <span className="text-2xl mr-3">{getCountryEmoji(country.countryCode)}</span>
+                    <span className="text-2xl mr-3">{getCountryEmoji(country.code || country.countryCode || '')}</span>
                     <div>
                       <div className="text-sm font-medium text-gray-900 dark:text-white">
                         {country.name}

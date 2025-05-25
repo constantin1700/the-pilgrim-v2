@@ -41,7 +41,12 @@ export function useCountries() {
       // Use mock data in development when API fails
       if (process.env.NODE_ENV === 'development') {
         console.log('Using mock countries data')
-        setCountries(mockCountries as Country[])
+        setCountries(mockCountries.map(c => ({
+          ...c,
+          likesTotal: c.likes_total || 0,
+          likesDashboard: c.likes_dashboard || 0,
+          likesBlog: c.likesBlog || 0
+        })) as Country[])
         setError(null)
       } else {
         setError('Error loading countries')

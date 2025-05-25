@@ -65,7 +65,7 @@ export function CountryGrid() {
           <Link href={`/explorador/${country.id}`}>
             <div className="relative h-40 bg-gradient-to-br from-blue-500 to-teal-500">
               <div className="absolute top-4 left-4 text-4xl">
-                {getCountryEmoji(country.code || country.countryCode)}
+                {getCountryEmoji(country.code || country.countryCode || '')}
               </div>
               <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm px-2 py-1 rounded-md">
                 <span className="text-white font-semibold">#{index + 1}</span>

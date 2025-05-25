@@ -212,7 +212,7 @@ export function DashboardCharts() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600 dark:text-gray-400">Población:</span>
-                      <span className="font-medium text-gray-900 dark:text-white">{(country.population / 1000000).toFixed(1)}M</span>
+                      <span className="font-medium text-gray-900 dark:text-white">{country.population ? `${(country.population / 1000000).toFixed(1)}M` : 'N/A'}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600 dark:text-gray-400">Likes:</span>
