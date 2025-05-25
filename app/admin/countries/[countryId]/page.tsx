@@ -37,12 +37,12 @@ export default function AdminCountryEditPage({ params }: Props) {
   useEffect(() => {
     if (country) {
       setFormData({
-        temperature: country.temperature,
-        qualityOfLife: country.qualityOfLife,
-        averageSalary: country.averageSalary,
-        salaryExpenseRatio: country.salaryExpenseRatio,
-        socialIndex: country.socialIndex,
-        bureaucracyEase: country.bureaucracyEase,
+        temperature: country.temperature || country.temperature || 0,
+        qualityOfLife: country.quality_of_life || country.qualityOfLife || 0,
+        averageSalary: country.average_salary || country.averageSalary || 0,
+        salaryExpenseRatio: country.salary_expense_ratio || country.salaryExpenseRatio || 0,
+        socialIndex: country.social_index || country.socialIndex || 0,
+        bureaucracyEase: country.bureaucracy_ease || country.bureaucracyEase || 0,
       })
     }
   }, [country])
