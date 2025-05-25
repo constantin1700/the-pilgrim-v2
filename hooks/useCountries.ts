@@ -28,8 +28,22 @@ export function useCountries() {
   }, [])
 
   const fetchCountries = async () => {
+    setLoading(true)
+    
+    // TEMPORARY: Always use mock data until we fix the connection
+    console.log('Using mock countries data (temporary fix)')
+    setCountries(mockCountries.map(c => ({
+      ...c,
+      likesTotal: c.likes_total || 0,
+      likesDashboard: c.likes_dashboard || 0,
+      likesBlog: c.likesBlog || 0
+    })) as Country[])
+    setError(null)
+    setLoading(false)
+    
+    // Original code commented out temporarily
+    /*
     try {
-      setLoading(true)
       const response = await fetch('/api/countries')
       
       if (!response.ok) {
@@ -64,6 +78,7 @@ export function useCountries() {
     } finally {
       setLoading(false)
     }
+    */
   }
 
   return { countries, loading, error, refetch: fetchCountries }
