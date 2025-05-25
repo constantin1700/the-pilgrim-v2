@@ -161,26 +161,26 @@ export function CountryDetailTabs({ country }: Props) {
 
             <h3>Salarios Promedio por Sector</h3>
             <ul>
-              <li>Tecnología: €{Math.round(country.averageSalary * 1.3)} - €{Math.round(country.averageSalary * 1.8)}</li>
-              <li>Salud: €{Math.round(country.averageSalary * 1.1)} - €{Math.round(country.averageSalary * 1.5)}</li>
-              <li>Ingeniería: €{Math.round(country.averageSalary * 1.2)} - €{Math.round(country.averageSalary * 1.6)}</li>
-              <li>Hostelería: €{Math.round(country.averageSalary * 0.7)} - €{Math.round(country.averageSalary * 0.9)}</li>
-              <li>Educación: €{Math.round(country.averageSalary * 0.9)} - €{Math.round(country.averageSalary * 1.2)}</li>
+              <li>Tecnología: €{Math.round((country.average_salary || country.averageSalary || 0) * 1.3)} - €{Math.round((country.average_salary || country.averageSalary || 0) * 1.8)}</li>
+              <li>Salud: €{Math.round((country.average_salary || country.averageSalary || 0) * 1.1)} - €{Math.round((country.average_salary || country.averageSalary || 0) * 1.5)}</li>
+              <li>Ingeniería: €{Math.round((country.average_salary || country.averageSalary || 0) * 1.2)} - €{Math.round((country.average_salary || country.averageSalary || 0) * 1.6)}</li>
+              <li>Hostelería: €{Math.round((country.average_salary || country.averageSalary || 0) * 0.7)} - €{Math.round((country.average_salary || country.averageSalary || 0) * 0.9)}</li>
+              <li>Educación: €{Math.round((country.average_salary || country.averageSalary || 0) * 0.9)} - €{Math.round((country.average_salary || country.averageSalary || 0) * 1.2)}</li>
             </ul>
 
             <h3>Índice de Calidad de Vida</h3>
             <p>
-              Con un índice de {country.qualityOfLife}/100, {country.name} ofrece una calidad de vida 
-              {country.qualityOfLife > 80 ? ' excelente' : country.qualityOfLife > 60 ? ' buena' : ' aceptable'}, 
+              Con un índice de {country.quality_of_life || country.qualityOfLife || 0}/100, {country.name} ofrece una calidad de vida 
+              {(country.quality_of_life || country.qualityOfLife || 0) > 80 ? ' excelente' : (country.quality_of_life || country.qualityOfLife || 0) > 60 ? ' buena' : ' aceptable'}, 
               con buenos servicios públicos, seguridad y oportunidades de ocio.
             </p>
 
             <h3>Comparativa con España</h3>
             <p>
               En comparación con España, el costo de vida es aproximadamente un {
-                country.salaryExpenseRatio > 1 ? 
-                `${Math.round((country.salaryExpenseRatio - 1) * 100)}% más favorable` : 
-                `${Math.round((1 - country.salaryExpenseRatio) * 100)}% menos favorable`
+                (country.salary_expense_ratio || country.salaryExpenseRatio || 1) > 1 ? 
+                `${Math.round(((country.salary_expense_ratio || country.salaryExpenseRatio || 1) - 1) * 100)}% más favorable` : 
+                `${Math.round((1 - (country.salary_expense_ratio || country.salaryExpenseRatio || 1)) * 100)}% menos favorable`
               }, considerando la relación entre salarios y gastos.
             </p>
           </div>
