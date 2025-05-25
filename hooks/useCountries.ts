@@ -31,26 +31,36 @@ export function useCountries() {
     try {
       setLoading(true)
       const response = await fetch('/api/countries')
-      if (!response.ok) throw new Error('Failed to fetch countries')
+      
+      if (!response.ok) {
+        const errorData = await response.json()
+        console.error('API Error:', errorData)
+        throw new Error(`Failed to fetch countries: ${response.status}`)
+      }
       
       const data = await response.json()
+      
+      if (!data || data.length === 0) {
+        console.warn('No countries returned from API')
+        throw new Error('No countries data available')
+      }
+      
       setCountries(data)
       setError(null)
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error fetching countries:', err)
-      // Use mock data in development when API fails
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Using mock countries data')
-        setCountries(mockCountries.map(c => ({
-          ...c,
-          likesTotal: c.likes_total || 0,
-          likesDashboard: c.likes_dashboard || 0,
-          likesBlog: c.likesBlog || 0
-        })) as Country[])
-        setError(null)
-      } else {
-        setError('Error loading countries')
-      }
+      
+      // Always use mock data as fallback
+      console.log('Using mock countries data as fallback')
+      setCountries(mockCountries.map(c => ({
+        ...c,
+        likesTotal: c.likes_total || 0,
+        likesDashboard: c.likes_dashboard || 0,
+        likesBlog: c.likesBlog || 0
+      })) as Country[])
+      
+      // Show error but still display mock data
+      setError(`Error loading live data: ${err.message}. Showing sample data.`)
     } finally {
       setLoading(false)
     }
