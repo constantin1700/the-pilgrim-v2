@@ -67,7 +67,7 @@ export function ServicesFAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-4 text-gray-600 dark:text-gray-400">
+                    <div className="px-6 pb-4 text-gray-600 dark:text-gray-200">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -78,7 +78,7 @@ export function ServicesFAQ() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-gray-600 dark:text-gray-400 mb-4">
+          <p className="text-gray-600 dark:text-gray-200 mb-4">
             ¿Tienes más preguntas?
           </p>
           <a href="/contacto" className="btn-primary">

@@ -55,22 +55,22 @@ export function CountryExplorerGrid() {
                 {/* Country info */}
                 <div className="p-6">
                   <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-200">
                       <MapPin className="h-4 w-4" />
                       <span className="text-sm">Guía completa</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-200">
                       <Users className="h-4 w-4" />
                       <span className="text-sm">{Math.floor(Math.random() * 5000 + 1000)} españoles</span>
                     </div>
                   </div>
 
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                  <p className="text-gray-600 dark:text-gray-200 text-sm mb-4">
                     Información actualizada sobre vida, trabajo y oportunidades en {country.name}.
                   </p>
 
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-200">
                       <Briefcase className="h-4 w-4" />
                       <span className="text-sm">Múltiples sectores</span>
                     </div>
@@ -87,7 +87,7 @@ export function CountryExplorerGrid() {
 
       {filteredCountries.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-600 dark:text-gray-200">
             No se encontraron países que coincidan con tu búsqueda.
           </p>
         </div>

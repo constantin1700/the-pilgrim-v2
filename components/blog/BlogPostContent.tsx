@@ -106,7 +106,7 @@ export function BlogPostContent({ post }: Props) {
               className={`flex items-center gap-2 px-6 py-3 rounded-lg transition-all ${
                 isLiked
                   ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
-                  : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
               }`}
             >
               <Heart className={`h-5 w-5 ${isLiked ? 'fill-current' : ''}`} />

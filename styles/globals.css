@@ -66,8 +66,8 @@
   
   /* DARK MODE - Textos (optimizados para legibilidad WCAG AA) */
   --color-text-primary: #f8fafc;     /* Texto principal claro */
-  --color-text-secondary: #cbd5e1;   /* Texto secundario */
-  --color-text-muted: #94a3b8;       /* Texto sutil */
+  --color-text-secondary: #e2e8f0;   /* Texto secundario - MÁS CLARO */
+  --color-text-muted: #cbd5e1;       /* Texto sutil - MÁS CLARO */
   --color-text-inverse: #0f172a;     /* Texto sobre fondos claros */
   
   /* DARK MODE - Bordes y separadores */
@@ -122,15 +122,15 @@
   
   /* Textos */
   .text-primary {
-    @apply text-gray-700 dark:text-slate-200;
+    @apply text-gray-700 dark:text-slate-100;
   }
   
   .text-secondary {
-    @apply text-gray-600 dark:text-slate-400;
+    @apply text-gray-600 dark:text-slate-200;
   }
   
   .text-muted {
-    @apply text-gray-500 dark:text-slate-500;
+    @apply text-gray-500 dark:text-slate-300;
   }
   
   /* Fondos */

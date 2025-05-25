@@ -158,7 +158,7 @@ export function ServicePlans() {
                         <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                           {plan.title}
                         </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        <p className="text-sm text-gray-600 dark:text-gray-200 mt-1">
                           {plan.availability}
                         </p>
                       </div>
@@ -171,13 +171,13 @@ export function ServicePlans() {
                       <span className="text-4xl font-bold text-gray-900 dark:text-white">
                         €{plan.price}
                       </span>
-                      <span className="text-gray-600 dark:text-gray-400"> / único pago</span>
+                      <span className="text-gray-600 dark:text-gray-200"> / único pago</span>
                     </div>
 
                     {plan.monthlyLimit && (
                       <div className="mb-6">
                         <div className="flex justify-between text-sm mb-2">
-                          <span className="text-gray-600 dark:text-gray-400">Disponibilidad</span>
+                          <span className="text-gray-600 dark:text-gray-200">Disponibilidad</span>
                           <span className={`font-medium ${
                             plan.availableSlots! > 5 
                               ? 'text-green-600 dark:text-green-400' 
@@ -203,14 +203,14 @@ export function ServicePlans() {
                       {plan.features.map((feature, i) => (
                         <li key={i} className="flex items-start gap-3">
                           <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-600 dark:text-gray-400 text-sm">
+                          <span className="text-gray-600 dark:text-gray-200 text-sm">
                             {feature}
                           </span>
                         </li>
                       ))}
                     </ul>
 
-                    <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+                    <p className="text-sm text-gray-600 dark:text-gray-200 italic">
                       Ideal para: {plan.idealFor}
                     </p>
                   </div>
@@ -223,7 +223,7 @@ export function ServicePlans() {
                           ? plan.highlighted
                             ? 'btn-accent'
                             : 'btn-primary'
-                          : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                          : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-200 cursor-not-allowed'
                       }`}
                       disabled={!isAvailable}
                     >
@@ -252,7 +252,7 @@ export function ServicePlans() {
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                 📧 Únete a la lista de espera
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
+              <p className="text-gray-600 dark:text-gray-200 mb-6">
                 Te notificaremos por email en cuanto haya disponibilidad para el plan seleccionado.
               </p>
               <form onSubmit={handleWaitlistSubmit}>
@@ -271,7 +271,7 @@ export function ServicePlans() {
                   <button
                     type="button"
                     onClick={() => setShowWaitlist(false)}
-                    className="flex-1 px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700"
+                    className="flex-1 px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-700"
                   >
                     Cancelar
                   </button>

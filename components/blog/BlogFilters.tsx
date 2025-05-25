@@ -11,7 +11,7 @@ export function BlogFilters() {
   return (
     <div className="flex flex-col sm:flex-row gap-4 mb-8">
       <div className="flex-1 max-w-sm">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           <MapPin className="inline-block h-4 w-4 mr-1" />
           País
         </label>
@@ -30,7 +30,7 @@ export function BlogFilters() {
       </div>
 
       <div className="flex-1 max-w-sm">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           <Calendar className="inline-block h-4 w-4 mr-1" />
           Ordenar por
         </label>

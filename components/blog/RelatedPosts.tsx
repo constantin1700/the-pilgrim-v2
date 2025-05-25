@@ -42,7 +42,7 @@ export function RelatedPosts({ currentPostId, countryId }: Props) {
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
                     {post.title}
                   </h3>
-                  <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                  <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-200">
                     <span className="flex items-center gap-1">
                       <Heart className="h-3 w-3" />
                       {post.likes}

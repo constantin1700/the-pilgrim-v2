@@ -25,9 +25,9 @@ export function ThemeToggle() {
       aria-label={`Cambiar a modo ${theme === 'light' ? 'oscuro' : 'claro'}`}
     >
       {theme === 'light' ? (
-        <Moon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+        <Moon className="h-4 w-4 text-gray-600 dark:text-gray-200" />
       ) : (
-        <Sun className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+        <Sun className="h-4 w-4 text-gray-600 dark:text-gray-200" />
       )}
     </button>
   )

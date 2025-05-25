@@ -55,7 +55,7 @@ export default function AdminBlogNewPage() {
       <div className="flex items-center gap-4 mb-6">
         <button
           onClick={() => router.back()}
-          className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+          className="p-2 text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100"
         >
           <ArrowLeft className="h-5 w-5" />
         </button>
@@ -93,7 +93,7 @@ export default function AdminBlogNewPage() {
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                   Título del artículo *
                 </label>
                 <input
@@ -106,11 +106,11 @@ export default function AdminBlogNewPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                   Slug/URL
                 </label>
                 <div className="flex items-center">
-                  <span className="text-sm text-gray-500 dark:text-gray-400 mr-1">
+                  <span className="text-sm text-gray-500 dark:text-gray-200 mr-1">
                     /blog/
                   </span>
                   <input
@@ -123,7 +123,7 @@ export default function AdminBlogNewPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                   País asociado *
                 </label>
                 <select
@@ -142,7 +142,7 @@ export default function AdminBlogNewPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                   Extracto/resumen *
                 </label>
                 <textarea
@@ -153,7 +153,7 @@ export default function AdminBlogNewPage() {
                   placeholder="Breve descripción del artículo (150-300 caracteres)"
                   maxLength={300}
                 />
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-xs text-gray-500 dark:text-gray-200 mt-1">
                   {formData.excerpt.length}/300 caracteres
                 </p>
               </div>
@@ -207,7 +207,7 @@ export default function AdminBlogNewPage() {
             </h3>
             
             <div className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-6 text-center">
-              <p className="text-gray-500 dark:text-gray-400 mb-2">
+              <p className="text-gray-500 dark:text-gray-200 mb-2">
                 Arrastra una imagen aquí
               </p>
               <button className="text-blue-600 dark:text-blue-400 hover:underline">
@@ -229,7 +229,7 @@ export default function AdminBlogNewPage() {
                   onChange={(e) => setFormData({ ...formData, allowComments: e.target.checked })}
                   className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
-                <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                <span className="ml-2 text-sm text-gray-700 dark:text-gray-200">
                   Permitir comentarios
                 </span>
               </label>
@@ -239,7 +239,7 @@ export default function AdminBlogNewPage() {
                   type="checkbox"
                   className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
-                <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                <span className="ml-2 text-sm text-gray-700 dark:text-gray-200">
                   Artículo destacado
                 </span>
               </label>
@@ -253,7 +253,7 @@ export default function AdminBlogNewPage() {
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                   Meta título
                 </label>
                 <input
@@ -265,7 +265,7 @@ export default function AdminBlogNewPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                   Meta descripción
                 </label>
                 <textarea
@@ -277,7 +277,7 @@ export default function AdminBlogNewPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                   Keywords
                 </label>
                 <input

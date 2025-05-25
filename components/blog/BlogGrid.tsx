@@ -86,7 +86,7 @@ export function BlogGrid() {
                   </div>
                 </div>
                 <div className="md:w-1/2 p-8">
-                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-200 mb-3">
                     <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-2 py-1 rounded">
                       {featuredPost.countryName}
                     </span>
@@ -102,7 +102,7 @@ export function BlogGrid() {
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                     {featuredPost.title}
                   </h2>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  <p className="text-gray-600 dark:text-gray-200 mb-4">
                     {featuredPost.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
@@ -114,7 +114,7 @@ export function BlogGrid() {
                       className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all ${
                         likedPosts.has(featuredPost.id)
                           ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
-                          : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
                       }`}
                     >
                       <Heart className={`h-4 w-4 ${likedPosts.has(featuredPost.id) ? 'fill-current' : ''}`} />
@@ -150,7 +150,7 @@ export function BlogGrid() {
                     </div>
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
-                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-200 mb-3">
                       <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-2 py-1 rounded">
                         {post.countryName}
                       </span>
@@ -162,7 +162,7 @@ export function BlogGrid() {
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                       {post.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm flex-1">
+                    <p className="text-gray-600 dark:text-gray-200 text-sm flex-1">
                       {post.excerpt}
                     </p>
                     <div className="flex items-center justify-between mt-4">
@@ -174,13 +174,13 @@ export function BlogGrid() {
                         className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all ${
                           likedPosts.has(post.id)
                             ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
-                            : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                            : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
                         }`}
                       >
                         <Heart className={`h-4 w-4 ${likedPosts.has(post.id) ? 'fill-current' : ''}`} />
                         <span className="text-sm font-medium">{post.likes}</span>
                       </button>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                      <span className="text-sm text-gray-500 dark:text-gray-200">
                         {formatDate(post.publishedAt!)}
                       </span>
                     </div>

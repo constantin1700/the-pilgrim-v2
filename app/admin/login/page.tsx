@@ -42,7 +42,7 @@ export default function AdminLoginPage() {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
             Panel de Administración
           </h2>
-          <p className="mt-2 text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-gray-600 dark:text-gray-200">
             Ingresa con tu cuenta de administrador
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function AdminLoginPage() {
             )}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Email
               </label>
               <div className="relative">
@@ -75,7 +75,7 @@ export default function AdminLoginPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Contraseña
               </label>
               <div className="relative">

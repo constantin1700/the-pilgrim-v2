@@ -32,7 +32,7 @@ export function PopularCountries() {
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             🌟 Países Destacados
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-200 max-w-2xl mx-auto">
             Los destinos más populares según nuestra comunidad
           </p>
         </div>
@@ -58,7 +58,7 @@ export function PopularCountries() {
                       {country.name}
                     </h3>
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
+                      <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-200">
                         <Heart className="h-5 w-5 fill-current text-red-500" />
                         <span>{country.likesTotal} likes</span>
                       </div>

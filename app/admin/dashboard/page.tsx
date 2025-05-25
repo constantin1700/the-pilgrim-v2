@@ -122,7 +122,7 @@ export default function AdminDashboardPage() {
             <p className="text-2xl font-bold text-gray-900 dark:text-white">
               {stat.value}
             </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-600 dark:text-gray-200">
               {stat.title}
             </p>
           </div>
@@ -210,10 +210,10 @@ export default function AdminDashboardPage() {
                   <p className="text-sm font-medium text-gray-900 dark:text-white">
                     Usuario Anónimo
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-600 dark:text-gray-200">
                     Comentó en &ldquo;Guía completa para trabajar en Alemania&rdquo;
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-xs text-gray-500 dark:text-gray-200 mt-1">
                     Hace {i * 2} horas
                   </p>
                 </div>
@@ -241,7 +241,7 @@ export default function AdminDashboardPage() {
                   <p className="text-sm font-medium text-gray-900 dark:text-white">
                     Plan {reservation.plan}
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-600 dark:text-gray-200">
                     €{reservation.price}
                   </p>
                 </div>

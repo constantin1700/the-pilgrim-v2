@@ -43,7 +43,7 @@ export function Header() {
                     'text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 inline-block py-2',
                     pathname === link.href
                       ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-gray-700 dark:text-gray-300'
+                      : 'text-gray-700 dark:text-gray-200'
                   )}
                 >
                   {link.name}
@@ -59,11 +59,11 @@ export function Header() {
 
           {/* Desktop actions */}
           <div className="hidden lg:flex lg:items-center lg:space-x-4">
-            <button className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100">
+            <button className="p-2 text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100">
               <Search className="h-5 w-5" />
             </button>
             <ThemeToggle />
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
               ES
             </span>
           </div>
@@ -73,7 +73,7 @@ export function Header() {
             <ThemeToggle />
             <button
               type="button"
-              className="p-2 text-gray-600 dark:text-gray-300"
+              className="p-2 text-gray-600 dark:text-gray-200"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? (
@@ -97,7 +97,7 @@ export function Header() {
                     'block px-3 py-2 text-base font-medium rounded-md transition-colors',
                     pathname === link.href
                       ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-800'
+                      : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800'
                   )}
                   onClick={() => setMobileMenuOpen(false)}
                 >

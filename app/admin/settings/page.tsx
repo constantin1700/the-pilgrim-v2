@@ -43,7 +43,7 @@ export default function AdminSettingsPage() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Nombre del sitio
             </label>
             <input
@@ -55,7 +55,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Email principal
             </label>
             <input
@@ -67,7 +67,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Teléfono
             </label>
             <input
@@ -79,7 +79,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Horario de atención
             </label>
             <input
@@ -91,7 +91,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Descripción del sitio
             </label>
             <textarea
@@ -105,7 +105,7 @@ export default function AdminSettingsPage() {
 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
               Logo principal
             </label>
             <div className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-4 text-center">
@@ -117,7 +117,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
               Logo dark mode
             </label>
             <div className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-4 text-center">
@@ -129,7 +129,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
               Favicon
             </label>
             <div className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-4 text-center">
@@ -150,7 +150,7 @@ export default function AdminSettingsPage() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Color principal
             </label>
             <div className="flex items-center gap-2">
@@ -170,7 +170,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Color secundario
             </label>
             <div className="flex items-center gap-2">
@@ -190,7 +190,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Color de acento
             </label>
             <div className="flex items-center gap-2">
@@ -219,7 +219,7 @@ export default function AdminSettingsPage() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Instagram
             </label>
             <input
@@ -232,7 +232,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Telegram
             </label>
             <input
@@ -245,7 +245,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               WhatsApp
             </label>
             <input
@@ -278,7 +278,7 @@ export default function AdminSettingsPage() {
                 <p className="font-medium text-gray-900 dark:text-white">
                   {admin.email}
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-200">
                   {admin.role === 'admin' ? 'Administrador' : 'Editor'}
                 </p>
               </div>

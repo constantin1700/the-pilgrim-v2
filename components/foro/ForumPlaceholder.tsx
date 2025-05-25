@@ -36,7 +36,7 @@ export function ForumPlaceholder() {
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             💬 Foro de la Comunidad - Próximamente
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-200 max-w-3xl mx-auto">
             Conecta con viajeros de todo el mundo, comparte experiencias y encuentra respuestas a tus preguntas
           </p>
         </div>
@@ -55,7 +55,7 @@ export function ForumPlaceholder() {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
               🌍 Discusiones por País
             </h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600 dark:text-gray-200">
               Foros dedicados para cada uno de los 19 países con hilos organizados por temas
             </p>
           </motion.div>
@@ -72,7 +72,7 @@ export function ForumPlaceholder() {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
               🤝 Comunidad Activa
             </h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600 dark:text-gray-200">
               Conecta con españoles que ya viven en el extranjero y comparte experiencias
             </p>
           </motion.div>
@@ -89,7 +89,7 @@ export function ForumPlaceholder() {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
               🔔 Notificaciones
             </h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600 dark:text-gray-200">
               Recibe alertas cuando alguien responda a tus preguntas o mencione temas de interés
             </p>
           </motion.div>
@@ -113,7 +113,7 @@ export function ForumPlaceholder() {
                 <h3 className="font-medium text-gray-900 dark:text-white text-sm">
                   {country.name}
                 </h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-xs text-gray-500 dark:text-gray-200 mt-1">
                   Próximamente
                 </p>
               </motion.div>
@@ -127,7 +127,7 @@ export function ForumPlaceholder() {
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
               🎆 ¿Quieres ser el primero en usar el foro?
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
+            <p className="text-gray-600 dark:text-gray-200 mb-6">
               Déjanos tu email y te avisaremos en cuanto esté disponible
             </p>
             

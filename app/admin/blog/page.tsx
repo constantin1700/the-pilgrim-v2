@@ -22,7 +22,7 @@ export default function AdminBlogPage() {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             Gestión de Blog
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-600 dark:text-gray-200">
             Administra los artículos del blog
           </p>
         </div>
@@ -51,22 +51,22 @@ export default function AdminBlogPage() {
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
           <thead className="bg-gray-50 dark:bg-slate-800">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 Título
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 País
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 Estado
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 Fecha
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 Likes
               </th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 Acciones
               </th>
             </tr>
@@ -79,7 +79,7 @@ export default function AdminBlogPage() {
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       {post.title}
                     </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                    <div className="text-sm text-gray-500 dark:text-gray-200">
                       {post.slug}
                     </div>
                   </div>
@@ -98,7 +98,7 @@ export default function AdminBlogPage() {
                     {post.published ? 'Publicado' : 'Borrador'}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
                   {formatDate(post.publishedAt || post.createdAt)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
@@ -115,7 +115,7 @@ export default function AdminBlogPage() {
                     <Link
                       href={`/blog/${post.slug}`}
                       target="_blank"
-                      className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300"
+                      className="text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-300"
                     >
                       <Eye className="h-4 w-4" />
                     </Link>

@@ -60,7 +60,7 @@ export function DashboardFilters() {
               "px-4 py-2 rounded-lg border transition-colors flex items-center gap-2",
               showAdvanced 
                 ? "bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-700 text-blue-700 dark:text-blue-300"
-                : "border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-800"
+                : "border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800"
             )}
           >
             <SlidersHorizontal className="h-4 w-4" />
@@ -74,7 +74,7 @@ export function DashboardFilters() {
                 "px-3 py-2 transition-colors",
                 filters.viewMode === 'grid'
                   ? "bg-blue-600 text-white"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-800"
+                  : "text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800"
               )}
             >
               <Grid className="h-4 w-4" />
@@ -85,7 +85,7 @@ export function DashboardFilters() {
                 "px-3 py-2 transition-colors",
                 filters.viewMode === 'list'
                   ? "bg-blue-600 text-white"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-800"
+                  : "text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800"
               )}
             >
               <List className="h-4 w-4" />
@@ -99,7 +99,7 @@ export function DashboardFilters() {
         <div className="card p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filterOptions.map((filter) => (
             <div key={filter.key}>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 {filter.label}
               </label>
               <div className="flex items-center gap-2">
@@ -118,7 +118,7 @@ export function DashboardFilters() {
                   }}
                   className="flex-1"
                 />
-                <span className="text-sm text-gray-600 dark:text-gray-400 w-16 text-right">
+                <span className="text-sm text-gray-600 dark:text-gray-200 w-16 text-right">
                   {filters[filter.key as keyof FilterState][0]}{filter.unit}
                 </span>
               </div>
@@ -136,7 +136,7 @@ export function DashboardFilters() {
                 socialIndex: [0, 100],
                 bureaucracy: [0, 100],
               })}
-              className="px-4 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+              className="px-4 py-2 text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100"
             >
               🔄 Restablecer filtros
             </button>

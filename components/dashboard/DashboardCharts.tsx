@@ -88,13 +88,13 @@ export function DashboardCharts() {
                     return (
                       <div className="bg-white dark:bg-slate-800 p-3 rounded-lg shadow-lg border border-gray-200 dark:border-slate-700">
                         <p className="font-semibold text-gray-900 dark:text-white">{data.name}</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-600 dark:text-gray-200">
                           PIB per cápita: €{data.x.toLocaleString()}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-600 dark:text-gray-200">
                           Total likes: {data.y}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-600 dark:text-gray-200">
                           Población: {(data.population / 1000000).toFixed(1)}M
                         </p>
                       </div>
@@ -140,10 +140,10 @@ export function DashboardCharts() {
                     return (
                       <div className="bg-white dark:bg-slate-800 p-3 rounded-lg shadow-lg border border-gray-200 dark:border-slate-700">
                         <p className="font-semibold text-gray-900 dark:text-white">{data.name}</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-600 dark:text-gray-200">
                           Total likes: {data.likes}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-600 dark:text-gray-200">
                           Dashboard: {data.dashboard} | Explorer: {data.explorer}
                         </p>
                       </div>
@@ -167,7 +167,7 @@ export function DashboardCharts() {
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
           Comparador de Países
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-sm text-gray-600 dark:text-gray-200 mb-4">
           Selecciona hasta 4 países para comparar sus métricas
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -189,7 +189,7 @@ export function DashboardCharts() {
                 disabled={!selectedCountries.includes(country.id) && selectedCountries.length >= 4}
                 className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">
+              <span className="text-sm text-gray-700 dark:text-gray-200">
                 {country.name}
               </span>
             </label>
@@ -207,19 +207,19 @@ export function DashboardCharts() {
                   </h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">PIB/capita:</span>
+                      <span className="text-gray-600 dark:text-gray-200">PIB/capita:</span>
                       <span className="font-medium text-gray-900 dark:text-white">€{country.gdp_per_capita?.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Población:</span>
+                      <span className="text-gray-600 dark:text-gray-200">Población:</span>
                       <span className="font-medium text-gray-900 dark:text-white">{country.population ? `${(country.population / 1000000).toFixed(1)}M` : 'N/A'}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Likes:</span>
+                      <span className="text-gray-600 dark:text-gray-200">Likes:</span>
                       <span className="font-medium text-gray-900 dark:text-white">{country.likes_total || 0}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Capital:</span>
+                      <span className="text-gray-600 dark:text-gray-200">Capital:</span>
                       <span className="font-medium text-gray-900 dark:text-white">{country.capital}</span>
                     </div>
                   </div>

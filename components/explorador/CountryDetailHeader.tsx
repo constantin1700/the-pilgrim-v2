@@ -79,7 +79,7 @@ export function CountryDetailHeader({ country }: Props) {
                     {country.name}
                   </h1>
                 </div>
-                <p className="text-lg text-gray-600 dark:text-gray-400">
+                <p className="text-lg text-gray-600 dark:text-gray-200">
                   Guía completa con información actualizada sobre vida y trabajo en {country.name}
                 </p>
               </div>
@@ -89,7 +89,7 @@ export function CountryDetailHeader({ country }: Props) {
                 className={`flex items-center gap-2 px-6 py-3 rounded-lg transition-all ${
                   isLiked
                     ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
-                    : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
                 <Heart className={`h-5 w-5 ${isLiked ? 'fill-current' : ''}`} />
@@ -106,7 +106,7 @@ export function CountryDetailHeader({ country }: Props) {
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {formatCurrency(country.averageSalary)}
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Salario promedio</p>
+                <p className="text-sm text-gray-600 dark:text-gray-200">Salario promedio</p>
               </div>
               
               <div className="text-center">
@@ -116,7 +116,7 @@ export function CountryDetailHeader({ country }: Props) {
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {country.temperature}°C
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Temperatura media</p>
+                <p className="text-sm text-gray-600 dark:text-gray-200">Temperatura media</p>
               </div>
               
               <div className="text-center">
@@ -126,7 +126,7 @@ export function CountryDetailHeader({ country }: Props) {
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {country.qualityOfLife}
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Calidad de vida</p>
+                <p className="text-sm text-gray-600 dark:text-gray-200">Calidad de vida</p>
               </div>
               
               <div className="text-center">
@@ -136,7 +136,7 @@ export function CountryDetailHeader({ country }: Props) {
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {country.bureaucracyEase}%
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Facilidad burocrática</p>
+                <p className="text-sm text-gray-600 dark:text-gray-200">Facilidad burocrática</p>
               </div>
               
               <div className="text-center">
@@ -146,7 +146,7 @@ export function CountryDetailHeader({ country }: Props) {
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {country.socialIndex}
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Índice social</p>
+                <p className="text-sm text-gray-600 dark:text-gray-200">Índice social</p>
               </div>
               
               <div className="text-center">
@@ -156,7 +156,7 @@ export function CountryDetailHeader({ country }: Props) {
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {country.salaryExpenseRatio.toFixed(2)}
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Ratio salario/gastos</p>
+                <p className="text-sm text-gray-600 dark:text-gray-200">Ratio salario/gastos</p>
               </div>
             </div>
           </div>

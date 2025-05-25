@@ -1,0 +1,53 @@
+/* Dark Mode Contrast Override - Force better readability */
+
+/* Override all gray text colors in dark mode to be much lighter */
+[data-theme="dark"] .text-gray-600,
+[data-theme="dark"] .dark\:text-gray-600 {
+  color: rgb(229 231 235) !important; /* gray-200 */
+}
+
+[data-theme="dark"] .text-gray-500,
+[data-theme="dark"] .dark\:text-gray-500 {
+  color: rgb(229 231 235) !important; /* gray-200 */
+}
+
+[data-theme="dark"] .text-gray-400,
+[data-theme="dark"] .dark\:text-gray-400 {
+  color: rgb(229 231 235) !important; /* gray-200 */
+}
+
+[data-theme="dark"] .text-gray-300,
+[data-theme="dark"] .dark\:text-gray-300 {
+  color: rgb(229 231 235) !important; /* gray-200 */
+}
+
+/* Override slate colors too */
+[data-theme="dark"] .text-slate-600,
+[data-theme="dark"] .dark\:text-slate-600 {
+  color: rgb(226 232 240) !important; /* slate-200 */
+}
+
+[data-theme="dark"] .text-slate-500,
+[data-theme="dark"] .dark\:text-slate-500 {
+  color: rgb(226 232 240) !important; /* slate-200 */
+}
+
+[data-theme="dark"] .text-slate-400,
+[data-theme="dark"] .dark\:text-slate-400 {
+  color: rgb(226 232 240) !important; /* slate-200 */
+}
+
+[data-theme="dark"] .text-slate-300,
+[data-theme="dark"] .dark\:text-slate-300 {
+  color: rgb(226 232 240) !important; /* slate-200 */
+}
+
+/* Ensure paragraph text is always readable */
+[data-theme="dark"] p {
+  color: rgb(226 232 240); /* slate-200 */
+}
+
+/* Ensure all text in dark mode has minimum contrast */
+[data-theme="dark"] {
+  color: rgb(226 232 240); /* slate-200 as base */
+}

@@ -95,7 +95,7 @@ export default function AdminServicesPage() {
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
             €{totalRevenue}
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-gray-600 dark:text-gray-200">
             Ingresos este mes
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function AdminServicesPage() {
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
             {reservations.length}
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-gray-600 dark:text-gray-200">
             Reservas totales
           </p>
         </div>
@@ -123,7 +123,7 @@ export default function AdminServicesPage() {
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
             {reservations.filter(r => r.status === 'pending').length}
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-gray-600 dark:text-gray-200">
             Pagos pendientes
           </p>
         </div>
@@ -137,7 +137,7 @@ export default function AdminServicesPage() {
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
             15
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-gray-600 dark:text-gray-200">
             En lista de espera
           </p>
         </div>
@@ -160,7 +160,7 @@ export default function AdminServicesPage() {
                     €{plan.price}
                   </p>
                 </div>
-                <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+                <button className="text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100">
                   <Edit className="h-4 w-4" />
                 </button>
               </div>
@@ -168,7 +168,7 @@ export default function AdminServicesPage() {
               {plan.monthlyLimit && (
                 <div className="mb-4">
                   <div className="flex justify-between text-sm mb-2">
-                    <span className="text-gray-600 dark:text-gray-400">Disponibilidad</span>
+                    <span className="text-gray-600 dark:text-gray-200">Disponibilidad</span>
                     <span className="font-medium text-gray-900 dark:text-white">
                       {plan.currentReservations}/{plan.monthlyLimit}
                     </span>
@@ -186,11 +186,11 @@ export default function AdminServicesPage() {
                 <span className={`px-2 py-1 text-xs rounded-full ${
                   plan.isActive
                     ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200'
                 }`}>
                   {plan.isActive ? 'Activo' : 'Inactivo'}
                 </span>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-sm text-gray-600 dark:text-gray-200">
                   {plan.currentReservations} reservas
                 </span>
               </div>
@@ -208,19 +208,19 @@ export default function AdminServicesPage() {
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead className="bg-gray-50 dark:bg-slate-800">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                   Cliente
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                   Plan
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                   Estado
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                   Fecha
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                   Acciones
                 </th>
               </tr>
@@ -233,7 +233,7 @@ export default function AdminServicesPage() {
                       <div className="text-sm font-medium text-gray-900 dark:text-white">
                         {reservation.customerName}
                       </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
+                      <div className="text-sm text-gray-500 dark:text-gray-200">
                         {reservation.customerEmail}
                       </div>
                     </div>
@@ -256,7 +256,7 @@ export default function AdminServicesPage() {
                       {reservation.status === 'completed' && 'Completado'}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
                     {new Date(reservation.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

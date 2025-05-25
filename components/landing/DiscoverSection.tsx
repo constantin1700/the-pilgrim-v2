@@ -29,7 +29,7 @@ export function DiscoverSection() {
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             🎆 Descubre lo que tenemos para ti
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-200 max-w-2xl mx-auto">
             Una plataforma en constante crecimiento diseñada para apoyar tu aventura internacional
           </p>
         </div>
@@ -52,7 +52,7 @@ export function DiscoverSection() {
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600 dark:text-gray-200">
                 {item.subtitle}
               </p>
             </motion.div>

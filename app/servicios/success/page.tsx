@@ -34,7 +34,7 @@ function PaymentSuccessContent() {
       <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Verificando tu pago...</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-200">Verificando tu pago...</p>
         </div>
       </div>
     )
@@ -48,7 +48,7 @@ function PaymentSuccessContent() {
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
             ¡Pago completado!
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
+          <p className="text-gray-600 dark:text-gray-200 mb-6">
             Tu reserva ha sido confirmada. Recibirás un email con los próximos pasos.
           </p>
           
@@ -79,7 +79,7 @@ export default function PaymentSuccessPage() {
       <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Cargando...</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-200">Cargando...</p>
         </div>
       </div>
     }>

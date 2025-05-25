@@ -12,7 +12,7 @@ export default function ConoceMasPage() {
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               ✨ Sobre The Pilgrim
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
+            <p className="text-xl text-gray-600 dark:text-gray-200">
               La plataforma definitiva para tu aventura internacional
             </p>
           </div>
@@ -24,13 +24,13 @@ export default function ConoceMasPage() {
                   <Globe className="h-8 w-8 text-blue-600 dark:text-blue-400" />
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white m-0">📚 Nuestra Historia</h2>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 dark:text-gray-200">
                   The Pilgrim nació de la experiencia personal de vivir y trabajar en el extranjero. 
                   Entendemos los desafíos, las dudas y las oportunidades que surgen cuando decides 
                   dar el salto a otro país. Por eso creamos esta plataforma: para que tu camino 
                   sea más claro, más fácil y más exitoso.
                 </p>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 dark:text-gray-200">
                   Desde nuestro lanzamiento, hemos ayudado a miles de españoles a encontrar su 
                   lugar en el mundo, proporcionando información actualizada, creando comunidad 
                   y ofreciendo apoyo personalizado cuando más lo necesitan.
@@ -47,7 +47,7 @@ export default function ConoceMasPage() {
                 <div className="space-y-4">
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Nuestra Misión</h3>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-600 dark:text-gray-200">
                       Empoderar a los españoles que buscan oportunidades internacionales con 
                       información confiable, herramientas prácticas y una comunidad de apoyo 
                       que les ayude a alcanzar sus objetivos profesionales y personales en el extranjero.
@@ -55,7 +55,7 @@ export default function ConoceMasPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Nuestra Visión</h3>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-600 dark:text-gray-200">
                       Ser la plataforma de referencia para cualquier español que considere vivir 
                       y trabajar fuera de España, creando el ecosistema más completo de información, 
                       servicios y comunidad para la movilidad internacional.
@@ -74,28 +74,28 @@ export default function ConoceMasPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">🤝 Colaboración</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    <p className="text-gray-600 dark:text-gray-200 text-sm">
                       Creemos en el poder de compartir experiencias y conocimientos para 
                       el beneficio de todos.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">🔍 Transparencia</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    <p className="text-gray-600 dark:text-gray-200 text-sm">
                       Información clara, honesta y actualizada sobre la realidad de vivir 
                       en cada país.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">🤗 Apoyo Mutuo</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    <p className="text-gray-600 dark:text-gray-200 text-sm">
                       Una comunidad donde cada miembro puede encontrar ayuda y ofrecer 
                       su experiencia a otros.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">💡 Innovación</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    <p className="text-gray-600 dark:text-gray-200 text-sm">
                       Constantemente mejorando nuestra plataforma para ofrecer las mejores 
                       herramientas y recursos.
                     </p>
@@ -110,11 +110,11 @@ export default function ConoceMasPage() {
                   <Rocket className="h-8 w-8 text-purple-600 dark:text-purple-400" />
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white m-0">🚀 Futuras Características</h2>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-gray-600 dark:text-gray-200 mb-4">
                   Estamos trabajando constantemente para mejorar The Pilgrim. Algunas de las 
                   características que estamos desarrollando incluyen:
                 </p>
-                <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+                <ul className="space-y-2 text-gray-600 dark:text-gray-200">
                   <li className="flex items-start gap-2">
                     <span className="text-green-500 mt-1">•</span>
                     <span>Foro comunitario interactivo (próximamente)</span>
@@ -141,7 +141,7 @@ export default function ConoceMasPage() {
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
+            <p className="text-gray-600 dark:text-gray-200 mb-6">
               🌍 ¿Listo para comenzar tu aventura internacional?
             </p>
             <a href="/dashboard" className="btn-primary">

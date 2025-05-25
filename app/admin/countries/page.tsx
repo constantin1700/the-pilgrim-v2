@@ -22,7 +22,7 @@ export default function AdminCountriesPage() {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             Gestión de Países
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-600 dark:text-gray-200">
             Administra la información y contenido de cada país
           </p>
         </div>
@@ -36,19 +36,19 @@ export default function AdminCountriesPage() {
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
           <thead className="bg-gray-50 dark:bg-slate-800">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 País
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 Métricas
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 Likes
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 Estado
               </th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                 Acciones
               </th>
             </tr>
@@ -63,7 +63,7 @@ export default function AdminCountriesPage() {
                       <div className="text-sm font-medium text-gray-900 dark:text-white">
                         {country.name}
                       </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
+                      <div className="text-sm text-gray-500 dark:text-gray-300">
                         {country.id}
                       </div>
                     </div>
@@ -86,7 +86,7 @@ export default function AdminCountriesPage() {
                     className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium ${
                       country.active
                         ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300'
-                        : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                        : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200'
                     }`}
                   >
                     {country.active ? (
@@ -113,7 +113,7 @@ export default function AdminCountriesPage() {
                     <Link
                       href={`/explorador/${country.id}`}
                       target="_blank"
-                      className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300"
+                      className="text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-200"
                     >
                       <Eye className="h-4 w-4" />
                     </Link>

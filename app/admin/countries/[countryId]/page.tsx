@@ -65,7 +65,7 @@ export default function AdminCountryEditPage({ params }: Props) {
       <div className="flex items-center gap-4 mb-6">
         <button
           onClick={() => router.back()}
-          className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+          className="p-2 text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100"
         >
           <ArrowLeft className="h-5 w-5" />
         </button>
@@ -94,7 +94,7 @@ export default function AdminCountryEditPage({ params }: Props) {
           
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 Temperatura media anual (°C)
               </label>
               <input
@@ -107,7 +107,7 @@ export default function AdminCountryEditPage({ params }: Props) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 Calidad de vida (0-100)
               </label>
               <div className="flex items-center gap-4">
@@ -131,7 +131,7 @@ export default function AdminCountryEditPage({ params }: Props) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 Salario promedio mensual (€)
               </label>
               <input
@@ -143,7 +143,7 @@ export default function AdminCountryEditPage({ params }: Props) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 Ratio salario/gastos
               </label>
               <input
@@ -156,7 +156,7 @@ export default function AdminCountryEditPage({ params }: Props) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 Índice social (0-100)
               </label>
               <div className="flex items-center gap-4">
@@ -180,7 +180,7 @@ export default function AdminCountryEditPage({ params }: Props) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 Facilidad burocrática (0-100)
               </label>
               <div className="flex items-center gap-4">
@@ -213,11 +213,11 @@ export default function AdminCountryEditPage({ params }: Props) {
           
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Imagen principal
               </label>
               <div className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-6 text-center">
-                <p className="text-gray-500 dark:text-gray-400">
+                <p className="text-gray-500 dark:text-gray-200">
                   Arrastra una imagen aquí o haz clic para seleccionar
                 </p>
                 <button className="mt-2 text-blue-600 dark:text-blue-400 hover:underline">
@@ -227,7 +227,7 @@ export default function AdminCountryEditPage({ params }: Props) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Galería de imágenes
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -249,7 +249,7 @@ export default function AdminCountryEditPage({ params }: Props) {
           
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Información General y Cultura
               </label>
               <textarea
@@ -262,7 +262,7 @@ export default function AdminCountryEditPage({ params }: Props) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Oportunidades que Ofrece
               </label>
               <textarea
@@ -275,7 +275,7 @@ export default function AdminCountryEditPage({ params }: Props) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Coste y Calidad de Vida
               </label>
               <textarea
@@ -288,7 +288,7 @@ export default function AdminCountryEditPage({ params }: Props) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Consejos y Datos Útiles
               </label>
               <textarea

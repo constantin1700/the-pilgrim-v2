@@ -81,7 +81,7 @@ export default function AdminAnalyticsPage() {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               timeRange === '7d'
                 ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+                : 'text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100'
             }`}
           >
             Últimos 7 días
@@ -91,7 +91,7 @@ export default function AdminAnalyticsPage() {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               timeRange === '30d'
                 ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+                : 'text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100'
             }`}
           >
             Últimos 30 días
@@ -101,7 +101,7 @@ export default function AdminAnalyticsPage() {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               timeRange === '90d'
                 ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+                : 'text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100'
             }`}
           >
             Últimos 90 días
@@ -119,7 +119,7 @@ export default function AdminAnalyticsPage() {
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
             12,456
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-gray-600 dark:text-gray-200">
             Visitantes únicos
           </p>
         </div>
@@ -132,7 +132,7 @@ export default function AdminAnalyticsPage() {
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
             45,678
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-gray-600 dark:text-gray-200">
             Páginas vistas
           </p>
         </div>
@@ -145,7 +145,7 @@ export default function AdminAnalyticsPage() {
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
             3:45
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-gray-600 dark:text-gray-200">
             Tiempo en sitio
           </p>
         </div>
@@ -158,7 +158,7 @@ export default function AdminAnalyticsPage() {
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
             32%
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-gray-600 dark:text-gray-200">
             Tasa de rebote
           </p>
         </div>
@@ -205,7 +205,7 @@ export default function AdminAnalyticsPage() {
             {topPages.map((page, index) => (
               <div key={index}>
                 <div className="flex items-center justify-between text-sm mb-1">
-                  <span className="text-gray-700 dark:text-gray-300">{page.page}</span>
+                  <span className="text-gray-700 dark:text-gray-200">{page.page}</span>
                   <span className="font-medium text-gray-900 dark:text-white">{page.views}</span>
                 </div>
                 <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -252,7 +252,7 @@ export default function AdminAnalyticsPage() {
                     className="w-3 h-3 rounded-full"
                     style={{ backgroundColor: device.color }}
                   />
-                  <span className="text-gray-700 dark:text-gray-300">{device.name}</span>
+                  <span className="text-gray-700 dark:text-gray-200">{device.name}</span>
                 </div>
                 <span className="font-medium text-gray-900 dark:text-white">{device.value}%</span>
               </div>
@@ -272,7 +272,7 @@ export default function AdminAnalyticsPage() {
                   <p className="text-sm font-medium text-gray-900 dark:text-white">
                     {country.country}
                   </p>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                  <p className="text-xs text-gray-600 dark:text-gray-200">
                     {country.likes} likes
                   </p>
                 </div>
@@ -298,16 +298,16 @@ export default function AdminAnalyticsPage() {
           <table className="min-w-full">
             <thead>
               <tr className="border-b border-gray-200 dark:border-gray-700">
-                <th className="text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase pb-2">
+                <th className="text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase pb-2">
                   Artículo
                 </th>
-                <th className="text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase pb-2">
+                <th className="text-right text-xs font-medium text-gray-500 dark:text-gray-200 uppercase pb-2">
                   Vistas
                 </th>
-                <th className="text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase pb-2">
+                <th className="text-right text-xs font-medium text-gray-500 dark:text-gray-200 uppercase pb-2">
                   Likes
                 </th>
-                <th className="text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase pb-2">
+                <th className="text-right text-xs font-medium text-gray-500 dark:text-gray-200 uppercase pb-2">
                   Comentarios
                 </th>
               </tr>

@@ -28,17 +28,17 @@ export function Footer() {
                 🌍 The Pilgrim
               </span>
             </Link>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-gray-600 dark:text-gray-200 mb-4">
               Explora oportunidades globales, mantente al día. Conecta, infórmate con contenido actualizado y obtén el apoyo que necesitas para tu aventura internacional.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+              <a href="#" className="text-gray-600 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">
                 <Instagram className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+              <a href="#" className="text-gray-600 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">
                 <MessageCircle className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+              <a href="#" className="text-gray-600 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">
                 <Phone className="h-6 w-6" />
               </a>
             </div>
@@ -54,7 +54,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm"
+                    className="text-gray-600 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -72,7 +72,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm"
+                    className="text-gray-600 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -89,7 +89,7 @@ export function Footer() {
               <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
                 📨 Suscríbete a nuestro newsletter
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-200">
                 Recibe las últimas noticias y oportunidades directamente en tu correo.
               </p>
             </div>
@@ -108,7 +108,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-gray-200 dark:border-slate-800">
-          <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-center text-sm text-gray-600 dark:text-gray-200">
             © 2024 The Pilgrim. Todos los derechos reservados.
           </p>
         </div>

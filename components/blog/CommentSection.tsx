@@ -81,7 +81,7 @@ export function CommentSection({ postId }: Props) {
               onChange={(e) => setUseRegistration(e.target.checked)}
               className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
             />
-            <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+            <span className="ml-2 text-sm text-gray-600 dark:text-gray-200">
               Quiero registrarme para recibir actualizaciones
             </span>
           </label>
@@ -90,7 +90,7 @@ export function CommentSection({ postId }: Props) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                 Nombre *
               </label>
               <input
@@ -104,7 +104,7 @@ export function CommentSection({ postId }: Props) {
             </div>
             {useRegistration && (
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                   Email *
                 </label>
                 <input
@@ -120,7 +120,7 @@ export function CommentSection({ postId }: Props) {
           </div>
 
           <div>
-            <label htmlFor="comment" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="comment" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Comentario *
             </label>
             <textarea
@@ -148,7 +148,7 @@ export function CommentSection({ postId }: Props) {
       {/* Comments list */}
       <div className="space-y-4">
         {comments.length === 0 ? (
-          <p className="text-gray-600 dark:text-gray-400 text-center py-8">
+          <p className="text-gray-600 dark:text-gray-200 text-center py-8">
             Sé el primero en comentar
           </p>
         ) : (
@@ -158,11 +158,11 @@ export function CommentSection({ postId }: Props) {
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   {comment.authorName}
                 </h4>
-                <span className="text-sm text-gray-500 dark:text-gray-400">
+                <span className="text-sm text-gray-500 dark:text-gray-200">
                   {formatDate(comment.createdAt)}
                 </span>
               </div>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600 dark:text-gray-200">
                 {comment.content}
               </p>
             </div>

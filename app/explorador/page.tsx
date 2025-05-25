@@ -12,7 +12,7 @@ export default function ExploradorPage() {
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
               🌍 Explorador Global
             </h1>
-            <p className="mt-2 text-gray-600 dark:text-gray-300">
+            <p className="mt-2 text-gray-600 dark:text-gray-200">
               🗺️ Descubre guías completas de los 19 países disponibles en nuestra plataforma
             </p>
           </div>

@@ -61,14 +61,14 @@ export function ContactForm() {
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
         Envíanos un mensaje
       </h2>
-      <p className="text-gray-600 dark:text-gray-400 mb-6">
+      <p className="text-gray-600 dark:text-gray-200 mb-6">
         También nos puedes enviar un mensaje a través de esta web y nos llegará a nuestro correo electrónico
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Nombre completo *
             </label>
             <input
@@ -83,7 +83,7 @@ export function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
               Email *
             </label>
             <input
@@ -99,7 +99,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
             Teléfono (opcional)
           </label>
           <input
@@ -113,7 +113,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
             Asunto *
           </label>
           <input
@@ -128,7 +128,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
             Mensaje *
           </label>
           <textarea

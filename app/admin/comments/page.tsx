@@ -85,7 +85,7 @@ export default function AdminCommentsPage() {
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
           Moderación de Comentarios
         </h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-600 dark:text-gray-200">
           Revisa y modera los comentarios de los usuarios
         </p>
       </div>
@@ -97,7 +97,7 @@ export default function AdminCommentsPage() {
           className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
             filter === 'all'
               ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+              : 'text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100'
           }`}
         >
           Todos ({comments.length})
@@ -107,7 +107,7 @@ export default function AdminCommentsPage() {
           className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
             filter === 'pending'
               ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+              : 'text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100'
           }`}
         >
           Pendientes ({comments.filter(c => c.status === 'pending').length})
@@ -117,7 +117,7 @@ export default function AdminCommentsPage() {
           className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
             filter === 'approved'
               ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+              : 'text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100'
           }`}
         >
           Aprobados ({comments.filter(c => c.status === 'approved').length})
@@ -127,7 +127,7 @@ export default function AdminCommentsPage() {
           className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
             filter === 'rejected'
               ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+              : 'text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100'
           }`}
         >
           Rechazados ({comments.filter(c => c.status === 'rejected').length})
@@ -143,7 +143,7 @@ export default function AdminCommentsPage() {
                 <h3 className="font-semibold text-gray-900 dark:text-white">
                   {comment.authorName}
                 </h3>
-                <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-200">
                   {comment.authorEmail && (
                     <span>{comment.authorEmail}</span>
                   )}
@@ -162,7 +162,7 @@ export default function AdminCommentsPage() {
               <p className="text-sm text-blue-600 dark:text-blue-400 mb-2">
                 En: {comment.postTitle}
               </p>
-              <p className="text-gray-700 dark:text-gray-300">
+              <p className="text-gray-700 dark:text-gray-200">
                 {comment.content}
               </p>
             </div>
@@ -185,7 +185,7 @@ export default function AdminCommentsPage() {
                 </button>
                 <button
                   onClick={() => handleDelete(comment.id)}
-                  className="flex items-center gap-2 px-3 py-1.5 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors ml-auto"
+                  className="flex items-center gap-2 px-3 py-1.5 text-gray-600 dark:text-gray-200 hover:text-red-600 dark:hover:text-red-400 transition-colors ml-auto"
                 >
                   <Trash2 className="h-4 w-4" />
                   Eliminar
@@ -199,7 +199,7 @@ export default function AdminCommentsPage() {
       {filteredComments.length === 0 && (
         <div className="text-center py-12">
           <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-600 dark:text-gray-200">
             No hay comentarios {filter !== 'all' && filter} para mostrar
           </p>
         </div>
