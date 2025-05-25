@@ -9,7 +9,7 @@ const footerLinks = {
     { name: '🌟 Servicios', href: '/servicios' },
   ],
   company: [
-    { name: '💔 Conoce más', href: '/conoce-mas' },
+    { name: '✨ Conoce más', href: '/conoce-mas' },
     { name: '📧 Contacto', href: '/contacto' },
     { name: '🔒 Política de privacidad', href: '/privacidad' },
     { name: '📜 Términos y condiciones', href: '/terminos' },
