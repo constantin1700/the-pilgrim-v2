@@ -1,9 +1,46 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { supabase } from '@/lib/supabase'
+
+// Temporarily disable email sending during build
+export async function POST(request: NextRequest) {
+  try {
+    const { name, email, phone, subject, message } = await request.json()
+
+    // Save to database instead of sending email
+    const { data, error } = await supabase
+      .from('contact_messages')
+      .insert({
+        name,
+        email,
+        subject,
+        message,
+        status: 'unread'
+      })
+      .select()
+      .single()
+
+    if (error) throw error
+
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Tu mensaje ha sido recibido. Te contactaremos pronto.' 
+    })
+  } catch (error: any) {
+    console.error('Contact form error:', error)
+    return NextResponse.json(
+      { error: 'Error al enviar el mensaje' },
+      { status: 500 }
+    )
+  }
+}
+
+// Original code with Resend commented out
+/*
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function POST(request: NextRequest) {
+export async function POST_ORIGINAL(request: NextRequest) {
   try {
     const { name, email, phone, subject, message } = await request.json()
 
@@ -19,51 +56,21 @@ export async function POST(request: NextRequest) {
         ${phone ? `<p><strong>Teléfono:</strong> ${phone}</p>` : ''}
         <p><strong>Asunto:</strong> ${subject}</p>
         <hr />
-        <p><strong>Mensaje:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
-      `,
-      text: `
-        Nuevo mensaje de contacto
-        
-        Nombre: ${name}
-        Email: ${email}
-        ${phone ? `Teléfono: ${phone}` : ''}
-        Asunto: ${subject}
-        
-        Mensaje:
-        ${message}
       `,
     })
 
     if (error) {
-      console.error('Error sending email:', error)
-      return NextResponse.json(
-        { error: 'Error sending email' },
-        { status: 500 }
-      )
+      throw error
     }
 
-    // Send auto-reply to user
-    await resend.emails.send({
-      from: process.env.EMAIL_FROM_ADDRESS!,
-      to: email,
-      subject: 'Hemos recibido tu mensaje - The Pilgrim',
-      html: `
-        <h2>¡Gracias por contactarnos!</h2>
-        <p>Hola ${name},</p>
-        <p>Hemos recibido tu mensaje y te responderemos lo antes posible.</p>
-        <p>Nuestro horario de atención es de 9:30 AM a 4:30 PM todos los días.</p>
-        <br />
-        <p>Saludos,<br />El equipo de The Pilgrim</p>
-      `,
-    })
-
-    return NextResponse.json({ success: true, id: data?.id })
-  } catch (error) {
-    console.error('Error in contact API:', error)
+    return NextResponse.json({ success: true, data })
+  } catch (error: any) {
+    console.error('Email send error:', error)
     return NextResponse.json(
-      { error: 'Error processing contact form' },
+      { error: 'Error sending email' },
       { status: 500 }
     )
   }
 }
+*/
