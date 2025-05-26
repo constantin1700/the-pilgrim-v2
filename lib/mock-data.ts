@@ -1,5 +1,10 @@
 // Mock data for local development
-export const mockCountries = [
+import { countriesData } from './data/countries'
+
+export const mockCountries = countriesData;
+
+// Legacy mock countries (kept for reference)
+export const legacyMockCountries = [
   {
     id: '550e8400-e29b-41d4-a716-446655440001',
     name: 'Alemania',

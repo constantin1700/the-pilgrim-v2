@@ -77,7 +77,7 @@ export function CountryGrid() {
           </Link>
 
           <div className="p-6">
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-3 mb-4">
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-gray-400" />
                 <div>
@@ -103,7 +103,7 @@ export function CountryGrid() {
                 <div>
                   <p className="text-xs text-gray-500 dark:text-gray-200">⭐ Calidad de vida</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {country.quality_of_life ? `${country.quality_of_life}/100` : 'N/A'}
+                    {country.quality_of_life || country.qualityOfLife ? `${country.quality_of_life || country.qualityOfLife}/100` : 'N/A'}
                   </p>
                 </div>
               </div>
@@ -113,7 +113,7 @@ export function CountryGrid() {
                 <div>
                   <p className="text-xs text-gray-500 dark:text-gray-200">💰 Ratio salario/gasto</p>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {country.salary_expense_ratio ? `${country.salary_expense_ratio}x` : 'N/A'}
+                    {country.salary_expense_ratio || country.salaryExpenseRatio ? `${country.salary_expense_ratio || country.salaryExpenseRatio}x` : 'N/A'}
                   </p>
                 </div>
               </div>
@@ -121,9 +121,9 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-200">👥 Población</p>
-                  <p className="font-semibold text-gray-900 dark:text-white">
-                    {country.population ? `${(country.population / 1000000).toFixed(1)}M` : 'N/A'}
+                  <p className="text-xs text-gray-500 dark:text-gray-200">🗣️ Idioma</p>
+                  <p className="font-semibold text-gray-900 dark:text-white text-sm">
+                    {country.main_language || 'N/A'}
                   </p>
                 </div>
               </div>
