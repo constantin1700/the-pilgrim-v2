@@ -3,6 +3,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Font for The Pilgrim branding */
+@font-face {
+  font-family: 'Mottek';
+  src: url('/fonts/mottek.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-mottek {
+  font-family: 'Mottek', sans-serif;
+}
+
 /* OBLIGATORIO: Variables CSS para ambos modos */
 :root {
   /* LIGHT MODE - Colores principales */

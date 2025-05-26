@@ -131,9 +131,9 @@ export function CountryGrid() {
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-gray-400" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-200">🗣️ Idioma</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-200">🌐 Internet</p>
                   <p className="font-semibold text-gray-900 dark:text-white text-sm">
-                    {country.main_language || 'N/A'}
+                    {country.internet_speed_mbps ? `${country.internet_speed_mbps} Mbps` : 'N/A'}
                   </p>
                 </div>
               </div>

@@ -27,7 +27,7 @@ export function Header() {
         <div className="flex w-full items-center justify-between py-5">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-blue-800 dark:text-blue-400">
+              <span className="text-2xl font-bold text-blue-800 dark:text-blue-400 font-mottek">
                 🌍 The Pilgrim
               </span>
             </Link>

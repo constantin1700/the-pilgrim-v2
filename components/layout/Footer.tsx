@@ -24,7 +24,7 @@ export function Footer() {
           {/* Brand section */}
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center mb-4">
-              <span className="text-2xl font-bold text-blue-800 dark:text-blue-400">
+              <span className="text-2xl font-bold text-blue-800 dark:text-blue-400 font-mottek">
                 🌍 The Pilgrim
               </span>
             </Link>

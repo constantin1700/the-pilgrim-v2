@@ -22,6 +22,8 @@ export interface Country {
   salaryExpenseRatio?: number
   socialIndex?: number
   bureaucracyEase?: number
+  internet_speed_mbps?: number
+  internet_connectivity_score?: number
   likesTotal: number
   likesDashboard: number
   likesBlog: number
