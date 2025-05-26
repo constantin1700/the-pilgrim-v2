@@ -1,6 +1,6 @@
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { ServicePlans } from '@/components/services/ServicePlans'
+import { ServicePlansUpgraded } from '@/components/services/ServicePlansUpgraded'
 import { ServicesFAQ } from '@/components/services/ServicesFAQ'
 
 export default function ServiciosPage() {
@@ -19,7 +19,7 @@ export default function ServiciosPage() {
           </div>
         </div>
         
-        <ServicePlans />
+        <ServicePlansUpgraded />
         <ServicesFAQ />
       </main>
       <Footer />

@@ -36,24 +36,24 @@ export function ComparativeAnalysis({ countries }: Props) {
   const [selectedCountries, setSelectedCountries] = useState<string[]>([])
   const [activeChart, setActiveChart] = useState<'radar' | 'scatter' | 'ranking' | 'comparison'>('ranking')
 
-  // Top 10 países por diferentes métricas
+  // Top 10 países por diferentes métricas con compatibilidad de campos
   const topByQualityOfLife = useMemo(() => 
     [...countries]
-      .sort((a, b) => (b.qualityOfLife || 0) - (a.qualityOfLife || 0))
+      .sort((a, b) => ((b.qualityOfLife || b.quality_of_life || 0) - (a.qualityOfLife || a.quality_of_life || 0)))
       .slice(0, 10),
     [countries]
   )
 
   const topBySalaryRatio = useMemo(() => 
     [...countries]
-      .sort((a, b) => (b.salaryExpenseRatio || 0) - (a.salaryExpenseRatio || 0))
+      .sort((a, b) => ((b.salaryExpenseRatio || b.salary_expense_ratio || 0) - (a.salaryExpenseRatio || a.salary_expense_ratio || 0)))
       .slice(0, 10),
     [countries]
   )
 
   const topByInternetSpeed = useMemo(() => 
     [...countries]
-      .sort((a, b) => (b.internet_speed_mbps || 0) - (a.internet_speed_mbps || 0))
+      .sort((a, b) => ((b.internet_speed_mbps || 0) - (a.internet_speed_mbps || 0)))
       .slice(0, 10),
     [countries]
   )
@@ -63,11 +63,11 @@ export function ComparativeAnalysis({ countries }: Props) {
     if (selectedCountries.length === 0) return []
     
     const metrics = [
-      { key: 'qualityOfLife', label: 'Calidad de Vida', max: 200 },
-      { key: 'salaryExpenseRatio', label: 'Ratio Salario/Gasto', max: 2, multiplier: 100 },
+      { key: 'quality_of_life', label: 'Calidad de Vida', max: 200, fallback: 'qualityOfLife' },
+      { key: 'salary_expense_ratio', label: 'Ratio Salario/Gasto', max: 2, multiplier: 50, fallback: 'salaryExpenseRatio' },
       { key: 'internet_speed_mbps', label: 'Internet', max: 300, multiplier: 0.33 },
-      { key: 'socialIndex', label: 'Índice Social', max: 100 },
-      { key: 'bureaucracyEase', label: 'Facilidad Burocrática', max: 100 },
+      { key: 'social_index', label: 'Índice Social', max: 100, fallback: 'socialIndex' },
+      { key: 'bureaucracy_ease', label: 'Facilidad Burocrática', max: 100, fallback: 'bureaucracyEase' },
       { key: 'temperature', label: 'Clima', max: 30, multiplier: 3.33 }
     ]
 
@@ -76,7 +76,8 @@ export function ComparativeAnalysis({ countries }: Props) {
       selectedCountries.forEach(countryId => {
         const country = countries.find(c => c.id === countryId)
         if (country) {
-          const value = country[metric.key as keyof Country] as number || 0
+          // Usar el campo principal o el fallback
+          const value = (country as any)[metric.key] || (metric.fallback ? (country as any)[metric.fallback] : 0) || 0
           const normalizedValue = (value * (metric.multiplier || 1)) / metric.max * 100
           dataPoint[country.name] = Math.min(100, Math.max(0, normalizedValue))
         }
@@ -89,9 +90,9 @@ export function ComparativeAnalysis({ countries }: Props) {
   const scatterData = useMemo(() => 
     countries.map(country => ({
       name: country.name,
-      x: country.averageSalary || 0,
-      y: country.qualityOfLife || 0,
-      size: country.population ? Math.sqrt(country.population / 1000000) * 2 : 10,
+      x: country.averageSalary || country.average_salary || 0,
+      y: country.qualityOfLife || country.quality_of_life || 0,
+      size: country.population ? Math.sqrt(country.population / 1000000) * 3 + 5 : 15,
       continent: country.continent,
       internetSpeed: country.internet_speed_mbps || 0
     })),
@@ -151,13 +152,13 @@ export function ComparativeAnalysis({ countries }: Props) {
             icon={Award}
             title="Mejor calidad de vida"
             value={topByQualityOfLife[0]?.name || 'N/A'}
-            subtitle={`Índice: ${topByQualityOfLife[0]?.qualityOfLife?.toFixed(1) || 0}`}
+            subtitle={`Índice: ${(topByQualityOfLife[0]?.qualityOfLife || topByQualityOfLife[0]?.quality_of_life || 0).toFixed(1)}`}
           />
           <MetricCard
             icon={TrendingUp}
             title="Mejor ratio salario/gasto"
             value={topBySalaryRatio[0]?.name || 'N/A'}
-            subtitle={`Ratio: ${topBySalaryRatio[0]?.salaryExpenseRatio?.toFixed(2) || 0}x`}
+            subtitle={`Ratio: ${(topBySalaryRatio[0]?.salaryExpenseRatio || topBySalaryRatio[0]?.salary_expense_ratio || 0).toFixed(2)}x`}
           />
           <MetricCard
             icon={Zap}
@@ -245,7 +246,7 @@ export function ComparativeAnalysis({ countries }: Props) {
                     </span>
                   </div>
                   <span className="text-sm font-semibold text-gray-900 dark:text-white">
-                    {country.qualityOfLife?.toFixed(1)}
+                    {(country.qualityOfLife || country.quality_of_life || 0).toFixed(1)}
                   </span>
                 </div>
               ))}
@@ -272,7 +273,7 @@ export function ComparativeAnalysis({ countries }: Props) {
                     </span>
                   </div>
                   <span className="text-sm font-semibold text-gray-900 dark:text-white">
-                    {country.salaryExpenseRatio?.toFixed(2)}x
+                    {(country.salaryExpenseRatio || country.salary_expense_ratio || 0).toFixed(2)}x
                   </span>
                 </div>
               ))}
@@ -493,21 +494,21 @@ export function ComparativeAnalysis({ countries }: Props) {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900 dark:text-white">
-                        {country.qualityOfLife?.toFixed(1)}
+                        {(country.qualityOfLife || country.quality_of_life || 0).toFixed(1)}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900 dark:text-white">
-                        €{country.averageSalary?.toLocaleString()}
+                        €{(country.averageSalary || country.average_salary || 0).toLocaleString()}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className={cn(
                         "text-sm font-medium",
-                        (country.salaryExpenseRatio || 0) >= 1.5 ? "text-green-600" :
-                        (country.salaryExpenseRatio || 0) >= 1.0 ? "text-yellow-600" : "text-red-600"
+                        ((country.salaryExpenseRatio || country.salary_expense_ratio || 0) >= 1.5) ? "text-green-600" :
+                        ((country.salaryExpenseRatio || country.salary_expense_ratio || 0) >= 1.0) ? "text-yellow-600" : "text-red-600"
                       )}>
-                        {country.salaryExpenseRatio?.toFixed(2)}x
+                        {(country.salaryExpenseRatio || country.salary_expense_ratio || 0).toFixed(2)}x
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -522,7 +523,7 @@ export function ComparativeAnalysis({ countries }: Props) {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900 dark:text-white">
-                        {country.socialIndex?.toFixed(1)}
+                        {(country.socialIndex || country.social_index || 0).toFixed(1)}
                       </div>
                     </td>
                   </tr>

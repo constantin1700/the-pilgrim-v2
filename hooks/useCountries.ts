@@ -30,42 +30,48 @@ export function useCountries() {
   const fetchCountries = async () => {
     setLoading(true)
     
-    // TEMPORARY: Always use mock data until we fix the connection
-    console.log('Using mock countries data (temporary fix)')
-    setCountries(mockCountries.map(c => ({
-      ...c,
-      likesTotal: c.likes_total || 0,
-      likesDashboard: c.likes_dashboard || 0,
-      likesBlog: c.likesBlog || 0
-    })) as Country[])
-    setError(null)
-    setLoading(false)
-    
-    // Original code commented out temporarily
-    /*
     try {
-      const response = await fetch('/api/countries')
-      
-      if (!response.ok) {
-        const errorData = await response.json()
-        console.error('API Error:', errorData)
-        throw new Error(`Failed to fetch countries: ${response.status}`)
+      // Usar directamente Supabase para mejor performance
+      const { data, error: supabaseError } = await supabase
+        .from('countries')
+        .select('*')
+        .eq('active', true)
+        .order('featured', { ascending: false })
+        .order('name', { ascending: true })
+
+      if (supabaseError) {
+        console.error('Supabase error:', supabaseError)
+        throw new Error(`Supabase error: ${supabaseError.message}`)
       }
-      
-      const data = await response.json()
-      
+
       if (!data || data.length === 0) {
-        console.warn('No countries returned from API')
-        throw new Error('No countries data available')
+        console.warn('No countries returned from Supabase, using mock data as fallback')
+        throw new Error('No countries data available in database')
       }
-      
-      setCountries(data)
+
+      // Mapear datos de Supabase al formato esperado
+      const mappedCountries = data.map(country => ({
+        ...country,
+        // Asegurar compatibilidad con campos legacy
+        likesTotal: country.likes_total || 0,
+        likesDashboard: country.likes_dashboard || 0,
+        likesExplorer: country.likes_explorer || 0,
+        likesBlog: country.likes_blog || 0,
+        qualityOfLife: country.quality_of_life,
+        averageSalary: country.average_salary,
+        salaryExpenseRatio: country.salary_expense_ratio,
+        socialIndex: country.social_index,
+        bureaucracyEase: country.bureaucracy_ease
+      })) as Country[]
+
+      console.log(`✅ Loaded ${mappedCountries.length} countries from Supabase`)
+      setCountries(mappedCountries)
       setError(null)
     } catch (err: any) {
-      console.error('Error fetching countries:', err)
+      console.error('Error fetching countries from Supabase:', err)
       
-      // Always use mock data as fallback
-      console.log('Using mock countries data as fallback')
+      // Fallback a mock data solo si Supabase falla completamente
+      console.log('🔄 Using mock countries data as fallback')
       setCountries(mockCountries.map(c => ({
         ...c,
         likesTotal: c.likes_total || 0,
@@ -73,12 +79,10 @@ export function useCountries() {
         likesBlog: c.likesBlog || 0
       })) as Country[])
       
-      // Show error but still display mock data
-      setError(`Error loading live data: ${err.message}. Showing sample data.`)
+      setError(`Error loading from database: ${err.message}. Showing sample data.`)
     } finally {
       setLoading(false)
     }
-    */
   }
 
   return { countries, loading, error, refetch: fetchCountries }
