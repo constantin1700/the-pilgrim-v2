@@ -103,12 +103,16 @@ export interface Reservation {
 // Dashboard filters
 export interface DashboardFilters {
   climate?: { min: number; max: number }
+  temperature?: { min: number; max: number }
   qualityOfLife?: { min: number; max: number }
   salary?: { min: number; max: number }
   salaryRatio?: { min: number; max: number }
   socialIndex?: { min: number; max: number }
   bureaucracy?: { min: number; max: number }
+  internetSpeed?: { min: number; max: number }
   search?: string
+  continent?: string
+  language?: string
 }
 
 // Admin types
