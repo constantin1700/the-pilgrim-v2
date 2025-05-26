@@ -30,11 +30,26 @@ export interface Country {
   likes_dashboard?: number
   likes_explorer?: number
   likes_total?: number
+  likes_blog?: number
+  featured?: boolean
+  active?: boolean
+  digital_nomad_visa?: boolean
+  eu_citizenship_pathway?: boolean
+  tax_advantages?: boolean
+  work_life_balance_index?: number
+  healthcare_quality_index?: number
+  english_proficiency_score?: number
+  startup_ecosystem_score?: number
   coverImage?: string
   generalInfo?: CountrySection
   opportunities?: CountrySection
   costOfLiving?: CountrySection
   usefulData?: CountrySection
+  work_visa_info?: any
+  cost_of_living?: any
+  climate_info?: any
+  cultural_tips?: any
+  job_market?: any
   createdAt?: Date
   updatedAt?: Date
 }
