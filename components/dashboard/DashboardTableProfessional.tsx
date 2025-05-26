@@ -113,8 +113,8 @@ export function DashboardTableProfessional({ countries, filters }: Props) {
           bValue = b.socialIndex || b.social_index || 0
           break
         case 'likes':
-          aValue = (a.likesDashboard || a.likes_dashboard || 0) + (a.likesExplorer || a.likes_explorer || 0)
-          bValue = (b.likesDashboard || b.likes_dashboard || 0) + (b.likesExplorer || b.likes_explorer || 0)
+          aValue = (a.likesDashboard || a.likes_dashboard || 0) + (a.likes_explorer || 0)
+          bValue = (b.likesDashboard || b.likes_dashboard || 0) + (b.likes_explorer || 0)
           break
         default:
           return 0
@@ -371,7 +371,7 @@ export function DashboardTableProfessional({ countries, filters }: Props) {
               const RatioIcon = ratioBadge.icon
               const isExpanded = expandedRows.has(country.id)
               const totalLikes = (country.likesDashboard || country.likes_dashboard || 0) + 
-                                (country.likesExplorer || country.likes_explorer || 0)
+                                (country.likes_explorer || 0)
               const isSelected = selectedCountries.has(country.id)
               const rowIndex = startIndex + index + 1
 

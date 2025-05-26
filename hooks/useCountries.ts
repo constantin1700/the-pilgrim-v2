@@ -55,7 +55,7 @@ export function useCountries() {
         // Asegurar compatibilidad con campos legacy
         likesTotal: country.likes_total || 0,
         likesDashboard: country.likes_dashboard || 0,
-        likesExplorer: country.likes_explorer || 0,
+        likes_explorer: country.likes_explorer || 0,
         likesBlog: country.likes_blog || 0,
         qualityOfLife: country.quality_of_life,
         averageSalary: country.average_salary,
