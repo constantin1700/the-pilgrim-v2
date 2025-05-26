@@ -39,7 +39,7 @@ export function DashboardFiltersAdvanced({ onFiltersChange, initialFilters }: Pr
       setFilters(parsed)
       onFiltersChange(parsed)
     }
-  }, [])
+  }, [initialFilters, onFiltersChange])
 
   useEffect(() => {
     localStorage.setItem('dashboardFilters', JSON.stringify(filters))
