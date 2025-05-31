@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { handleStripeWebhook } from '@/lib/stripe'
+import Stripe from 'stripe'
 import { createServiceRoleClient } from '@/lib/supabase'
-import type Stripe from 'stripe'
 
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
+
+if (!stripeSecretKey) {
+  console.warn('Stripe secret key not set. Webhooks will not work.')
+}
+
+const stripe = stripeSecretKey ? new Stripe(stripeSecretKey, {
+  apiVersion: '2025-04-30.basil',
+}) : null
 
 export async function POST(request: NextRequest) {
   // Check if Stripe is configured
-  if (!webhookSecret) {
+  if (!stripe || !webhookSecret) {
     return NextResponse.json(
       { error: 'Stripe webhook not configured' },
       { status: 503 }
@@ -25,10 +33,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    let event
+    let event: Stripe.Event
 
     try {
-      event = await handleStripeWebhook(body, signature)
+      event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
     } catch (err) {
       console.error('Webhook signature verification failed:', err)
       return NextResponse.json(
