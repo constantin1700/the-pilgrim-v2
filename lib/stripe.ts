@@ -1,11 +1,21 @@
 import Stripe from 'stripe'
 import { loadStripe } from '@stripe/stripe-js'
 
-// Server-side Stripe instance
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-04-30.basil',
-  typescript: true,
-})
+// Server-side Stripe instance - lazy initialization
+let stripeInstance: Stripe | null = null
+
+export const stripe = () => {
+  if (!stripeInstance) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error('Missing STRIPE_SECRET_KEY environment variable')
+    }
+    stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2025-04-30.basil',
+      typescript: true,
+    })
+  }
+  return stripeInstance
+}
 
 // Client-side Stripe instance
 export const getStripe = () => {
@@ -101,7 +111,7 @@ export async function createCheckoutSession({
   }
 
   try {
-    const session = await stripe.checkout.sessions.create({
+    const session = await stripe().checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
       customer_email: customerEmail,
@@ -151,7 +161,7 @@ export async function createCheckoutSession({
 // Función para verificar el estado de un pago
 export async function retrieveCheckoutSession(sessionId: string) {
   try {
-    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+    const session = await stripe().checkout.sessions.retrieve(sessionId, {
       expand: ['payment_intent', 'customer'],
     })
     return session
@@ -169,7 +179,7 @@ export async function handleStripeWebhook(
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
   
   try {
-    const event = stripe.webhooks.constructEvent(payload, signature, webhookSecret)
+    const event = stripe().webhooks.constructEvent(payload, signature, webhookSecret)
     return event
   } catch (error) {
     console.error('Error verifying Stripe webhook signature:', error)
