@@ -12,57 +12,156 @@ export function BlogGrid() {
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [likedPosts, setLikedPosts] = useState<Set<string>>(new Set())
   const [featuredPost, setFeaturedPost] = useState<BlogPost | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Load liked posts from localStorage
-    const saved = localStorage.getItem('likedPosts')
-    if (saved) {
-      setLikedPosts(new Set(JSON.parse(saved)))
-    }
-
-    // Set featured post and regular posts
-    if (mockBlogPosts.length > 0) {
-      setFeaturedPost(mockBlogPosts[0])
-      setPosts(mockBlogPosts.slice(1))
-    }
+    fetchBlogPosts()
+    loadLikedPosts()
   }, [])
 
-  const handleLike = (postId: string, countryId: string) => {
+  const fetchBlogPosts = async () => {
+    try {
+      setLoading(true)
+      const response = await fetch('/api/blog')
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch blog posts')
+      }
+      
+      const data = await response.json()
+      
+      if (data && data.length > 0) {
+        // Use real data from database
+        const publishedPosts = data.filter((post: any) => post.status === 'published' || post.published)
+        setFeaturedPost(publishedPosts[0] || null)
+        setPosts(publishedPosts.slice(1))
+      } else {
+        // Fallback to mock data if database is empty
+        console.log('No blog posts in database, using mock data')
+        setFeaturedPost(mockBlogPosts[0] || null)
+        setPosts(mockBlogPosts.slice(1))
+      }
+    } catch (error) {
+      console.error('Error fetching blog posts:', error)
+      setError('Error loading blog posts')
+      // Fallback to mock data on error
+      setFeaturedPost(mockBlogPosts[0] || null)
+      setPosts(mockBlogPosts.slice(1))
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const loadLikedPosts = async () => {
+    const userId = localStorage.getItem('user_session') || 
+                   `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    
+    if (!localStorage.getItem('user_session')) {
+      localStorage.setItem('user_session', userId);
+    }
+
+    try {
+      const response = await fetch(`/api/likes?userId=${userId}&itemType=blog`);
+      
+      if (response.ok) {
+        const result = await response.json();
+        if (result.likedItems) {
+          setLikedPosts(new Set(result.likedItems));
+          return;
+        }
+      }
+    } catch (error) {
+      console.log('Database likes not available, using localStorage fallback');
+    }
+    
+    // Fallback to localStorage (always executed if database isn't available)
+    const saved = localStorage.getItem('likedPosts');
+    if (saved) {
+      setLikedPosts(new Set(JSON.parse(saved)));
+    }
+  }
+
+  const handleLike = async (postId: string, countryId: string) => {
+    const userId = localStorage.getItem('user_session') || 
+                   `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    
+    if (!localStorage.getItem('user_session')) {
+      localStorage.setItem('user_session', userId);
+    }
+
+    try {
+      const response = await fetch('/api/likes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          itemId: postId,
+          itemType: 'blog',
+          userId: userId
+        })
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        
+        setLikedPosts(prev => {
+          const newSet = new Set(prev);
+          if (result.liked) {
+            newSet.add(postId);
+          } else {
+            newSet.delete(postId);
+          }
+          // Also save to localStorage as backup
+          localStorage.setItem('likedPosts', JSON.stringify(Array.from(newSet)));
+          return newSet;
+        });
+        return;
+      }
+    } catch (error) {
+      console.log('Database likes not available, using localStorage fallback');
+    }
+    
+    // Fallback to localStorage when database is not available
     setLikedPosts(prev => {
-      const newSet = new Set(prev)
-      const isLiked = newSet.has(postId)
+      const newSet = new Set(prev);
+      const isLiked = newSet.has(postId);
       
       if (isLiked) {
-        newSet.delete(postId)
+        newSet.delete(postId);
       } else {
-        newSet.add(postId)
+        newSet.add(postId);
       }
       
-      // Save to localStorage
-      localStorage.setItem('likedPosts', JSON.stringify(Array.from(newSet)))
-      
-      // Update country likes
-      const savedLikes = localStorage.getItem('countryLikes')
-      const likesData = savedLikes ? JSON.parse(savedLikes) : {}
-      
-      if (!likesData[countryId]) {
-        likesData[countryId] = { dashboard: 0, blog: 0, total: 0 }
-      }
-      
-      if (isLiked) {
-        likesData[countryId].blog = Math.max(0, likesData[countryId].blog - 1)
-      } else {
-        likesData[countryId].blog += 1
-      }
-      
-      likesData[countryId].total = likesData[countryId].dashboard + likesData[countryId].blog
-      localStorage.setItem('countryLikes', JSON.stringify(likesData))
-      
-      return newSet
-    })
+      localStorage.setItem('likedPosts', JSON.stringify(Array.from(newSet)));
+      return newSet;
+    });
   }
 
   // Featured post
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-red-600 mb-4">{error}</p>
+        <button
+          onClick={fetchBlogPosts}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+        >
+          Reintentar
+        </button>
+      </div>
+    )
+  }
+
   if (featuredPost) {
     return (
       <>

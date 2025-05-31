@@ -1,17 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-
-// Temporary disable this route during build
-export async function POST(request: NextRequest) {
-  return NextResponse.json(
-    { received: true },
-    { status: 200 }
-  )
-}
-
-// Original code commented out for now to allow build to succeed
-/*
 import Stripe from 'stripe'
-import { getServiceSupabase } from '@/lib/supabase'
+import { createServiceRoleClient } from '@/lib/supabase'
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
@@ -24,7 +13,7 @@ const stripe = stripeSecretKey ? new Stripe(stripeSecretKey, {
   apiVersion: '2025-04-30.basil',
 }) : null
 
-export async function POST_ORIGINAL(request: NextRequest) {
+export async function POST(request: NextRequest) {
   // Check if Stripe is configured
   if (!stripe || !webhookSecret) {
     return NextResponse.json(
@@ -56,18 +45,19 @@ export async function POST_ORIGINAL(request: NextRequest) {
       )
     }
 
-    const supabase = getServiceSupabase()
+    const supabase = createServiceRoleClient()
 
     switch (event.type) {
       case 'checkout.session.completed':
         const session = event.data.object as Stripe.Checkout.Session
         
-        // Update reservation status
+        // Update reservation status to paid
         const { error } = await supabase
           .from('reservations')
           .update({ 
             status: 'paid',
-            stripe_payment_intent_id: session.payment_intent as string
+            stripe_payment_intent_id: session.payment_intent as string,
+            updated_at: new Date().toISOString()
           })
           .eq('stripe_session_id', session.id)
 
@@ -77,16 +67,65 @@ export async function POST_ORIGINAL(request: NextRequest) {
         }
 
         // TODO: Send confirmation email
+        console.log('Payment completed for session:', session.id)
+        break
+
+      case 'checkout.session.expired':
+        const expiredSession = event.data.object as Stripe.Checkout.Session
+        
+        // Update reservation status to expired
+        await supabase
+          .from('reservations')
+          .update({ 
+            status: 'expired',
+            updated_at: new Date().toISOString()
+          })
+          .eq('stripe_session_id', expiredSession.id)
+        break
+
+      case 'payment_intent.succeeded':
+        const successIntent = event.data.object as Stripe.PaymentIntent
+        console.log('Payment succeeded:', successIntent.id)
         break
 
       case 'payment_intent.payment_failed':
-        const paymentIntent = event.data.object as Stripe.PaymentIntent
+        const failedIntent = event.data.object as Stripe.PaymentIntent
         
-        // Update reservation status
+        // Update reservation status to failed
         await supabase
           .from('reservations')
-          .update({ status: 'cancelled' })
-          .eq('stripe_payment_intent_id', paymentIntent.id)
+          .update({ 
+            status: 'failed',
+            updated_at: new Date().toISOString()
+          })
+          .eq('stripe_payment_intent_id', failedIntent.id)
+        break
+
+      case 'charge.refunded':
+        const refund = event.data.object as Stripe.Charge
+        
+        // Update reservation status to refunded
+        if (refund.payment_intent) {
+          await supabase
+            .from('reservations')
+            .update({ 
+              status: 'refunded',
+              updated_at: new Date().toISOString()
+            })
+            .eq('stripe_payment_intent_id', refund.payment_intent)
+        }
+        break
+
+      case 'charge.dispute.created':
+        const dispute = event.data.object as Stripe.Dispute
+        console.error('DISPUTE CREATED:', dispute.id, 'Amount:', dispute.amount)
+        // TODO: Send alert to admin
+        break
+
+      case 'customer.created':
+        const customer = event.data.object as Stripe.Customer
+        console.log('New customer created:', customer.email)
+        // TODO: Add to CRM or analytics
         break
 
       default:
@@ -102,4 +141,3 @@ export async function POST_ORIGINAL(request: NextRequest) {
     )
   }
 }
-*/

@@ -28,7 +28,7 @@ const plans: ServicePlan[] = [
     price: 29,
     availability: 'Entrega en 48h',
     duration: '3 días',
-    features: STRIPE_PRODUCTS.cv_express.features,
+    features: [...STRIPE_PRODUCTS.cv_express.features],
     idealFor: 'Profesionales que necesitan una mejora rápida y efectiva de su CV',
     icon: Zap,
     badge: 'Más popular'
@@ -40,7 +40,7 @@ const plans: ServicePlan[] = [
     price: 49,
     availability: 'Disponible todo el mes',
     duration: '7 días',
-    features: STRIPE_PRODUCTS.basic_consultation.features,
+    features: [...STRIPE_PRODUCTS.basic_consultation.features],
     idealFor: 'Quienes necesitan orientación inicial para empezar su búsqueda laboral',
     icon: Star
   },
@@ -52,7 +52,7 @@ const plans: ServicePlan[] = [
     originalPrice: 199,
     availability: 'Solo 30 personas al mes',
     duration: '14 días',
-    features: STRIPE_PRODUCTS.premium_preparation.features,
+    features: [...STRIPE_PRODUCTS.premium_preparation.features],
     idealFor: 'Profesionales que buscan una preparación integral para el mercado internacional',
     highlighted: true,
     icon: Users,
@@ -66,7 +66,7 @@ const plans: ServicePlan[] = [
     originalPrice: 399,
     availability: 'Solo 10 personas al mes',
     duration: '30 días',
-    features: STRIPE_PRODUCTS.vip_mentoring.features,
+    features: [...STRIPE_PRODUCTS.vip_mentoring.features],
     idealFor: 'Ejecutivos y profesionales senior que buscan el máximo nivel de personalización',
     icon: Crown,
     badge: 'Premium'

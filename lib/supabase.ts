@@ -21,6 +21,9 @@ export const getServiceSupabase = () => {
   return createClient(url, supabaseServiceKey)
 }
 
+// Alias for consistency with new API routes
+export const createServiceRoleClient = getServiceSupabase
+
 // Auth helpers
 export const signIn = async (email: string, password: string) => {
   const { data, error } = await supabase.auth.signInWithPassword({

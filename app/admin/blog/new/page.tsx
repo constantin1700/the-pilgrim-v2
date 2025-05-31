@@ -28,14 +28,21 @@ export default function AdminBlogNewPage() {
 
   const handleSave = async (publish = false) => {
     try {
-      const response = await fetch('/api/blog', {
+      const response = await fetch('/api/admin/blog', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
-          published: publish,
-          author_name: 'The Pilgrim Team',
-          reading_time: Math.ceil(formData.content.split(' ').length / 200),
+          title: formData.title,
+          slug: formData.slug,
+          excerpt: formData.excerpt,
+          content: formData.content,
+          country_id: formData.countryId,
+          status: publish ? 'published' : 'draft',
+          author: 'The Pilgrim Team',
+          read_time: Math.ceil(formData.content.split(' ').length / 200),
+          featured_image: '',
+          meta_title: formData.title,
+          meta_description: formData.excerpt,
           tags: formData.countryId ? [countriesData.find(c => c.id === formData.countryId)?.name] : []
         })
       })

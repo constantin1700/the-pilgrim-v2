@@ -488,8 +488,8 @@ export function DashboardTableProfessional({ countries, filters }: Props) {
                           {(country.temperature || 0).toFixed(1)}°C
                         </div>
                         <div className="text-lg">
-                          {country.temperature > 20 ? '☀️' : 
-                           country.temperature > 10 ? '⛅' : '❄️'}
+                          {(country.temperature || 0) > 20 ? '☀️' : 
+                           (country.temperature || 0) > 10 ? '⛅' : '❄️'}
                         </div>
                       </div>
                     </td>

@@ -7,15 +7,27 @@ const likesStore = new Map<string, Set<string>>()
 export async function POST(request: NextRequest) {
   try {
     const { itemId, itemType, userId } = await request.json()
+    
+    // Map itemType to like_type
+    const likeType = itemType === 'country' ? 'country_dashboard' : 
+                     itemType === 'explorer' ? 'country_explorer' : 
+                     itemType === 'blog' ? 'blog_post' : itemType
 
-    // Check if user already liked this item
-    const { data: existingLike } = await supabase
+    // Build query based on item type
+    let query = supabase
       .from('user_likes')
       .select()
-      .eq('user_id', userId)
-      .eq('item_id', itemId)
-      .eq('item_type', itemType)
-      .single()
+      .eq('user_session', userId)
+      .eq('like_type', likeType)
+    
+    if (likeType === 'blog_post') {
+      query = query.eq('post_id', itemId)
+    } else {
+      query = query.eq('country_id', itemId)
+    }
+
+    // Check if user already liked this item
+    const { data: existingLike } = await query.single()
 
     if (existingLike) {
       // Unlike: remove the like
@@ -48,13 +60,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ liked: false })
     } else {
       // Like: add new like
+      const insertData: any = {
+        user_session: userId,
+        like_type: likeType,
+        ip_address: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip')
+      }
+      
+      if (likeType === 'blog_post') {
+        insertData.post_id = itemId
+      } else {
+        insertData.country_id = itemId
+      }
+      
       const { error: insertError } = await supabase
         .from('user_likes')
-        .insert({
-          user_id: userId,
-          item_id: itemId,
-          item_type: itemType
-        })
+        .insert(insertData)
 
       if (insertError) throw insertError
 
@@ -101,20 +121,25 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    // Map itemType to like_type
+    const likeType = itemType === 'country' ? 'country_dashboard' : 
+                     itemType === 'explorer' ? 'country_explorer' : 
+                     itemType === 'blog' ? 'blog_post' : itemType
+    
     const query = supabase
       .from('user_likes')
-      .select('item_id')
-      .eq('user_id', userId)
+      .select('country_id, post_id, like_type')
+      .eq('user_session', userId)
 
-    if (itemType) {
-      query.eq('item_type', itemType)
+    if (likeType) {
+      query.eq('like_type', likeType)
     }
 
     const { data, error } = await query
 
     if (error) throw error
 
-    const likedItems = data.map(item => item.item_id)
+    const likedItems = data.map(item => item.country_id || item.post_id).filter(Boolean)
     return NextResponse.json({ likedItems })
   } catch (error) {
     console.error('Error fetching likes:', error)
