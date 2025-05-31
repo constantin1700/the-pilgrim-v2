@@ -184,13 +184,13 @@ export async function GET(request: NextRequest) {
     }
 
     // Check user_likes table
-    const { data: likesData, error: likesError } = await supabaseAdmin
+    const { count: likesCount, error: likesError } = await supabaseAdmin
       .from('user_likes')
-      .select('id', { count: 'exact', head: true })
+      .select('*', { count: 'exact', head: true })
 
     if (!likesError) {
       status.user_likes_table = true
-      status.total_likes_count = likesData || 0
+      status.total_likes_count = likesCount || 0
     }
 
     // Check countries columns

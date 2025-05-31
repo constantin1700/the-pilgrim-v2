@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Save, Globe, DollarSign, Cloud, Users, Briefcase, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -78,11 +78,7 @@ export default function EditCountryPage({ params }: { params: { countryId: strin
     }
   });
 
-  useEffect(() => {
-    fetchCountry();
-  }, [params.countryId]);
-
-  const fetchCountry = async () => {
+  const fetchCountry = useCallback(async () => {
     try {
       const response = await fetch(`/api/admin/countries?id=${params.countryId}`);
       const data = await response.json();
@@ -94,7 +90,11 @@ export default function EditCountryPage({ params }: { params: { countryId: strin
     } finally {
       setLoading(false);
     }
-  };
+  }, [params.countryId]);
+
+  useEffect(() => {
+    fetchCountry();
+  }, [fetchCountry]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
