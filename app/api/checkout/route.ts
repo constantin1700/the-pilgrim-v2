@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validar que el productId es válido
-    const validProductIds: StripeProductId[] = ['basic_consultation', 'premium_preparation', 'vip_mentoring', 'cv_express']
+    const validProductIds: StripeProductId[] = ['basic_consultation', 'premium_preparation', 'cv_express']
     if (!validProductIds.includes(productId)) {
       return NextResponse.json(
         { error: 'Producto no válido' },
@@ -28,7 +28,6 @@ export async function POST(request: NextRequest) {
       .insert({
         service_id: productId === 'basic_consultation' ? '11111111-1111-1111-1111-111111111111' :
                    productId === 'premium_preparation' ? '22222222-2222-2222-2222-222222222222' :
-                   productId === 'vip_mentoring' ? '33333333-3333-3333-3333-333333333333' :
                    '44444444-4444-4444-4444-444444444444',
         customer_name: customerData.name,
         customer_email: customerData.email,
@@ -36,8 +35,7 @@ export async function POST(request: NextRequest) {
         customer_data: customerData,
         status: 'pending',
         amount: productId === 'basic_consultation' ? 49 :
-                productId === 'premium_preparation' ? 149 :
-                productId === 'vip_mentoring' ? 299 : 29,
+                productId === 'premium_preparation' ? 149 : 29,
         currency: 'EUR'
       })
       .select()

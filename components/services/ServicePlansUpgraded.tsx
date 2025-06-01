@@ -57,19 +57,6 @@ const plans: ServicePlan[] = [
     highlighted: true,
     icon: Users,
     badge: 'Recomendado'
-  },
-  {
-    id: 'vip_mentoring',
-    type: 'vip',
-    title: 'Plan VIP - Acompañamiento Personalizado',
-    price: 299,
-    originalPrice: 399,
-    availability: 'Solo 10 personas al mes',
-    duration: '30 días',
-    features: [...STRIPE_PRODUCTS.vip_mentoring.features],
-    idealFor: 'Ejecutivos y profesionales senior que buscan el máximo nivel de personalización',
-    icon: Crown,
-    badge: 'Premium'
   }
 ]
 

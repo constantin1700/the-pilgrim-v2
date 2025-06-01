@@ -121,6 +121,17 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    // Si la tabla no existe, devolver array vacío
+    const { data: tables } = await supabase
+      .from('information_schema.tables')
+      .select('table_name')
+      .eq('table_schema', 'public')
+      .eq('table_name', 'user_likes')
+      .single()
+
+    if (!tables) {
+      return NextResponse.json({ likedItems: [] })
+    }
     // Map itemType to like_type
     const likeType = itemType === 'country' ? 'country_dashboard' : 
                      itemType === 'explorer' ? 'country_explorer' : 

@@ -35,8 +35,6 @@ export function useCountries() {
       const { data, error: supabaseError } = await supabase
         .from('countries')
         .select('*')
-        .eq('active', true)
-        .order('featured', { ascending: false })
         .order('name', { ascending: true })
 
       if (supabaseError) {

@@ -17,7 +17,6 @@ export { getStripe } from './stripe-client'
 export const STRIPE_PRICES = {
   basic_consultation: 4900, // 49.00 EUR
   premium_preparation: 14900, // 149.00 EUR
-  vip_mentoring: 29900, // 299.00 EUR
   cv_express: 2900, // 29.00 EUR
 } as const
 
@@ -47,21 +46,6 @@ export const STRIPE_PRODUCTS = {
       'Guía específica del país elegido',
       'Templates de cartas de presentación',
       'Acceso a ofertas de trabajo exclusivas'
-    ]
-  },
-  vip_mentoring: {
-    name: 'Plan Personalizado - Acompañamiento VIP',
-    description: 'Servicio de acompañamiento personalizado durante todo el proceso de búsqueda y reubicación, con mentor dedicado.',
-    price: STRIPE_PRICES.vip_mentoring,
-    currency: 'eur',
-    features: [
-      'Mentor personal dedicado',
-      'Plan de reubicación personalizado',
-      'Asesoría legal y fiscal',
-      'Networking con profesionales',
-      '4 sesiones de coaching',
-      'Soporte 24/7 durante 30 días',
-      'Revisión de documentos oficiales'
     ]
   },
   cv_express: {
