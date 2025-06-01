@@ -1,16 +1,17 @@
 import Stripe from 'stripe'
-import { loadStripe } from '@stripe/stripe-js'
 
-// Server-side Stripe instance
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-04-30.basil',
-  typescript: true,
-})
+// Server-side Stripe instance - only initialize if we have the key
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 
-// Client-side Stripe instance
-export const getStripe = () => {
-  return loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!)
-}
+export const stripe = stripeSecretKey 
+  ? new Stripe(stripeSecretKey, {
+      apiVersion: '2025-04-30.basil',
+      typescript: true,
+    })
+  : null as any
+
+// Re-export client-side Stripe from separate file
+export { getStripe } from './stripe-client'
 
 // Precio de los servicios en Stripe (en céntimos)
 export const STRIPE_PRICES = {
@@ -100,6 +101,10 @@ export async function createCheckoutSession({
     throw new Error(`Product ${productId} not found`)
   }
 
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please check your environment variables.')
+  }
+
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
@@ -150,6 +155,10 @@ export async function createCheckoutSession({
 
 // Función para verificar el estado de un pago
 export async function retrieveCheckoutSession(sessionId: string) {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please check your environment variables.')
+  }
+
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId, {
       expand: ['payment_intent', 'customer'],
@@ -168,6 +177,10 @@ export async function handleStripeWebhook(
 ) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
   
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please check your environment variables.')
+  }
+
   try {
     const event = stripe.webhooks.constructEvent(payload, signature, webhookSecret)
     return event
