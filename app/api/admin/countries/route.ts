@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceRoleClient } from '@/lib/supabase';
+import { requireAdmin, unauthorizedResponse, logAdminAction } from '@/lib/auth-helpers';
 
 export async function GET(request: NextRequest) {
   try {
+    // Verify admin access
+    await requireAdmin(request);
+    
     const supabase = createServiceRoleClient();
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search');
@@ -30,6 +34,9 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json(data || []);
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Unauthorized')) {
+      return unauthorizedResponse(error.message);
+    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
@@ -37,6 +44,9 @@ export async function GET(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
+    // Verify admin access
+    const adminUser = await requireAdmin(request);
+    
     const supabase = createServiceRoleClient();
     const body = await request.json();
     const { id, ...updateData } = body;
@@ -70,8 +80,19 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: 'Error updating country: ' + error.message }, { status: 500 });
     }
     
+    // Log admin action
+    await logAdminAction(adminUser.id, 'UPDATE_COUNTRY', {
+      country_id: id,
+      changes: updateData,
+      ip_address: request.headers.get('x-forwarded-for') || 'unknown',
+      user_agent: request.headers.get('user-agent') || 'unknown'
+    });
+    
     return NextResponse.json(data);
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Unauthorized')) {
+      return unauthorizedResponse(error.message);
+    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
@@ -79,6 +100,9 @@ export async function PUT(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    // Verify admin access
+    const adminUser = await requireAdmin(request);
+    
     const supabase = createServiceRoleClient();
     const body = await request.json();
     
@@ -93,8 +117,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Error creating country' }, { status: 500 });
     }
     
+    // Log admin action
+    await logAdminAction(adminUser.id, 'CREATE_COUNTRY', {
+      country_name: body.name,
+      ip_address: request.headers.get('x-forwarded-for') || 'unknown',
+      user_agent: request.headers.get('user-agent') || 'unknown'
+    });
+    
     return NextResponse.json(data);
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Unauthorized')) {
+      return unauthorizedResponse(error.message);
+    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }

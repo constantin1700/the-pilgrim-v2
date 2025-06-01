@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceRoleClient } from '@/lib/supabase';
+import { requireAdmin, unauthorizedResponse, logAdminAction } from '@/lib/auth-helpers';
 
 export async function GET(request: NextRequest) {
   try {
+    // Verify admin access
+    await requireAdmin(request);
+    
     const supabase = createServiceRoleClient();
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search');
@@ -30,6 +34,9 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json(data || []);
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Unauthorized')) {
+      return unauthorizedResponse(error.message);
+    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
@@ -37,6 +44,9 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    // Verify admin access
+    const adminUser = await requireAdmin(request);
+    
     const supabase = createServiceRoleClient();
     const body = await request.json();
     
@@ -62,8 +72,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Error creating blog post' }, { status: 500 });
     }
     
+    // Log admin action
+    await logAdminAction(adminUser.id, 'CREATE_BLOG_POST', {
+      post_title: postData.title,
+      post_status: postData.status,
+      ip_address: request.headers.get('x-forwarded-for') || 'unknown',
+      user_agent: request.headers.get('user-agent') || 'unknown'
+    });
+    
     return NextResponse.json(data);
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Unauthorized')) {
+      return unauthorizedResponse(error.message);
+    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
@@ -71,6 +92,9 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
+    // Verify admin access
+    const adminUser = await requireAdmin(request);
+    
     const supabase = createServiceRoleClient();
     const body = await request.json();
     const { id, ...updateData } = body;
@@ -93,8 +117,19 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: 'Error updating blog post' }, { status: 500 });
     }
     
+    // Log admin action
+    await logAdminAction(adminUser.id, 'UPDATE_BLOG_POST', {
+      post_id: id,
+      changes: updateData,
+      ip_address: request.headers.get('x-forwarded-for') || 'unknown',
+      user_agent: request.headers.get('user-agent') || 'unknown'
+    });
+    
     return NextResponse.json(data);
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Unauthorized')) {
+      return unauthorizedResponse(error.message);
+    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
@@ -102,6 +137,9 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    // Verify admin access
+    const adminUser = await requireAdmin(request);
+    
     const supabase = createServiceRoleClient();
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
@@ -120,8 +158,18 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Error deleting blog post' }, { status: 500 });
     }
     
+    // Log admin action
+    await logAdminAction(adminUser.id, 'DELETE_BLOG_POST', {
+      post_id: id,
+      ip_address: request.headers.get('x-forwarded-for') || 'unknown',
+      user_agent: request.headers.get('user-agent') || 'unknown'
+    });
+    
     return NextResponse.json({ success: true });
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Unauthorized')) {
+      return unauthorizedResponse(error.message);
+    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }

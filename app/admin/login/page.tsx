@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { signIn } from '@/lib/supabase'
+import { signIn, signOut } from '@/lib/supabase'
 import { Lock, Mail, AlertCircle } from 'lucide-react'
 
 export default function AdminLoginPage() {
@@ -18,19 +18,52 @@ export default function AdminLoginPage() {
     setIsLoading(true)
 
     try {
-      const { data, error } = await signIn(email, password)
-      
-      if (error) {
-        setError('Credenciales inválidas')
+      // Validate inputs
+      if (!email || !password) {
+        setError('Por favor completa todos los campos')
         setIsLoading(false)
         return
       }
 
-      if (data.user) {
-        router.push('/admin/dashboard')
+      // Attempt sign in
+      const { data, error } = await signIn(email, password)
+      
+      if (error) {
+        console.error('Login error:', error)
+        // Provide specific error messages
+        if (error.message.includes('Invalid login credentials')) {
+          setError('Email o contraseña incorrectos')
+        } else if (error.message.includes('Email not confirmed')) {
+          setError('Por favor confirma tu email antes de iniciar sesión')
+        } else {
+          setError('Error al iniciar sesión. Por favor intenta de nuevo.')
+        }
+        setIsLoading(false)
+        return
+      }
+
+      if (data?.user) {
+        // Verify admin access before redirecting
+        const response = await fetch('/api/admin/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: data.user.email })
+        })
+
+        const verifyData = await response.json()
+        
+        if (response.ok && verifyData.isAdmin) {
+          router.push('/admin/dashboard')
+          router.refresh() // Force refresh to update auth state
+        } else {
+          setError('No tienes permisos de administrador')
+          await signOut() // Sign out non-admin users
+          setIsLoading(false)
+        }
       }
     } catch (err) {
-      setError('Error al iniciar sesión')
+      console.error('Unexpected error:', err)
+      setError('Error inesperado. Por favor intenta de nuevo.')
       setIsLoading(false)
     }
   }
