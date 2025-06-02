@@ -43,6 +43,15 @@ export default function AdminLoginPage() {
       }
 
       if (data?.user) {
+        // DEBUG: First check what's happening
+        const debugResponse = await fetch('/api/admin/debug-auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: data.user.email })
+        })
+        const debugData = await debugResponse.json()
+        console.log('DEBUG AUTH INFO:', debugData)
+
         // Verify admin access before redirecting
         const response = await fetch('/api/admin/verify', {
           method: 'POST',
@@ -51,6 +60,7 @@ export default function AdminLoginPage() {
         })
 
         const verifyData = await response.json()
+        console.log('VERIFY RESPONSE:', verifyData)
         
         if (response.ok && verifyData.isAdmin) {
           router.push('/admin/dashboard')
