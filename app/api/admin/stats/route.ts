@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createServiceRoleClient } from '@/lib/supabase';
-import { requireAdmin, unauthorizedResponse } from '@/lib/auth-helpers';
+import { createSupabaseServiceClient, getCurrentUser, isUserAdmin } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {
     // Verify admin access
-    await requireAdmin(request);
+    const user = await getCurrentUser();
+    if (!user?.email || !(await isUserAdmin(user.email))) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     
-    const supabase = createServiceRoleClient();
+    const supabase = createSupabaseServiceClient();
     
     // Fetch all statistics in parallel
     const [
@@ -81,7 +83,7 @@ export async function GET(request: NextRequest) {
 
     let totalRevenue = 0;
     if (revenueResult.data) {
-      totalRevenue = revenueResult.data.reduce((sum, res) => sum + (res.amount || 0), 0);
+      totalRevenue = revenueResult.data.reduce((sum: number, res: any) => sum + (res.amount || 0), 0);
     }
 
     // Get popular countries
@@ -141,9 +143,6 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json(stats);
   } catch (error) {
-    if (error instanceof Error && error.message.includes('Unauthorized')) {
-      return unauthorizedResponse(error.message);
-    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }

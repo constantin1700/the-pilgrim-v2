@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createServiceRoleClient } from '@/lib/supabase';
-import { requireAdmin, unauthorizedResponse, logAdminAction } from '@/lib/auth-helpers';
+import { createSupabaseServiceClient, getCurrentUser, isUserAdmin } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {
     // Verify admin access
-    await requireAdmin(request);
+    const user = await getCurrentUser();
+    if (!user?.email || !(await isUserAdmin(user.email))) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     
-    const supabase = createServiceRoleClient();
+    const supabase = createSupabaseServiceClient();
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search');
     const status = searchParams.get('status');
@@ -34,9 +36,6 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json(data || []);
   } catch (error) {
-    if (error instanceof Error && error.message.includes('Unauthorized')) {
-      return unauthorizedResponse(error.message);
-    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
@@ -45,9 +44,12 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     // Verify admin access
-    const adminUser = await requireAdmin(request);
+    const user = await getCurrentUser();
+    if (!user?.email || !(await isUserAdmin(user.email))) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     
-    const supabase = createServiceRoleClient();
+    const supabase = createSupabaseServiceClient();
     const body = await request.json();
     
     // Set default values
@@ -73,18 +75,23 @@ export async function POST(request: NextRequest) {
     }
     
     // Log admin action
-    await logAdminAction(adminUser.id, 'CREATE_BLOG_POST', {
-      post_title: postData.title,
-      post_status: postData.status,
-      ip_address: request.headers.get('x-forwarded-for') || 'unknown',
-      user_agent: request.headers.get('user-agent') || 'unknown'
-    });
+    const logSupabase = createSupabaseServiceClient();
+    await logSupabase
+      .from('admin_activity_logs')
+      .insert({
+        admin_id: user.id,
+        action: 'CREATE_BLOG_POST',
+        details: {
+          post_title: postData.title,
+          post_status: postData.status,
+          ip_address: request.headers.get('x-forwarded-for') || 'unknown',
+          user_agent: request.headers.get('user-agent') || 'unknown'
+        },
+        created_at: new Date().toISOString()
+      });
     
     return NextResponse.json(data);
   } catch (error) {
-    if (error instanceof Error && error.message.includes('Unauthorized')) {
-      return unauthorizedResponse(error.message);
-    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
@@ -93,9 +100,12 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     // Verify admin access
-    const adminUser = await requireAdmin(request);
+    const user = await getCurrentUser();
+    if (!user?.email || !(await isUserAdmin(user.email))) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     
-    const supabase = createServiceRoleClient();
+    const supabase = createSupabaseServiceClient();
     const body = await request.json();
     const { id, ...updateData } = body;
     
@@ -118,18 +128,23 @@ export async function PUT(request: NextRequest) {
     }
     
     // Log admin action
-    await logAdminAction(adminUser.id, 'UPDATE_BLOG_POST', {
-      post_id: id,
-      changes: updateData,
-      ip_address: request.headers.get('x-forwarded-for') || 'unknown',
-      user_agent: request.headers.get('user-agent') || 'unknown'
-    });
+    const logSupabase = createSupabaseServiceClient();
+    await logSupabase
+      .from('admin_activity_logs')
+      .insert({
+        admin_id: user.id,
+        action: 'UPDATE_BLOG_POST',
+        details: {
+          post_id: id,
+          changes: updateData,
+          ip_address: request.headers.get('x-forwarded-for') || 'unknown',
+          user_agent: request.headers.get('user-agent') || 'unknown'
+        },
+        created_at: new Date().toISOString()
+      });
     
     return NextResponse.json(data);
   } catch (error) {
-    if (error instanceof Error && error.message.includes('Unauthorized')) {
-      return unauthorizedResponse(error.message);
-    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
@@ -138,9 +153,12 @@ export async function PUT(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     // Verify admin access
-    const adminUser = await requireAdmin(request);
+    const user = await getCurrentUser();
+    if (!user?.email || !(await isUserAdmin(user.email))) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     
-    const supabase = createServiceRoleClient();
+    const supabase = createSupabaseServiceClient();
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
     
@@ -159,17 +177,22 @@ export async function DELETE(request: NextRequest) {
     }
     
     // Log admin action
-    await logAdminAction(adminUser.id, 'DELETE_BLOG_POST', {
-      post_id: id,
-      ip_address: request.headers.get('x-forwarded-for') || 'unknown',
-      user_agent: request.headers.get('user-agent') || 'unknown'
-    });
+    const logSupabase = createSupabaseServiceClient();
+    await logSupabase
+      .from('admin_activity_logs')
+      .insert({
+        admin_id: user.id,
+        action: 'DELETE_BLOG_POST',
+        details: {
+          post_id: id,
+          ip_address: request.headers.get('x-forwarded-for') || 'unknown',
+          user_agent: request.headers.get('user-agent') || 'unknown'
+        },
+        created_at: new Date().toISOString()
+      });
     
     return NextResponse.json({ success: true });
   } catch (error) {
-    if (error instanceof Error && error.message.includes('Unauthorized')) {
-      return unauthorizedResponse(error.message);
-    }
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }

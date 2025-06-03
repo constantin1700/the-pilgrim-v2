@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createServiceRoleClient } from '@/lib/supabase';
+import { createSupabaseServiceClient, getCurrentUser, isUserAdmin } from '@/lib/auth';
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createServiceRoleClient();
+    // Verify admin access
+    const user = await getCurrentUser();
+    if (!user?.email || !(await isUserAdmin(user.email))) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    
+    const supabase = createSupabaseServiceClient();
     const formData = await request.formData();
     const file = formData.get('file') as File;
     const countryId = formData.get('countryId') as string;
