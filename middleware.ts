@@ -31,6 +31,13 @@ export async function middleware(req: NextRequest) {
   const isAdminRoute = req.nextUrl.pathname.startsWith('/admin')
   const isAdminAPI = req.nextUrl.pathname.startsWith('/api/admin')
   const isLoginPage = req.nextUrl.pathname === '/admin/login'
+  const isVerifyRoute = req.nextUrl.pathname === '/api/admin/verify'
+  const isDebugRoute = req.nextUrl.pathname === '/api/admin/debug-auth'
+  
+  // Allow verify and debug routes without admin check
+  if (isVerifyRoute || isDebugRoute) {
+    return res
+  }
   
   if (isAdminRoute || isAdminAPI) {
     // Allow access to login page without authentication
