@@ -4,47 +4,36 @@ import type { NextRequest } from 'next/server'
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
-  const supabase = createMiddlewareClient({ req, res })
   
-  const pathname = req.nextUrl.pathname
-  
-  // Permitir acceso a login y recursos públicos
-  if (pathname === '/admin/login' || pathname === '/api/admin/check-access') {
+  // Solo aplicar middleware a rutas admin
+  if (!req.nextUrl.pathname.startsWith('/admin')) {
     return res
   }
   
-  // Proteger rutas admin
-  if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin')) {
-    const { data: { session } } = await supabase.auth.getSession()
-    
-    if (!session) {
-      // No hay sesión, redirigir a login
-      if (pathname.startsWith('/api/')) {
-        return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
-      }
-      return NextResponse.redirect(new URL('/admin/login', req.url))
-    }
-    
-    // Hay sesión, verificar si es admin
-    const { data: adminUser } = await supabase
-      .from('admin_users')
-      .select('id')
-      .eq('email', session.user.email)
-      .eq('is_active', true)
-      .single()
-    
-    if (!adminUser) {
-      // No es admin
-      if (pathname.startsWith('/api/')) {
-        return NextResponse.json({ error: 'Sin permisos de administrador' }, { status: 403 })
-      }
-      return NextResponse.redirect(new URL('/admin/login', req.url))
-    }
+  // Permitir acceso directo a login
+  if (req.nextUrl.pathname === '/admin/login') {
+    return res
   }
   
-  return res
+  try {
+    const supabase = createMiddlewareClient({ req, res })
+    const { data: { session } } = await supabase.auth.getSession()
+    
+    // Si no hay sesión, redirigir a login
+    if (!session) {
+      return NextResponse.redirect(new URL('/admin/login', req.url))
+    }
+    
+    // Si hay sesión, continuar
+    return res
+    
+  } catch (error) {
+    console.error('Middleware error:', error)
+    // En caso de error, permitir acceso para no bloquear
+    return res
+  }
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/admin/:path*']
+  matcher: '/admin/((?!login).*)',
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getSupabaseBrowserClient } from '@/lib/supabase-browser'
+import { supabase } from '@/lib/supabase'
 import { Country } from '@/lib/types'
 import { mockCountries } from '@/lib/mock-data'
 
@@ -12,7 +12,6 @@ export function useCountries() {
     fetchCountries()
     
     // Subscribe to realtime updates
-    const supabase = getSupabaseBrowserClient()
     const subscription = supabase
       .channel('countries-changes')
       .on('postgres_changes', 
@@ -33,7 +32,6 @@ export function useCountries() {
     
     try {
       // Usar directamente Supabase para mejor performance
-      const supabase = getSupabaseBrowserClient()
       const { data, error: supabaseError } = await supabase
         .from('countries')
         .select('*')
