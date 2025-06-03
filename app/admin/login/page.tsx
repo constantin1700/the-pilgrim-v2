@@ -2,12 +2,12 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { getSupabaseBrowserClient } from '@/lib/supabase-browser'
 import { Lock, Mail, AlertCircle } from 'lucide-react'
 
 export default function AdminLoginPage() {
   const router = useRouter()
-  const supabase = createClientComponentClient()
+  const supabase = getSupabaseBrowserClient()
   
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -41,9 +41,8 @@ export default function AdminLoginPage() {
 
       if (data?.user) {
         console.log('Login exitoso, redirigiendo...')
-        // El middleware verificará si es admin
-        await router.push('/admin/dashboard')
-        router.refresh()
+        // Redirigir al dashboard
+        window.location.href = '/admin/dashboard'
       }
       
     } catch (err) {

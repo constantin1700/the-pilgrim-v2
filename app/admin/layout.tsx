@@ -17,7 +17,7 @@ import {
 } from 'lucide-react'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { cn } from '@/lib/utils'
-import { signOut } from '@/lib/supabase'
+import { signOut } from '@/lib/supabase-browser'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
