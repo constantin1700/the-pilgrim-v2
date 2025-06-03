@@ -9,10 +9,10 @@ export async function POST(request: NextRequest) {
     const { email } = body;
     
     // Debug info
-    const debugInfo = {
+    const debugInfo: Record<string, any> = {
       requestEmail: email,
       timestamp: new Date().toISOString(),
-      checks: {}
+      checks: {} as Record<string, any>
     };
 
     // Check 1: Service role client works

@@ -5,12 +5,12 @@ import { useRouter } from 'next/navigation'
 
 export default function TestLoginPage() {
   const router = useRouter()
-  const [results, setResults] = useState<any>({})
+  const [results, setResults] = useState<Record<string, any>>({})
 
   const testEnvironment = async () => {
     const response = await fetch('/api/test-env')
     const data = await response.json()
-    setResults(prev => ({ ...prev, env: data }))
+    setResults((prev: Record<string, any>) => ({ ...prev, env: data }))
   }
 
   const testDirectAccess = () => {
