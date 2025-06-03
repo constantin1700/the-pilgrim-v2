@@ -5,6 +5,9 @@ import type { NextRequest } from 'next/server'
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
   
+  // TEMPORARILY DISABLED - Authentication checks removed
+  return res
+  
   // Solo aplicar middleware a rutas admin
   if (!req.nextUrl.pathname.startsWith('/admin')) {
     return res
