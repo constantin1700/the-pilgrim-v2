@@ -1,274 +1,411 @@
 'use client'
 
-import { useState } from 'react'
-import { Edit, Users, DollarSign, AlertCircle } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Plus, Edit, Trash2, Check, X, Loader2 } from 'lucide-react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-interface ServicePlan {
+interface Service {
   id: string
   name: string
+  name_es: string
+  description: string
+  description_es: string
   price: number
-  monthlyLimit?: number
-  currentReservations: number
-  isActive: boolean
-}
-
-interface Reservation {
-  id: string
-  planName: string
-  customerName: string
-  customerEmail: string
-  status: 'pending' | 'paid' | 'completed'
-  createdAt: Date
+  currency: string
+  duration: string
+  features: string[]
+  features_es: string[]
+  popular: boolean
+  active: boolean
 }
 
 export default function AdminServicesPage() {
-  const [plans] = useState<ServicePlan[]>([
-    {
-      id: 'basic',
-      name: 'Soporte Básico',
-      price: 49,
-      currentReservations: 8,
-      isActive: true
-    },
-    {
-      id: 'personalized',
-      name: 'Soporte Personalizado',
-      price: 99,
-      monthlyLimit: 20,
-      currentReservations: 12,
-      isActive: true
-    },
-    {
-      id: 'premium',
-      name: 'Soporte Premium',
-      price: 149,
-      monthlyLimit: 10,
-      currentReservations: 7,
-      isActive: true
-    }
-  ])
+  const supabase = createClientComponentClient()
+  const [services, setServices] = useState<Service[]>([])
+  const [loading, setLoading] = useState(true)
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [editingService, setEditingService] = useState<Service | null>(null)
+  const [showNewForm, setShowNewForm] = useState(false)
+  const [newService, setNewService] = useState<Partial<Service>>({
+    name: '',
+    name_es: '',
+    description: '',
+    description_es: '',
+    price: 0,
+    currency: 'EUR',
+    duration: '60 min',
+    features: [],
+    features_es: [],
+    popular: false,
+    active: true
+  })
 
-  const [reservations] = useState<Reservation[]>([
-    {
-      id: '1',
-      planName: 'Soporte Personalizado',
-      customerName: 'Ana Martínez',
-      customerEmail: 'ana@example.com',
-      status: 'paid',
-      createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2)
-    },
-    {
-      id: '2',
-      planName: 'Soporte Premium',
-      customerName: 'Roberto Silva',
-      customerEmail: 'roberto@example.com',
-      status: 'paid',
-      createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24)
-    },
-    {
-      id: '3',
-      planName: 'Soporte Básico',
-      customerName: 'Laura González',
-      customerEmail: 'laura@example.com',
-      status: 'pending',
-      createdAt: new Date(Date.now() - 1000 * 60 * 60 * 48)
-    }
-  ])
+  useEffect(() => {
+    loadServices()
+  }, [])
 
-  const totalRevenue = reservations
-    .filter(r => r.status === 'paid')
-    .reduce((sum, r) => {
-      const plan = plans.find(p => p.name === r.planName)
-      return sum + (plan?.price || 0)
-    }, 0)
+  const loadServices = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('services')
+        .select('*')
+        .order('price', { ascending: true })
+      
+      if (error) throw error
+      setServices(data || [])
+    } catch (error) {
+      console.error('Error loading services:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleEdit = (service: Service) => {
+    setEditingId(service.id)
+    setEditingService({...service})
+  }
+
+  const handleSave = async () => {
+    if (!editingService) return
+
+    try {
+      const { error } = await supabase
+        .from('services')
+        .update({
+          name: editingService.name,
+          name_es: editingService.name_es,
+          description: editingService.description,
+          description_es: editingService.description_es,
+          price: editingService.price,
+          currency: editingService.currency,
+          duration: editingService.duration,
+          features: editingService.features,
+          features_es: editingService.features_es,
+          popular: editingService.popular,
+          active: editingService.active,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', editingService.id)
+
+      if (error) throw error
+
+      await loadServices()
+      setEditingId(null)
+      setEditingService(null)
+    } catch (error) {
+      console.error('Error saving service:', error)
+      alert('Error al guardar el servicio')
+    }
+  }
+
+  const handleCreate = async () => {
+    try {
+      const { error } = await supabase
+        .from('services')
+        .insert({
+          ...newService,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        })
+
+      if (error) throw error
+
+      await loadServices()
+      setShowNewForm(false)
+      setNewService({
+        name: '',
+        name_es: '',
+        description: '',
+        description_es: '',
+        price: 0,
+        currency: 'EUR',
+        duration: '60 min',
+        features: [],
+        features_es: [],
+        popular: false,
+        active: true
+      })
+    } catch (error) {
+      console.error('Error creating service:', error)
+      alert('Error al crear el servicio')
+    }
+  }
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('¿Estás seguro de eliminar este servicio?')) return
+
+    try {
+      const { error } = await supabase
+        .from('services')
+        .delete()
+        .eq('id', id)
+
+      if (error) throw error
+
+      await loadServices()
+    } catch (error) {
+      console.error('Error deleting service:', error)
+      alert('Error al eliminar el servicio')
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+      </div>
+    )
+  }
 
   return (
-    <div className="space-y-8">
-      {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="card p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="p-3 rounded-lg bg-green-100 dark:bg-green-900/20">
-              <DollarSign className="h-6 w-6 text-green-600 dark:text-green-400" />
-            </div>
-          </div>
-          <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            €{totalRevenue}
-          </p>
-          <p className="text-sm text-gray-600 dark:text-gray-200">
-            Ingresos este mes
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            Gestión de Servicios
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400">
+            Administra los planes de consultoría
           </p>
         </div>
-
-        <div className="card p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="p-3 rounded-lg bg-blue-100 dark:bg-blue-900/20">
-              <Users className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-            </div>
-          </div>
-          <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            {reservations.length}
-          </p>
-          <p className="text-sm text-gray-600 dark:text-gray-200">
-            Reservas totales
-          </p>
-        </div>
-
-        <div className="card p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="p-3 rounded-lg bg-amber-100 dark:bg-amber-900/20">
-              <AlertCircle className="h-6 w-6 text-amber-600 dark:text-amber-400" />
-            </div>
-          </div>
-          <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            {reservations.filter(r => r.status === 'pending').length}
-          </p>
-          <p className="text-sm text-gray-600 dark:text-gray-200">
-            Pagos pendientes
-          </p>
-        </div>
-
-        <div className="card p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="p-3 rounded-lg bg-purple-100 dark:bg-purple-900/20">
-              <Users className="h-6 w-6 text-purple-600 dark:text-purple-400" />
-            </div>
-          </div>
-          <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            15
-          </p>
-          <p className="text-sm text-gray-600 dark:text-gray-200">
-            En lista de espera
-          </p>
-        </div>
+        <button
+          onClick={() => setShowNewForm(!showNewForm)}
+          className="btn-primary flex items-center gap-2"
+        >
+          <Plus className="h-4 w-4" />
+          Nuevo servicio
+        </button>
       </div>
 
-      {/* Service Plans */}
-      <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          Configuración de Servicios
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {plans.map((plan) => (
-            <div key={plan.id} className="card p-6">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white">
-                    {plan.name}
-                  </h4>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white mt-2">
-                    €{plan.price}
-                  </p>
-                </div>
-                <button className="text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100">
-                  <Edit className="h-4 w-4" />
-                </button>
-              </div>
+      {/* New Service Form */}
+      {showNewForm && (
+        <div className="card p-6 mb-6">
+          <h3 className="text-lg font-semibold mb-4">Crear nuevo servicio</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="Nombre (EN)"
+              value={newService.name}
+              onChange={(e) => setNewService({...newService, name: e.target.value})}
+              className="input-primary"
+            />
+            <input
+              type="text"
+              placeholder="Nombre (ES)"
+              value={newService.name_es}
+              onChange={(e) => setNewService({...newService, name_es: e.target.value})}
+              className="input-primary"
+            />
+            <textarea
+              placeholder="Descripción (EN)"
+              value={newService.description}
+              onChange={(e) => setNewService({...newService, description: e.target.value})}
+              className="input-primary"
+              rows={3}
+            />
+            <textarea
+              placeholder="Descripción (ES)"
+              value={newService.description_es}
+              onChange={(e) => setNewService({...newService, description_es: e.target.value})}
+              className="input-primary"
+              rows={3}
+            />
+            <div className="flex gap-2">
+              <input
+                type="number"
+                placeholder="Precio"
+                value={newService.price}
+                onChange={(e) => setNewService({...newService, price: Number(e.target.value)})}
+                className="input-primary flex-1"
+              />
+              <select
+                value={newService.currency}
+                onChange={(e) => setNewService({...newService, currency: e.target.value})}
+                className="input-primary"
+              >
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+              </select>
+            </div>
+            <input
+              type="text"
+              placeholder="Duración"
+              value={newService.duration}
+              onChange={(e) => setNewService({...newService, duration: e.target.value})}
+              className="input-primary"
+            />
+          </div>
+          <div className="flex gap-2 mt-4">
+            <button
+              onClick={handleCreate}
+              className="btn-primary"
+            >
+              Crear servicio
+            </button>
+            <button
+              onClick={() => setShowNewForm(false)}
+              className="btn-secondary"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
 
-              {plan.monthlyLimit && (
-                <div className="mb-4">
-                  <div className="flex justify-between text-sm mb-2">
-                    <span className="text-gray-600 dark:text-gray-200">Disponibilidad</span>
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      {plan.currentReservations}/{plan.monthlyLimit}
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <div 
-                      className="bg-blue-600 dark:bg-blue-400 h-2 rounded-full transition-all duration-500"
-                      style={{ width: `${(plan.currentReservations / plan.monthlyLimit) * 100}%` }}
+      {/* Services List */}
+      <div className="grid gap-4">
+        {services.length === 0 ? (
+          <div className="card p-8 text-center text-gray-500">
+            <p>No hay servicios creados</p>
+            <p className="text-sm mt-2">Haz clic en "Nuevo servicio" para crear uno</p>
+          </div>
+        ) : (
+          services.map((service) => (
+            <div key={service.id} className="card p-6">
+              {editingId === service.id ? (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input
+                      type="text"
+                      value={editingService?.name}
+                      onChange={(e) => setEditingService({...editingService!, name: e.target.value})}
+                      className="input-primary"
+                      placeholder="Nombre (EN)"
                     />
+                    <input
+                      type="text"
+                      value={editingService?.name_es}
+                      onChange={(e) => setEditingService({...editingService!, name_es: e.target.value})}
+                      className="input-primary"
+                      placeholder="Nombre (ES)"
+                    />
+                    <textarea
+                      value={editingService?.description}
+                      onChange={(e) => setEditingService({...editingService!, description: e.target.value})}
+                      className="input-primary"
+                      rows={3}
+                      placeholder="Descripción (EN)"
+                    />
+                    <textarea
+                      value={editingService?.description_es}
+                      onChange={(e) => setEditingService({...editingService!, description_es: e.target.value})}
+                      className="input-primary"
+                      rows={3}
+                      placeholder="Descripción (ES)"
+                    />
+                    <div className="flex gap-2">
+                      <input
+                        type="number"
+                        value={editingService?.price}
+                        onChange={(e) => setEditingService({...editingService!, price: Number(e.target.value)})}
+                        className="input-primary flex-1"
+                      />
+                      <select
+                        value={editingService?.currency}
+                        onChange={(e) => setEditingService({...editingService!, currency: e.target.value})}
+                        className="input-primary"
+                      >
+                        <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
+                        <option value="GBP">GBP</option>
+                      </select>
+                    </div>
+                    <input
+                      type="text"
+                      value={editingService?.duration}
+                      onChange={(e) => setEditingService({...editingService!, duration: e.target.value})}
+                      className="input-primary"
+                      placeholder="Duración"
+                    />
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <label className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={editingService?.popular}
+                        onChange={(e) => setEditingService({...editingService!, popular: e.target.checked})}
+                      />
+                      <span>Popular</span>
+                    </label>
+                    <label className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={editingService?.active}
+                        onChange={(e) => setEditingService({...editingService!, active: e.target.checked})}
+                      />
+                      <span>Activo</span>
+                    </label>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={handleSave}
+                      className="btn-primary flex items-center gap-2"
+                    >
+                      <Check className="h-4 w-4" />
+                      Guardar
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEditingId(null)
+                        setEditingService(null)
+                      }}
+                      className="btn-secondary flex items-center gap-2"
+                    >
+                      <X className="h-4 w-4" />
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      {service.name_es || service.name}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {service.description_es || service.description}
+                    </p>
+                    <div className="flex items-center gap-4 mt-2">
+                      <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                        {service.price} {service.currency}
+                      </span>
+                      <span className="text-sm text-gray-500">
+                        {service.duration}
+                      </span>
+                      {service.popular && (
+                        <span className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full">
+                          Popular
+                        </span>
+                      )}
+                      <span className={`px-2 py-1 text-xs rounded-full ${
+                        service.active
+                          ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300'
+                          : 'bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300'
+                      }`}>
+                        {service.active ? 'Activo' : 'Inactivo'}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleEdit(service)}
+                      className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(service.id)}
+                      className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
                   </div>
                 </div>
               )}
-
-              <div className="flex items-center justify-between">
-                <span className={`px-2 py-1 text-xs rounded-full ${
-                  plan.isActive
-                    ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200'
-                }`}>
-                  {plan.isActive ? 'Activo' : 'Inactivo'}
-                </span>
-                <span className="text-sm text-gray-600 dark:text-gray-200">
-                  {plan.currentReservations} reservas
-                </span>
-              </div>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Recent Reservations */}
-      <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          Reservas Recientes
-        </h3>
-        <div className="card overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 dark:bg-slate-800">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                  Cliente
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                  Plan
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                  Estado
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                  Fecha
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                  Acciones
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white dark:bg-slate-900 divide-y divide-gray-200 dark:divide-gray-700">
-              {reservations.map((reservation) => (
-                <tr key={reservation.id} className="hover:bg-gray-50 dark:hover:bg-slate-800">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div>
-                      <div className="text-sm font-medium text-gray-900 dark:text-white">
-                        {reservation.customerName}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-200">
-                        {reservation.customerEmail}
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-gray-900 dark:text-white">
-                      {reservation.planName}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      reservation.status === 'paid'
-                        ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300'
-                        : reservation.status === 'pending'
-                        ? 'bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300'
-                        : 'bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-                    }`}>
-                      {reservation.status === 'paid' && 'Pagado'}
-                      {reservation.status === 'pending' && 'Pendiente'}
-                      {reservation.status === 'completed' && 'Completado'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
-                    {new Date(reservation.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button className="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300">
-                      Ver detalles
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+          ))
+        )}
       </div>
     </div>
   )
