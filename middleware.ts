@@ -1,90 +1,50 @@
-import { createServerClient } from '@supabase/ssr'
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
-  
-  // Rutas que no necesitan protección
-  const publicRoutes = [
-    '/admin/login',
-    '/api/admin/check-access',
-  ]
+  const supabase = createMiddlewareClient({ req, res })
   
   const pathname = req.nextUrl.pathname
   
-  // Si es una ruta pública, permitir acceso
-  if (publicRoutes.some(route => pathname === route)) {
+  // Permitir acceso a login y recursos públicos
+  if (pathname === '/admin/login' || pathname === '/api/admin/check-access') {
     return res
   }
   
-  // Solo proteger rutas admin
+  // Proteger rutas admin
   if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin')) {
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          get(name: string) {
-            return req.cookies.get(name)?.value
-          },
-          set(name: string, value: string, options: any) {
-            res.cookies.set({ name, value, ...options })
-          },
-          remove(name: string, options: any) {
-            res.cookies.set({ name, value: '', ...options })
-          },
-        },
-      }
-    )
-
-    const { data: { user } } = await supabase.auth.getUser()
-
-    // Si no hay usuario, redirigir a login
-    if (!user) {
+    const { data: { session } } = await supabase.auth.getSession()
+    
+    if (!session) {
+      // No hay sesión, redirigir a login
       if (pathname.startsWith('/api/')) {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
       }
       return NextResponse.redirect(new URL('/admin/login', req.url))
     }
-
-    // Verificar si es admin usando service client
-    const serviceSupabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!,
-      {
-        cookies: {
-          get(name: string) {
-            return req.cookies.get(name)?.value
-          },
-          set(name: string, value: string, options: any) {
-            res.cookies.set({ name, value, ...options })
-          },
-          remove(name: string, options: any) {
-            res.cookies.set({ name, value: '', ...options })
-          },
-        },
-      }
-    )
-
-    const { data: adminUser } = await serviceSupabase
+    
+    // Hay sesión, verificar si es admin
+    const { data: adminUser } = await supabase
       .from('admin_users')
       .select('id')
-      .eq('email', user.email)
+      .eq('email', session.user.email)
       .eq('is_active', true)
       .single()
-
+    
     if (!adminUser) {
+      // No es admin
       if (pathname.startsWith('/api/')) {
-        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+        return NextResponse.json({ error: 'Sin permisos de administrador' }, { status: 403 })
       }
       return NextResponse.redirect(new URL('/admin/login', req.url))
     }
   }
-
+  
   return res
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/admin/:path*'],
+  matcher: ['/admin/:path*', '/api/admin/:path*']
 }
